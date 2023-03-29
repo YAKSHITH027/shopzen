@@ -1,0 +1,202 @@
+.cartmaindiv {
+    width: 80%;
+    height: 200px;
+    margin: auto;
+    border: 1px solid red;
+}
+
+.shoppingbag_heading {
+    place-content: center;
+    align-items: center;
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+    font-size: 34px;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color: rgba(0, 0, 0, .87);
+    margin: 40px 0;
+    font-weight: 700;
+}
+
+.cartMainDiv {
+    width: 90%;
+    margin: auto;
+    height: 450px;
+    /*border: 1px solid red;*/
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 200px;
+}
+
+.cartMainDiv_subdiv1 {
+    width: 45%;
+    height: 450px;
+    border: 1px solid black;
+
+}
+
+.cartMainDiv_subdiv2 {
+    width: 40%;
+    height: 450px;
+    overflow-y: scroll;
+}
+
+.coupons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.coupons_heading1 {
+    font-size: 18px;
+    margin: 0px;
+    color: rgb(0, 0, 0);
+    font-family: Trade Gothic LT Pro, sans-serif;
+    cursor: pointer;
+    font-weight: 600;
+    padding-left: 10px;
+}
+
+.coupons_heading2 {
+    font-size: 12px;
+    margin: 0px;
+    color: rgb(66, 56, 56);
+    font-family: Trade Gothic LT Pro, sans-serif;
+    cursor: pointer;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.coupons_heading2 span {
+    font-size: 10px;
+    margin: 0px;
+    color: rgb(66, 56, 56);
+    font-family: Trade Gothic LT Pro, sans-serif;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.applyCouponInput {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.giftDiv {
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.TotalItemDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.TotalDiscountDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+
+}
+
+.shippingDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+
+}
+
+.grandTotal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+
+}
+
+.savedDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+
+}
+
+.orderSummary {
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    margin: 0 0 14px !important;
+    font-size: 18px;
+    font-family: 'Trade Gothic LT Pro', sans-serif !important;
+    letter-spacing: 0;
+    padding-top: 10px;
+
+}
+
+.TotalItemDiv p:nth-child(1) {
+    font-size: 16px;
+    color: #000;
+    font-family: Graphik Regular, sans-serif;
+    padding-top: 10px;
+
+
+}
+
+.TotalItemDiv p:nth-child(2) {
+    font-weight: bold;
+    padding-top: 10px;
+
+}
+
+.TotalDiscountDiv {
+    font-size: 16px;
+    color: #000;
+    font-family: Graphik Regular, sans-serif;
+    color: red;
+    font-weight: 500;
+    padding-top: 10px;
+
+}
+
+.shippingDiv p:nth-child(1) {
+    font-size: 16px;
+    color: #000;
+    font-family: Graphik Regular, sans-serif;
+    padding-top: 10px;
+
+}
+
+.shippingDiv p:nth-child(2) {
+    font-size: 16px;
+    font-family: Graphik Regular, sans-serif;
+    color: red;
+    font-weight: 500;
+    padding-top: 10px;
+
+}
+.grandTotal{
+    font-size: 16px;
+    color: #000;
+    font-family: Graphik Regular, sans-serif;
+    font-weight: 600;
+    padding-top: 10px;
+
+}
+.checkoutButtonDiv{
+    padding-top: 10px;
+
+}
