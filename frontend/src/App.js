@@ -1,3 +1,4 @@
+
 import './App.css'
 import Home from './pages/home/Home'
 import 'slick-carousel/slick/slick.css'
@@ -10,6 +11,7 @@ function App() {
       <Profile />
     </div>
   )
+
 }
 
 export default App
