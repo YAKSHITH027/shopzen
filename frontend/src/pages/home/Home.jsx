@@ -6,7 +6,7 @@ import ProductSlider from '../../components/home/ProductSlider'
 import { AutoImage } from '../../utils/HomeSliderData/AutoSliderImages'
 import { newArrivalData } from '../../utils/HomeSliderData/newArrival'
 import { shopCategory } from '../../utils/HomeSliderData/shopCategory'
-
+import Footer from '../../components/footer/Footer'
 const Home = () => {
   return (
     <div>
@@ -98,6 +98,7 @@ const Home = () => {
       <Box p='3rem' margin={'auto'}>
         <AutoSlider data={AutoImage} />
       </Box>
+      <Footer />
     </div>
   )
 }
