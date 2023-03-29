@@ -29,7 +29,7 @@ const CartMap = () => {
                         </div>
 
                         <div>
-                            <RiDeleteBin6Line size={25} />
+                            <RiDeleteBin6Line size={20} />
                         </div>
                     </div>
                 </div>
