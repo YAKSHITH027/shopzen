@@ -8,7 +8,7 @@ const Allrouter = () => {
   return (
     <div>
       <Routes>
-<Route path="/Registration" element={<Registration/>}/>
+<Route path="registration" element={<Registration/>}/>
         <Route path='/Login' element={<Login/>}/>
         <Route path='/' element={<MyAccount/>}/>
       </Routes>
