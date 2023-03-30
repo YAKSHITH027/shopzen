@@ -29,7 +29,6 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin-bottom: 200px;
 }
 
 .cartMainDiv_subdiv1 {
@@ -199,4 +198,82 @@
 .checkoutButtonDiv{
     padding-top: 10px;
 
+}
+.recentlyViewedDiv{ 
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+}
+.recentlyViewed_subdiv1{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+.recentlyHeading{
+    color: rgb(0, 0, 0);
+    font-size: 34px;
+    margin: 0;
+    padding-left: 17px;
+    font-family: 'Trade Gothic LT Pro', sans-serif !important;
+    letter-spacing: 0;
+    font-weight: 500;
+}
+.productName{
+    -webkit-line-clamp: 2;
+    max-width: 100%;
+    margin: 7px 0;
+    line-height: 16px;
+    font-size: 13px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-family: 'Graphik Regular', sans-serif;
+    letter-spacing: 0;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color: rgba(0,0,0,.87);
+}
+.productPrice{
+    font-family: Trade Gothic LT Pro,sans-serif;
+    letter-spacing: 0;
+    font-size: 16px;
+    display: block;   
+    color: rgba(0,0,0,.87);
+}
+.productPrice span{
+    color: gray;
+}
+.FreeInfo{
+    color: red;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+
+@media screen and (max-width: 900px){
+    .cartMainDiv{
+        flex-direction: column;
+    }
+    .cartMainDiv_subdiv1{
+        width: 80%;
+    }
+    .cartMainDiv_subdiv2{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) and (min-width:100px){
+    .cartMainDiv{
+        flex-direction: column;
+    }
+    .cartMainDiv_subdiv1{
+        width: 90%;
+    }
+    .cartMainDiv_subdiv2{
+        width: 90%;
+    }
 }
