@@ -7,6 +7,11 @@ import Cart from "./pages/cart/Cart"
 import Checkout from "./pages/Checkout/Checkout"
 import Allrouter from './pages/Allrouter'
 
+import Topbar from './Adminside/scene/global/Topbar'
+import { Box, Flex } from '@chakra-ui/layout'
+import Sidebar from './Adminside/scene/global/Sidebar'
+import Dashboard from './Adminside/scene/Dashboard'
+
 function App() {
   return (
     <div className='App'>
