@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import Profile from './pages/profile/Profile'
 import Cart from "./pages/cart/Cart"
 import Checkout from "./pages/Checkout/Checkout"
+import Allrouter from './pages/Allrouter'
 
 function App() {
   return (
@@ -12,8 +13,8 @@ function App() {
       {/* <Home /> */}
       {/* <Profile /> */}
       {/*<Cart/>*/}
-      <Checkout/>
-
+      {/*<Checkout/>*/}
+      <Allrouter />
     </div>
   )
 }
