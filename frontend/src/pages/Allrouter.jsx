@@ -5,6 +5,17 @@ import MyAccount from '../components/Auth/MyAccount'
 import Registration from '../components/Auth/registration'
 import Home from './home/Home'
 import Cart from '../pages/cart/Cart'
+import Dashboard from '../Adminside/scene/Dashboard'
+import Sidebar from '../Adminside/scene/global/Sidebar'
+import Topbar from '../Adminside/scene/global/Topbar'
+import Users from '../Adminside/scene/users/Users'
+import AdminProducts from '../Adminside/scene/Products/AdminProducts'
+import AddProduct from '../Adminside/scene/addProduct/AddProduct'
+import Calendar from '../Adminside/scene/Calendar/Calendar'
+import Orders from '../Adminside/scene/orders/Orders'
+import Admins from '../Adminside/scene/Admins/Admins'
+import BarChart from '../Adminside/components/BarChart'
+import PieChart from '../Adminside/components/PieChart'
 const Allrouter = () => {
   return (
     <div>
@@ -15,6 +26,86 @@ const Allrouter = () => {
         <Route path='/registration' element={<Registration />} />
         <Route path='/login' element={<Login />} />
         <Route path='/myaccount' element={<MyAccount />} />
+        <Route
+          path='/dashboard'
+          element={
+            <Sidebar>
+              <Dashboard />
+            </Sidebar>
+          }
+        />
+        <Route
+          path='/adminusers'
+          element={
+            <Sidebar>
+              <Users />
+            </Sidebar>
+          }
+        />
+        <Route
+          path='/adminproducts'
+          element={
+            <Sidebar>
+              <AdminProducts />
+            </Sidebar>
+          }
+        />
+        <Route
+          path='/addproduct'
+          element={
+            <Sidebar>
+              <AddProduct />
+            </Sidebar>
+          }
+        />
+        <Route
+          path='/admincalender'
+          element={
+            <Sidebar>
+              <Calendar />
+            </Sidebar>
+          }
+        />
+        <Route
+          path='/admincalender'
+          element={
+            <Sidebar>
+              <Calendar />
+            </Sidebar>
+          }
+        />
+        <Route
+          path='/adminorders'
+          element={
+            <Sidebar>
+              <Orders />
+            </Sidebar>
+          }
+        />
+        <Route
+          path='/admins'
+          element={
+            <Sidebar>
+              <Admins />
+            </Sidebar>
+          }
+        />
+        <Route
+          path='/barchart'
+          element={
+            <Sidebar>
+              <BarChart />
+            </Sidebar>
+          }
+        />
+        <Route
+          path='/piechart'
+          element={
+            <Sidebar>
+              <PieChart />
+            </Sidebar>
+          }
+        />
       </Routes>
     </div>
   )
