@@ -1,12 +1,16 @@
 const express = require('express')
 const { cartAdd, cartGet } = require('../controller/cart.controller')
 
-const cart = express.Router()
 
-cart.post('/add', cartAdd)
-cart.post('/', cartGet)
+const cartRouter = express.Router()
 
-module.exports = { cart }
+cartRouter.post('/add', cartAdd)
+cartRouter.get("/getitem",cartGet)
+cartRouter.get("/:productID",cartGet)
+
+
+
+module.exports = { cartRouter }
 
 // /add
 // /

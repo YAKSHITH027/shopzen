@@ -20,12 +20,18 @@ const Allrouter = () => {
   return (
     <div>
       <Routes>
+
+<Route path="registration" element={<Registration/>}/>
+        <Route path='/Login' element={<Login/>}/>
+        <Route path='/' element={<MyAccount/>}/>
+
         <Route path='/' element={<Home />} />
         <Route path='/cart' element={<Cart />} />
         {/* <Route path='/' element={<Registration />} /> */}
         <Route path='/registration' element={<Registration />} />
         <Route path='/login' element={<Login />} />
         <Route path='/myaccount' element={<MyAccount />} />
+
         <Route
           path='/dashboard'
           element={
@@ -106,6 +112,8 @@ const Allrouter = () => {
             </Sidebar>
           }
         />
+
+
       </Routes>
     </div>
   )
