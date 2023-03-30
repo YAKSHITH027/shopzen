@@ -9,12 +9,18 @@ const Allrouter = () => {
   return (
     <div>
       <Routes>
+<<<<<<< HEAD
+<Route path="registration" element={<Registration/>}/>
+        <Route path='/Login' element={<Login/>}/>
+        <Route path='/' element={<MyAccount/>}/>
+=======
         <Route path='/' element={<Home />} />
         <Route path='/cart' element={<Cart />} />
         {/* <Route path='/' element={<Registration />} /> */}
         <Route path='/registration' element={<Registration />} />
         <Route path='/login' element={<Login />} />
         <Route path='/myaccount' element={<MyAccount />} />
+>>>>>>> 654cd1c89911fea733113008b3a4ae359988d9ed
       </Routes>
     </div>
   )
