@@ -1,16 +1,14 @@
 const mongoose = require('mongoose')
+const { cartSchema } = require('./cart.model')
 
 const orderSchema = mongoose.Schema({
-  products: [
-    {
-      title: String,
-    },
-  ],
+  products: [cartSchema],
   userId: String,
   createdAt: String,
+  totalAmount: Number,
   address: {
     fullname: String,
-    mobile: Number,
+    mobile: String,
     email: String,
     address: String,
     pincode: Number,
