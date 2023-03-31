@@ -1,41 +1,37 @@
-const { CartModel } = require("../model/cart.model")
-
+const { CartModel } = require('../model/cart.model')
 
 const cartAdd = async (req, res) => {
   const payload = req.body
   try {
     const CartProduct = new CartModel(payload)
     await CartProduct.save()
-    res.status(200).send("Product has been added")
+    res.status(200).send('Product has been added')
   } catch (err) {
-    res.status(400).send({ "err": err.message })
+    res.status(400).send({ err: err.message })
   }
 }
 
 const cartGet = async (req, res) => {
   //const query=req.query
   try {
-    const cartProducts = await CartModel.find()
+    const cartProducts = await CartModel.find({ userId: req.body.userId })
     res.status(200).send(cartProducts)
-  } catch (error) { 
-    res.status(400).send({ "err": err.message })
+  } catch (error) {
+    res.status(400).send({ err: err.message })
   }
 }
 
-const DeleteCartItem=async (req,res)=>{
+const DeleteCartItem = async (req, res) => {
   const { productID } = req.params
   try {
-      await CartModel.findByIdAndDelete({ _id: productID })
-      res.status(200).send("Product has been Deleted")
-
+    await CartModel.findByIdAndDelete({ _id: productID })
+    res.status(200).send('Product has been Deleted')
   } catch (err) {
-      res.status(400).send({ "err": err.message })
+    res.status(400).send({ err: err.message })
   }
 }
 
-
-
-module.exports = { cartAdd, cartGet ,DeleteCartItem}
+module.exports = { cartAdd, cartGet, DeleteCartItem }
 
 /*
 {
