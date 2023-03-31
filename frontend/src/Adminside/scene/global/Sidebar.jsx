@@ -1,7 +1,7 @@
 import { Avatar } from '@chakra-ui/avatar'
 import { Box, Flex, Heading, Text } from '@chakra-ui/layout'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import Topbar from './Topbar'
 import { RxDashboard } from 'react-icons/rx'
 import { BsCartCheck } from 'react-icons/bs'
@@ -11,6 +11,8 @@ import { MdAddShoppingCart, MdOutlineSecurity } from 'react-icons/md'
 // import { IoBagAddOutline } from 'react-icons/io'
 // import { BsCartCheck } from 'react-icons/bs'
 const Sidebar = ({ children }) => {
+  const { pathname } = useLocation()
+  console.log(pathname)
   const pageLinks = [
     {
       id: 1,
@@ -88,7 +90,12 @@ const Sidebar = ({ children }) => {
             <Flex gap='3' align={'center'} pl='2rem' key={item.id}>
               <Text>{item.icon}</Text>
               <Link to={item.link}>
-                <Text textTransform={'capitalize'}>{item.title}</Text>
+                <Text
+                  textTransform={'capitalize'}
+                  color={pathname == item.link ? '#5c60bd' : 'white'}
+                >
+                  {item.title}
+                </Text>
               </Link>
             </Flex>
           )
