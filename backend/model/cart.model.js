@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+
 const cartSchema = mongoose.Schema({ 
     product_name: {
         type:String,
@@ -17,9 +18,14 @@ const cartSchema = mongoose.Schema({
      type:String,
      required:true
     },
+    discountedPrice:{
+        type:Number,
+        required:true
+    },
     userID:String 
+
 })
 
 const CartModel = mongoose.model('cart', cartSchema)
 
-module.exports = { CartModel }
+module.exports = { CartModel, cartSchema }

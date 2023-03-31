@@ -2,6 +2,7 @@
     width: 80%;
     height: 200px;
     margin: auto;
+    border: 1px solid red;
 }
 
 .shoppingbag_heading {
@@ -23,8 +24,7 @@
 .cartMainDiv {
     width: 90%;
     margin: auto;
-    height: 450px;
-    /*border: 1px solid red;*/
+    height: 400px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -32,15 +32,16 @@
 
 .cartMainDiv_subdiv1 {
     width: 45%;
-    height: 450px;
+    height: 400px;
     overflow-y: scroll;
+
 
 }
 
 .cartMainDiv_subdiv2 {
     width: 40%;
-    height: 450px;
-    overflow-y: scroll;
+    height: 400px;
+
 }
 
 .coupons {
@@ -253,7 +254,6 @@
 }
 .modelDiv{
     height: 200px;
-    overflow-y: scroll;    
 }
 
 
