@@ -30,6 +30,28 @@ const FooterWrapper = styled.div`
     text-align: left;
     font-size: 13px;
 }
+.knowus-main-right{
+    width: 35%;
+    display: inline-block;
+}
+.download-app{
+    display: flex;
+    gap: 0.5em;
+}
+.follous-main{
+padding: 47px 30px 47px 0px;
+}
+.download-main{
+padding: 47px 30px 47px 0px;
+}
+.followus-css{
+    display: flex;
+    gap: 0.5em;
+}
+.payment-css{
+    display: flex;
+    gap: 0.5em;
+}
 `
 
 export {FooterWrapper}
