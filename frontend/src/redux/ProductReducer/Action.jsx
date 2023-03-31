@@ -17,10 +17,6 @@ export const productFailure=()=>{
 
 export const getProduct=(params)=>(dispatch)=>{
     dispatch(productRequest());
-    axios.get("http://localhost:8080/product",params).then((res)=>{
-        dispatch(getProductSuccess(res.data));
-        // console.log(res.data);
-    }).catch(()=>{
-        dispatch(productFailure());
-    })
+    console.log(params)
+    return axios.get("http://localhost:7000/product",params)
 }
