@@ -58,10 +58,16 @@ const login = async (req, res) => {
 
 const getUsers = async (req, res) => {
   const { page, limit } = req.query
+  if (page < 1) {
+    page = 1
+  }
+  if (!limit) {
+    limit = 10
+  }
   try {
     let users = await UserModel.find()
-      .skip((page - 1 || 0) * limit)
-      .limit(limit || 10)
+      .skip((page - 1) * limit)
+      .limit(limit)
     res.status(200).send(users)
   } catch (error) {
     res.status(400).send({ msg: error.message })

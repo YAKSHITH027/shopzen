@@ -13,10 +13,16 @@ const orderAdd = async (req, res) => {
 }
 const getAllOrders = async (req, res) => {
   const { page, limit } = req.query
+  if (page < 1) {
+    page = 1
+  }
+  if (!limit) {
+    limit = 10
+  }
   try {
     let allOrders = await OrderModel.find()
-      .skip((page - 1 || 0) * limit)
-      .limit(limit || 10)
+      .skip((page - 1) * limit)
+      .limit(limit)
     res.status(200).send(allOrders)
   } catch (error) {
     res.status(400).send({ msg: err.message })
