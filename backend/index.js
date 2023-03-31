@@ -5,11 +5,13 @@ const { user } = require('./routes/user.route')
 const { cartRouter } = require('./routes/cart.route')
 const { wishListRouter } = require('./routes/wishlist.route')
 const { auth } = require('./middleware/auth.middleware')
+const {product } = require('./routes/product.route')
 // secret code = 'shop6'
 const app = express()
 
 //middlewares
 app.use(express.json())
+
 app.use(cors())
 app.use(auth)
 
@@ -21,6 +23,7 @@ app.get('/', (req, res) => {
 app.use('/user', user)
 app.use('/cart', cartRouter)
 app.use('/wishlist', wishListRouter)
+app.use('/product',product)
 
 // listening to port
 app.listen(7000, async () => {

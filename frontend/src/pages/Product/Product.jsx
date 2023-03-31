@@ -6,8 +6,8 @@ import axios from "axios"
 import { useEffect, useState } from "react";
 import ProductCart from "../../components/products/ProductCart";
 import { LoadingPosts } from "../../components/products/LoadingPost";
-
-
+import { useDispatch, useSelector } from "react-redux"
+import { getProduct } from "../../redux/ProductReducer/Action";
 
 
 function Product(){
@@ -15,6 +15,16 @@ function Product(){
     const [filterdData, setFilterdData]=useState([])
     const [productData,setProductData]=useState([])
     const [data1,setData]=useState([])
+
+    const products = useSelector((store) => {
+        return store.ProductReducer.product;
+    });
+
+        console.log(products)
+    const dispatch=useDispatch()
+
+
+
     const handleFilter=()=>{
         return product.filter((el)=>el.title.includes("WatchBand"))
     }
@@ -32,9 +42,9 @@ function Product(){
     const NUM_PER_PAGE = 12;
     const TOTAL_PAGES =filterdData.length>0? Math.floor(filterdData.length/12):Math.floor(product.length/12);
     useEffect(()=>{
-        axios.get("http://localhost:8000/product")
-        .then((res)=>setProduct(res.data))
-        
+        // axios.get("http://localhost:8000/product")
+        // .then((res)=>setProduct(res.data))
+        dispatch(getProduct())
     },[])
     
     
@@ -43,17 +53,32 @@ function Product(){
     const onGrabData = (currentPage) => {
         // This would be where you'll call your API
         return new Promise((resolve) => {
+        // setTimeout(() => {
+        //      filterdData.length>0? setData(filterdData.slice(
+        //         ((currentPage - 1)%TOTAL_PAGES) * NUM_PER_PAGE,
+        //         NUM_PER_PAGE * (currentPage%TOTAL_PAGES)
+        //         )):setData(product.slice(
+        //     ((currentPage - 1)%TOTAL_PAGES) * NUM_PER_PAGE,
+        //     NUM_PER_PAGE * (currentPage%TOTAL_PAGES)
+        //     ))
+        //     console.log(data1);
+        //     resolve(data1);
+
+        //     products.slice(
+        //         ((currentPage - 1)%TOTAL_PAGES) * NUM_PER_PAGE,
+        //         NUM_PER_PAGE * (currentPage%TOTAL_PAGES)
+        //         )
+        // }, 2000);
+        
         setTimeout(() => {
-             filterdData.length>0? setData(filterdData.slice(
-                ((currentPage - 1)%TOTAL_PAGES) * NUM_PER_PAGE,
-                NUM_PER_PAGE * (currentPage%TOTAL_PAGES)
-                )):setData(product.slice(
+            const data = products.slice(
             ((currentPage - 1)%TOTAL_PAGES) * NUM_PER_PAGE,
             NUM_PER_PAGE * (currentPage%TOTAL_PAGES)
-            ))
-            console.log(data1);
-            resolve(data1);
+            );
+            console.log(data);
+            resolve(data);
         }, 2000);
+        
         });
     };
     const { data, loading } = useLazyLoad({ triggerRef, onGrabData });
