@@ -6,6 +6,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list'
 import interactionPlugin from '@fullcalendar/interaction'
 import { Box, Heading, Text } from '@chakra-ui/layout'
+import Header from '../../components/Header'
 const Calendar = () => {
   const [currentEvents, setCurrentEvents] = useState([])
 
@@ -36,9 +37,9 @@ const Calendar = () => {
   }
 
   return (
-    <Box m='20px'>
+    <Box>
       {/* <Header title="Calendar" subtitle="Full Calendar Interactive Page" /> */}
-      <Heading mb='1rem'>Calendar</Heading>
+      <Header title='Calendar' />
 
       <Box display='flex' justifyContent='space-between'>
         {/* CALENDAR SIDEBAR */}

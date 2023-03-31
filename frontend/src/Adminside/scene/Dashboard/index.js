@@ -28,7 +28,7 @@ const Dashboard = () => {
           </Text>
           <Box
             minH={'30rem'}
-            bg='gray.700'
+            bg='#19376D'
             mt='1rem'
             borderRadius={'1rem'}
           ></Box>
