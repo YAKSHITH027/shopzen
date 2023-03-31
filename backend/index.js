@@ -3,6 +3,7 @@ const cors = require('cors')
 const { connection } = require('./db')
 const { user } = require('./routes/user.route')
 const { cartRouter } = require('./routes/cart.route')
+const { wishListRouter } = require('./routes/wishlist.route')
 //secret code = 'shop6'
 const app = express()
 
@@ -13,6 +14,7 @@ app.use(cors)
 //routes
 app.use('/user', user)
 app.use('/cart', cartRouter)
+app.use('/wishlist', wishListRouter)
 
 // listening to port
 app.listen(7000, async () => {
