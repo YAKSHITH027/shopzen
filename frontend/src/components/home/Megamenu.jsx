@@ -9,7 +9,7 @@ const Megamenu = () => {
       <Link to='/registration'>register</Link>
       <Link to='/login'>login</Link>
       <Link to='/myaccount'>myaccount</Link>
-      <Link to='/'>temparory</Link>
+      <Link to='/dashboard'>admin</Link>
     </>
   )
 }
