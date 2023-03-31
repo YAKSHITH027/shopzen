@@ -1,3 +1,5 @@
+
+
 const { CartModel } = require("../model/cart.model")
 
 
@@ -74,3 +76,6 @@ module.exports = { cartAdd, cartGet, DeleteCartItem, HandleQuantityIncrease ,Han
   "image": "https://images.dailyobjects.com/marche/product-images/1201/all-red-pedal-daypack-images/All-Red-Pedal-Daypack-13t.jpg?tr=cm-pad_crop,v-2,w-202,h-249,dpr-1"
 }
 */
+
+
+
