@@ -20,3 +20,19 @@
 .cartProduct_Price{
     margin-top: 10px;
 }
+.quantity_div{
+
+    display: flex;
+    height: 20px;
+    width: 30%;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+}
+.cartProduct_Price span{
+    color: gray;
+    padding-left: 20px;
+}
+.DeleteIcon{
+    cursor: pointer;
+}
