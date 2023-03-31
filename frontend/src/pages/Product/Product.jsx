@@ -1,106 +1,94 @@
 import { useRef } from "react";
 import clsx from "clsx";
 import useLazyLoad from "../../components/products/LazyLoading";
-import { Box, GridItem, Grid, Button } from "@chakra-ui/react";
+import { Box, GridItem, Grid, Button, Select } from "@chakra-ui/react";
 import axios from "axios"
 import { useEffect, useState } from "react";
 import ProductCart from "../../components/products/ProductCart";
 import { LoadingPosts } from "../../components/products/LoadingPost";
 import { useDispatch, useSelector } from "react-redux"
 import { getProduct } from "../../redux/ProductReducer/Action";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { useSearchParams } from "react-router-dom";
 
-
-function Product(){
-    const [product,setProduct]=useState([])
-    const [filterdData, setFilterdData]=useState([])
-    const [productData,setProductData]=useState([])
-    const [data1,setData]=useState([])
-
+function Product() {
+    const [page, setPage] = useState(2)
+    const [items, setItems] = useState([]);
+    const [hasMore, sethasMore] = useState(true);
+    const [type,setType]=useState("")
     const products = useSelector((store) => {
         return store.ProductReducer.product;
     });
-
-        console.log(products)
-    const dispatch=useDispatch()
-
-
-
-    const handleFilter=()=>{
-        return product.filter((el)=>el.title.includes("WatchBand"))
+    const [SearchParams]=useSearchParams()
+    console.log(products)
+    console.log(items)
+    const dispatch = useDispatch()
+    let obj={
+        params:{
+            page:page,
+            limit:20,
+            search:type
+        }
     }
 
-    
-    const handleBag=()=>{
-        setFilterdData(handleFilter())
-        filterdData.length>0? setProductData(filterdData):setProductData(product)
-    }
-    console.log(filterdData)
-    console.log(productData)
+    useEffect(() => {
+        dispatch(getProduct(obj)).then((res) => setItems(res.data)).catch((err) => console.log(err))
+    }, [type])
 
-    
-    
-    const NUM_PER_PAGE = 12;
-    const TOTAL_PAGES =filterdData.length>0? Math.floor(filterdData.length/12):Math.floor(product.length/12);
-    useEffect(()=>{
-        // axios.get("http://localhost:8000/product")
-        // .then((res)=>setProduct(res.data))
-        dispatch(getProduct())
-    },[])
-    
-    
-
-    const triggerRef = useRef(null);
-    const onGrabData = (currentPage) => {
-        // This would be where you'll call your API
-        return new Promise((resolve) => {
-        // setTimeout(() => {
-        //      filterdData.length>0? setData(filterdData.slice(
-        //         ((currentPage - 1)%TOTAL_PAGES) * NUM_PER_PAGE,
-        //         NUM_PER_PAGE * (currentPage%TOTAL_PAGES)
-        //         )):setData(product.slice(
-        //     ((currentPage - 1)%TOTAL_PAGES) * NUM_PER_PAGE,
-        //     NUM_PER_PAGE * (currentPage%TOTAL_PAGES)
-        //     ))
-        //     console.log(data1);
-        //     resolve(data1);
-
-        //     products.slice(
-        //         ((currentPage - 1)%TOTAL_PAGES) * NUM_PER_PAGE,
-        //         NUM_PER_PAGE * (currentPage%TOTAL_PAGES)
-        //         )
-        // }, 2000);
-        
-        setTimeout(() => {
-            const data = products.slice(
-            ((currentPage - 1)%TOTAL_PAGES) * NUM_PER_PAGE,
-            NUM_PER_PAGE * (currentPage%TOTAL_PAGES)
-            );
-            console.log(data);
-            resolve(data);
-        }, 2000);
-        
-        });
+    const fetchComments = async () => {
+        const res = await fetch(
+            `http://localhost:7000/product?page=${page}&limit=20&search=${type}`
+        );
+        const data = await res.json();
+        return data;
     };
-    const { data, loading } = useLazyLoad({ triggerRef, onGrabData });
-    return(
+
+    const fetchData = async () => {
+        const commentsFormServer = await fetchComments();
+
+        setItems([...items, ...commentsFormServer]);
+        if (commentsFormServer.length === 0 || commentsFormServer.length < 20) {
+            sethasMore(false);
+        }
+        setPage(page + 1);
+    };
+
+    const handleType=(T)=>{
+        setType(T)
+    }
+    console.log(type)
+    return (
         <Box m="auto" w="95%">
-            <Box>
-                <Button onClick={handleBag}>Bags</Button>
+            <Box display="flex">
+                {/* <Button onClick={handleBag}>Bags</Button> */}
+                {/* <Button onClick={()=>handleType("Stand")}>Stand</Button>
+                <Button onClick={()=>handleType("Daypack")}>Daypack</Button>
+                <Button onClick={()=>handleType("Watch")}>Watch</Button>
+                <Button onClick={()=>handleType("All")}>Ivory</Button> */}
+                    <Select onChange={(e)=>handleType(e.target.value)}>
+                        <option value="Macbook">Desks</option>
+                        <option value="Watch">Watch</option>
+                        <option value="Stand">All</option>
+                    </Select>
             </Box>
-            <Grid gridTemplateColumns={["repeat(2,1fr)","repeat(2,1fr)","repeat(3,1fr)","repeat(4,1fr)","repeat(4,1fr)","repeat(4,1fr)"]} gap={["5px","7px","10px","10px","15px","15px",]}>
-            {
-                data.map((el)=>(
-                    <GridItem>
-                    <ProductCart image={el.image} title={el.title} price={el.price} ogprice={el.ogprice} new={el.new? el.new:"" }/>
-                    </GridItem>
-                ))
-            }
-            </Grid>
+            <InfiniteScroll
+                dataLength={items.length} //This is important field to render the next data
+                next={fetchData}
+                hasMore={hasMore}
+                loader={<LoadingPosts/>}
+                
+            >
 
-
-            <div ref={triggerRef} className={clsx("trigger", { visible: loading })}>
-            <LoadingPosts />
-        </div>
+                <Grid gridTemplateColumns={["repeat(2,1fr)", "repeat(2,1fr)", "repeat(3,1fr)", "repeat(4,1fr)", "repeat(4,1fr)", "repeat(4,1fr)"]} gap={["5px", "7px", "10px", "10px", "15px", "15px",]}>
+                    {
+                        items.map((el) => (
+                            <GridItem>
+                                <ProductCart key={el._id} id={el._id} image={el.image} title={el.title} price={el.price} ogprice={el.ogprice} new={el.new ? el.new : ""} />
+                            </GridItem>
+                        ))
+                    }
+                </Grid>
+            </InfiniteScroll>
         </Box>
     )
 }
