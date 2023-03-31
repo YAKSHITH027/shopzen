@@ -6,7 +6,7 @@ import { bags, cases, downloadApp, helpdesk, homeoffice, knowus, network, others
 const Footer = () => {
   return (
         <FooterWrapper>
-        <Heading fontSize={"2xl"}> GET EXCLUSIVE ACCESS TO NEW PRODUCTS, DEALS & SURPRISE TREATS</Heading>
+        <Heading fontSize={"26px"}> GET EXCLUSIVE ACCESS TO NEW PRODUCTS, DEALS & SURPRISE TREATS</Heading>
         <Box style={{width:"400px"}}>
         <InputGroup size='md'>
       <Input
@@ -21,12 +21,12 @@ const Footer = () => {
     </InputGroup>
         </Box>
         <Box>
-            <Heading fontSize={"2xl"}>FEATURED IN</Heading>
+            <Heading fontSize={"26px"}>FEATURED IN</Heading>
             <Image src='https://images.dailyobjects.com/marche/icons/press-desktop.png?tr=cm-pad_resize,v-2,w-1519,h-200,dpr-1' alt='partner'/>
         </Box>
         <Divider/>
         <Box>
-            <Heading fontSize={"2xl"}>HONEST REVIEWS. NOTHING ELSE.</Heading>
+            <Heading fontSize={"26px"}>HONEST REVIEWS. NOTHING ELSE.</Heading>
             <Image src = "https://images.dailyobjects.com/marche/assets/images/other/reviews-desktop-updated-23.png?tr=cm-pad_resize,v-2,w-1519,h-200,dpr-1" alt = "ratings"/>
         </Box>
         <Divider/>
@@ -48,7 +48,7 @@ const Footer = () => {
         <Box className='knowsus-wrapper'>
             <Box className='knowus-main-left'>
                 <Box>
-                    <Heading m={"16px 0px 24px"} fontSize={"md"} >KNOW US</Heading>
+                    <Heading m={"16px 0px 24px"} fontSize={"16px"} >KNOW US</Heading>
                     <Box>
                     <List className='knowus-li-css' >
                     {knowus?.map((item,i)=>{
@@ -56,7 +56,7 @@ const Footer = () => {
                     })}</List></Box>
                 </Box>
                 <Box>
-                <Heading m={"16px 0px 24px"} fontSize={"md"} >HELPDESK</Heading>
+                <Heading m={"16px 0px 24px"} fontSize={"16px"} >HELPDESK</Heading>
                 <Box>
                     <List className='knowus-li-css'>
                     {helpdesk?.map((item,i)=>{
@@ -64,7 +64,7 @@ const Footer = () => {
                     })}</List></Box>
                 </Box>
                 <Box>
-                <Heading m={"16px 0px 24px"} fontSize={"md"} >NETWORK</Heading>
+                <Heading m={"16px 0px 24px"} fontSize={"16px"} >NETWORK</Heading>
                 <Box>
                     <List className='knowus-li-css'>
                     {network?.map((item,i)=>{
@@ -75,7 +75,7 @@ const Footer = () => {
             <Divider h={"auto"} orientation='vertical'/>
             <Box className='knowus-main-right'>
                 <Box className='follous-main'>
-                <Heading mb={"12px"} fontSize={"2xl"}>FOLLOW US ON</Heading>
+                <Heading mb={"12px"} fontSize={"26px"}>FOLLOW US ON</Heading>
                 <Box className='followus-css'>
                     {socialMediaLogo?.map((item,i)=>{
                         return <Box key={i+4}>
@@ -86,7 +86,7 @@ const Footer = () => {
                 </Box>
                 <Divider/>
                 <Box className='download-main'>
-                <Heading mb={"12px"} fontSize={"2xl"}>
+                <Heading mb={"12px"} fontSize={"26px"}>
                 DOWNLOAD OUR APP
                 </Heading>
                 <Box className='download-app'>
@@ -100,22 +100,22 @@ const Footer = () => {
             </Box>
         </Box>
         <Divider/>
-        <Box m={"35px 0px"}>
-            <Heading fontSize={"md"} mb={"15px"} textAlign={"center"}>100% SECURE PAYMENT</Heading>
+        <Box className="payment-main-css">
+            <Heading fontSize={"16px"} mb={"15px"} textAlign={"center"}>100% SECURE PAYMENT</Heading>
             <Box className='payment-css'>
                 {paymentlogo?.map((item,i)=>{
                     return <Box key ={i+2}>
-                        <Image  maxW={"86px"} src={item.url} alt={item.name}/>
+                        <Image maxW={"86px"} src={item.url} alt={item.name}/>
                     </Box>
                 })}
             </Box>
         </Box>
         <Box>
                <Box>
-               <Heading>MOST SEARCHED ON DAILYOBJECTS</Heading>
+               <Heading fontSize={"16px"}>MOST SEARCHED ON DAILYOBJECTS</Heading>
                </Box>
                <Box>
-                <Heading>CASES & COVERS</Heading>
+                <Heading fontSize={"13px"}>CASES & COVERS</Heading>
                 <Box>
                 <List>
                     {cases?.map((item, i) =>{
@@ -125,7 +125,7 @@ const Footer = () => {
                 </Box>
                </Box>
                <Box>
-                <Heading>HOME OFFICE</Heading>
+                <Heading fontSize={"13px"}>HOME OFFICE</Heading>
                 <Box>
                 <List>
                     {homeoffice?.map((item, i) =>{
@@ -135,7 +135,7 @@ const Footer = () => {
                 </Box>
                </Box>
                <Box>
-                <Heading>STRAPS & WATCHBANDS</Heading>
+                <Heading fontSize={"13px"}>STRAPS & WATCHBANDS</Heading>
                 <Box>
                 <List>
                     {straps?.map((item, i) =>{
@@ -145,7 +145,7 @@ const Footer = () => {
                 </Box>
                </Box>
                <Box>
-                <Heading>BAGS & SLEEVES</Heading>
+                <Heading fontSize={"13px"}>BAGS & SLEEVES</Heading>
                 <Box>
                 <List>
                     {bags?.map((item, i) =>{
@@ -155,7 +155,7 @@ const Footer = () => {
                 </Box>
                </Box>
                <Box>
-                <Heading>WALLETS</Heading>
+                <Heading fontSize={"13px"}>WALLETS</Heading>
                 <Box>
                 <List>
                     {wallets?.map((item, i) =>{
@@ -165,7 +165,7 @@ const Footer = () => {
                 </Box>
                </Box>
                <Box>
-                <Heading>OTHERS</Heading>
+                <Heading fontSize={"13px"}>OTHERS</Heading>
                 <Box>
                 <List>
                     {others?.map((item, i) =>{

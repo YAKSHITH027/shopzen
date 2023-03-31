@@ -48,8 +48,15 @@ padding: 47px 30px 47px 0px;
     display: flex;
     gap: 0.5em;
 }
+.payment-main-css{
+    padding: 0.5em;
+    margin: 35px 0px;
+}
 .payment-css{
-    display: flex;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit,minmax(80px,max-content));
     gap: 0.5em;
 }
 `

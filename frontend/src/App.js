@@ -18,8 +18,8 @@ function App() {
     <div className='App'>
       {/* <Home /> */}
       {/* <Profile /> */}
-      {/* <Product /> */}
-      <Allrouter />
+      <Product />
+      {/* <Allrouter /> */}
       {/*<Cart/>*/}
       {/*<Checkout/>*/}
       {/* <Allrouter /> */}
