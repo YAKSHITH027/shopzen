@@ -17,6 +17,10 @@ const cartSchema = mongoose.Schema({
      type:String,
      required:true
     },
+    discountedPrice:{
+        type:Number,
+        required:true
+    },
     userID:String 
 })
 

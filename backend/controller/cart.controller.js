@@ -17,25 +17,54 @@ const cartGet = async (req, res) => {
   try {
     const cartProducts = await CartModel.find()
     res.status(200).send(cartProducts)
-  } catch (error) { 
+  } catch (err) {
     res.status(400).send({ "err": err.message })
   }
 }
 
-const DeleteCartItem=async (req,res)=>{
+const DeleteCartItem = async (req, res) => {
   const { productID } = req.params
   try {
-      await CartModel.findByIdAndDelete({ _id: productID })
-      res.status(200).send("Product has been Deleted")
+    await CartModel.findByIdAndDelete({ _id: productID })
+    res.status(200).send("Product has been Deleted")
 
   } catch (err) {
-      res.status(400).send({ "err": err.message })
+    res.status(400).send({ "err": err.message })
+  }
+}
+
+const HandleQuantityIncrease = async (req, res) => {
+  const { productID } = req.params
+  const payload = req.body
+  payload.quantity=payload.quantity+1
+  try {
+    await CartModel.findByIdAndUpdate({ _id: productID },payload)
+    res.status(200).send({"msg":"Product has been Updated"})
+
+  } catch (err) {
+    res.status(400).send({ "err": err.message })
+  }
+}
+
+const HandleQuantityDecrease = async (req, res) => {
+  const { productID } = req.params
+  const payload = req.body
+  payload.quantity=payload.quantity-1
+  console.log(payload)
+  try {
+    await CartModel.findByIdAndUpdate({ _id: productID },payload)
+    res.status(200).send({"msg":"Product has been Updated"})
+
+  } catch (err) {
+    res.status(400).send({ "err": err.message })
   }
 }
 
 
 
-module.exports = { cartAdd, cartGet ,DeleteCartItem}
+
+
+module.exports = { cartAdd, cartGet, DeleteCartItem, HandleQuantityIncrease ,HandleQuantityDecrease}
 
 /*
 {
