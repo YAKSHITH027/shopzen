@@ -17,6 +17,28 @@ const network = [
 "Corporate Gifting"
 ];
 
+const socialMediaLogo = [
+    {
+        name: "Instagram",
+        url:"https://images.dailyobjects.com/marche/icons/social/instagram.svg?tr=cm-pad_resize,v-2,w-36,h-36,dpr-1"
+    },
+    {
+        name:"Facebook",
+        url:"https://images.dailyobjects.com/marche/icons/social/facebook.svg?tr=cm-pad_resize,v-2,w-36,h-36,dpr-1"
+    },
+    {
+        name:"Youtube",
+        url:"https://images.dailyobjects.com/marche/icons/social/youtube.svg?tr=cm-pad_resize,v-2,w-36,h-36,dpr-1"
+    },
+    {
+        name:"Twitter",
+        url:"https://images.dailyobjects.com/marche/icons/social/twitter.svg?tr=cm-pad_resize,v-2,w-36,h-36,dpr-1"
+    },
+    {
+        name:"Pinterest",
+        url:"https://images.dailyobjects.com/marche/icons/social/pinterest.svg?tr=cm-pad_resize,v-2,w-36,h-36,dpr-1"
+    }
+];
 const paymentlogo = [
     {
         name: "Amex",
@@ -177,4 +199,14 @@ const blogs = [
 "How to choose a perfect mobile case"
 ]
 
-export { knowus , helpdesk, network, paymentlogo, cases, bags, homeoffice, straps, others,blogs, giftByPersona,giftByRelationship, giftsByOccasion, wallets}
+const downloadApp =[
+    {
+        name:"Google play",
+        url:"https://images.dailyobjects.com/marche/icons/android.png?tr=cm-pad_resize,v-2,w-118,h-38,dpr-1"
+    },
+    {
+        name:"App Store",
+        url:"https://images.dailyobjects.com/marche/icons/IOS.png?tr=cm-pad_resize,v-2,w-118,h-38,dpr-1"
+    }
+]
+export { downloadApp,socialMediaLogo,knowus , helpdesk, network, paymentlogo, cases, bags, homeoffice, straps, others,blogs, giftByPersona,giftByRelationship, giftsByOccasion, wallets}
