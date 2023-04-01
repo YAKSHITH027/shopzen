@@ -1,4 +1,4 @@
-import {GET_CART_FAILURE, GET_CART_REQUEST, GET_CART_SUCCESS ,DELETE_CART_SUCCESS} from "./ActionType";
+import {GET_CART_FAILURE, GET_CART_REQUEST, GET_CART_SUCCESS ,DELETE_CART_SUCCESS, POST_CART_SUCCESS} from "./ActionType";
 
 const initialState = {
     isLoading: false,
@@ -24,6 +24,9 @@ export const reducer = (state = initialState, { type, payload }) => {
             return { ...state, isLoading: false };
         }        
         
+        case POST_CART_SUCCESS:{
+            return {...state, isLoading:false}
+        }
 
         default:
             return state;
