@@ -18,30 +18,19 @@ import BarChart from '../Adminside/components/BarChart'
 import PieChart from '../Adminside/components/PieChart'
 import Product from './Product/Product'
 import SingleProduct from './Product/SingleProduct'
+import Signup from '../components/Auth/Signup'
 const Allrouter = () => {
   return (
     <div>
-<<<<<<< HEAD
-       <Routes>
-<Route path="registration" element={<Registration/>}/>
-<Route path='/Signup' element={<Signup/>}/>
-        <Route path='/Login' element={<Login/>}/>
-        <Route path='/' element={<MyAccount/>}/>
-=======
       <Routes>
-        <Route path='registration' element={<Registration />} />
-        <Route path='/Login' element={<Login />} />
-        <Route path='/myaccount' element={<MyAccount />} />
-
-
         <Route path='/' element={<Home />} />
         <Route path='/cart' element={<Cart />} />
-        {/* <Route path='/' element={<Registration />} /> */}
+        <Route path='/signup' element={<Signup />} />
         <Route path='/registration' element={<Registration />} />
         <Route path='/login' element={<Login />} />
         <Route path='/myaccount' element={<MyAccount />} />
-        <Route path='/product' element={<Product/>}/>
-        <Route path='/product/:id' element={<SingleProduct/>}/>
+        <Route path='/product' element={<Product />} />
+        <Route path='/product/:id' element={<SingleProduct />} />
         <Route
           path='/dashboard'
           element={
@@ -122,7 +111,6 @@ const Allrouter = () => {
             </Sidebar>
           }
         />
->>>>>>> 3bde069e9b29a223d6ef1f7a68fbcbf51801c66a
       </Routes>
     </div>
   )
