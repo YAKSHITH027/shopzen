@@ -69,6 +69,7 @@ const getUsers = async (req, res) => {
   }
   try {
     let users = await UserModel.find()
+      .sort({ createdAt: -1 })
       .skip((page - 1) * limit)
       .limit(limit)
     const totalProducts = await UserModel.countDocuments()
