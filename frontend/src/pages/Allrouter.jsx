@@ -18,6 +18,7 @@ import BarChart from '../Adminside/components/BarChart'
 import PieChart from '../Adminside/components/PieChart'
 import Product from './Product/Product'
 import SingleProduct from './Product/SingleProduct'
+import Checkout from './Checkout/Checkout'
 const Allrouter = () => {
   return (
     <div>
@@ -25,16 +26,15 @@ const Allrouter = () => {
         <Route path='registration' element={<Registration />} />
         <Route path='/Login' element={<Login />} />
         <Route path='/myaccount' element={<MyAccount />} />
-
-
+        <Route path='/checkout' element={<Checkout />} /> 
         <Route path='/' element={<Home />} />
         <Route path='/cart' element={<Cart />} />
         {/* <Route path='/' element={<Registration />} /> */}
         <Route path='/registration' element={<Registration />} />
         <Route path='/login' element={<Login />} />
         <Route path='/myaccount' element={<MyAccount />} />
-        <Route path='/product' element={<Product/>}/>
-        <Route path='/product/:id' element={<SingleProduct/>}/>
+        <Route path='/product' element={<Product />} />
+        <Route path='/product/:id' element={<SingleProduct />} />
         <Route
           path='/dashboard'
           element={
