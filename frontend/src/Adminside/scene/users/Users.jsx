@@ -24,7 +24,7 @@ const Users = () => {
     try {
       let users = await fetch('https://dark-erin-fox-cuff.cyclic.app/user')
       let data = await users.json()
-      setUsers(data)
+      setUsers(data.users)
       setLoading(false)
       console.log(data)
     } catch (error) {
@@ -44,7 +44,7 @@ const Users = () => {
             return (
               <Skeleton
                 mt='0.4rem'
-                width={{ base: '900px', xl: '70vw' }}
+                width={{ base: '900px', xl: '80vw' }}
                 height={'2.5rem'}
                 borderRadius={'md'}
               ></Skeleton>

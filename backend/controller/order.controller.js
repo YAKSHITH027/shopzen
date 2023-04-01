@@ -23,7 +23,8 @@ const getAllOrders = async (req, res) => {
     let allOrders = await OrderModel.find()
       .skip((page - 1) * limit)
       .limit(limit)
-    res.status(200).send(allOrders)
+    const totalProducts = await OrderModel.countDocuments()
+    res.status(200).send({ allOrders, totalProducts })
   } catch (error) {
     res.status(400).send({ msg: err.message })
   }
