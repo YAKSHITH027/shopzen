@@ -21,6 +21,7 @@ const getAllOrders = async (req, res) => {
   }
   try {
     let allOrders = await OrderModel.find()
+      .sort({ createdAt: -1 })
       .skip((page - 1) * limit)
       .limit(limit)
     const totalProducts = await OrderModel.countDocuments()
