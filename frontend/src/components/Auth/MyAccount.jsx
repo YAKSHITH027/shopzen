@@ -55,7 +55,7 @@ const MyAccount = () => {
 
 <Box _hover={{backgroundColor:"gray.100"}} >
             <Box display={"flex"} justifyContent="space-between" alignItems={"center"}mt="2rem" mb="1rem" >
-            <Link to="/Login">
+            <Link to="Signup">
             <Text >Login</Text>
             
             </Link>

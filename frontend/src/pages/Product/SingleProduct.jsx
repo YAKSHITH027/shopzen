@@ -5,10 +5,12 @@ import { useParams } from "react-router-dom"
 import {HiOutlineArrowNarrowRight} from "react-icons/hi"
 import { LoadingPosts } from "../../components/products/LoadingPost"
 import {AiOutlineTag} from "react-icons/ai"
+import { useDispatch } from "react-redux"
+import { addCartData } from "../../redux/CartReducer/Action"
 function SingleProduct() {
     const [product, setProduct] = useState({})
     const [Loader, setLoader] = useState(false)
-    
+    const dispatch=useDispatch()
     console.log(Loader)
     const { id } = useParams()
     const fetchData = () => {
@@ -22,6 +24,11 @@ function SingleProduct() {
     useEffect(() => {
         fetchData()
     }, [])
+
+
+    const postData=()=>{
+        dispatch(addCartData(product))
+    }
 
     return (
         <>
@@ -46,7 +53,7 @@ function SingleProduct() {
                     </Box>
 
                     <Box>
-                        <Button>ADD TO CART</Button>
+                        <Button onClick={postData}>ADD TO CART</Button>
                     </Box>
 
                     <Box>
