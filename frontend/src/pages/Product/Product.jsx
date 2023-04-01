@@ -20,14 +20,10 @@ function Product() {
         return store.ProductReducer.product;
     });
     const [SearchParams]=useSearchParams()
-    console.log(products)
-    console.log(items)
     const dispatch = useDispatch()
     let obj={
         params:{
-            page:page,
             limit:20,
-            search:type
         }
     }
 
@@ -37,8 +33,7 @@ function Product() {
 
     const fetchComments = async () => {
         const res = await fetch(
-            `http://localhost:7000/product?page=${page}&limit=20&search=${type}`
-        );
+            `https://dark-erin-fox-cuff.cyclic.app/product?page=${page}&limit=20`);
         const data = await res.json();
         return data;
     };
