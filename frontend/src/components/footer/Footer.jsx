@@ -1,7 +1,7 @@
 import { Box, Button, Divider, Heading, Image, Input, InputGroup, InputRightElement, List, ListItem} from '@chakra-ui/react'
 import React from 'react'
 import { FooterWrapper } from '../../css/footer'
-import { bags, cases, helpdesk, homeoffice, knowus, network, others, paymentlogo, straps, wallets } from './footerData'
+import { bags, cases, downloadApp, helpdesk, homeoffice, knowus, network, others, paymentlogo, socialMediaLogo, straps, wallets } from './footerData'
 
 const Footer = () => {
   return (
@@ -74,29 +74,38 @@ const Footer = () => {
             </Box>
             <Divider h={"auto"} orientation='vertical'/>
             <Box className='knowus-main-right'>
-                <Box>
-                <Heading fontSize={"2xl"}>FOLLOW US ON</Heading>
-                <Box>
-                    icons here
+                <Box className='follous-main'>
+                <Heading mb={"12px"} fontSize={"2xl"}>FOLLOW US ON</Heading>
+                <Box className='followus-css'>
+                    {socialMediaLogo?.map((item,i)=>{
+                        return <Box key={i+4}>
+                            <Image w="100%" src={item.url} alt={item.name} />
+                        </Box>
+                    })}
                 </Box>
                 </Box>
-                <Box>
-                <Heading fontSize={"2xl"}>
+                <Divider/>
+                <Box className='download-main'>
+                <Heading mb={"12px"} fontSize={"2xl"}>
                 DOWNLOAD OUR APP
                 </Heading>
-                <Box>
-                    store icon here
+                <Box className='download-app'>
+                {downloadApp?.map((item,i)=>{
+                        return <Box key={i+4}>
+                            <Image w="100%" src={item.url} alt={item.name} />
+                        </Box>
+                    })}
                 </Box>
                 </Box>
             </Box>
         </Box>
         <Divider/>
-        <Box>
-            <Heading>100% SECURE PAYMENT</Heading>
-            <Box>
+        <Box m={"35px 0px"}>
+            <Heading fontSize={"md"} mb={"15px"} textAlign={"center"}>100% SECURE PAYMENT</Heading>
+            <Box className='payment-css'>
                 {paymentlogo?.map((item,i)=>{
                     return <Box key ={i+2}>
-                        <Image src={item.url} alt={item.name}/>
+                        <Image  maxW={"86px"} src={item.url} alt={item.name}/>
                     </Box>
                 })}
             </Box>

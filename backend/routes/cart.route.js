@@ -1,12 +1,17 @@
 const express = require('express')
-const { cartAdd, cartGet } = require('../controller/cart.controller')
+const { cartAdd, cartGet,DeleteCartItem ,HandleQuantityIncrease,HandleQuantityDecrease } = require('../controller/cart.controller')
 
-const cart = express.Router()
 
-cart.post('/add', cartAdd)
-cart.post('/', cartGet)
+const cartRouter = express.Router()
 
-module.exports = { cart }
+cartRouter.post('/add', cartAdd)
+cartRouter.get("/getitem",cartGet)
+cartRouter.delete("/:productID",DeleteCartItem )
+cartRouter.patch("/increament/:productID",HandleQuantityIncrease)
+cartRouter.patch("/decreament/:productID",HandleQuantityDecrease)
+
+
+module.exports = { cartRouter}
 
 // /add
 // /
