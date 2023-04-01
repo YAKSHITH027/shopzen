@@ -21,6 +21,13 @@ import SingleProduct from './Product/SingleProduct'
 const Allrouter = () => {
   return (
     <div>
+<<<<<<< HEAD
+       <Routes>
+<Route path="registration" element={<Registration/>}/>
+<Route path='/Signup' element={<Signup/>}/>
+        <Route path='/Login' element={<Login/>}/>
+        <Route path='/' element={<MyAccount/>}/>
+=======
       <Routes>
         <Route path='registration' element={<Registration />} />
         <Route path='/Login' element={<Login />} />
@@ -115,6 +122,7 @@ const Allrouter = () => {
             </Sidebar>
           }
         />
+>>>>>>> 3bde069e9b29a223d6ef1f7a68fbcbf51801c66a
       </Routes>
     </div>
   )
