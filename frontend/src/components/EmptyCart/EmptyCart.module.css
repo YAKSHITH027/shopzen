@@ -2,3 +2,30 @@
     top: 50px;
     left: 50px;
 }
+.empty_cart_maindiv p:nth-child(1){
+    font-size: 26px;
+    font-family: Trade Gothic LT Pro;
+    font-weight: 700;
+    margin-top: 0;
+    text-align: center;
+    display: block;
+    margin-block-start: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color: rgba(0,0,0,.87);
+}
+.empty_cart_maindiv p:nth-child(2){
+    color: #707070;
+    margin-bottom: 16px;
+    font-size: 16px;
+    font-family: Graphik Regular;
+    line-height: 25px;
+    margin-left: 13%;
+    margin-right: 13%;
+    text-align: center;
+}
+.empty_cart_maindiv div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

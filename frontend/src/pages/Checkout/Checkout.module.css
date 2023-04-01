@@ -1,0 +1,169 @@
+.checkout_heading{
+    place-content: center;
+    align-items: center;
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+    font-size: 34px;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color: rgba(0, 0, 0, .87);
+    margin: 40px 0;
+    font-weight: 700;
+}
+.checkout_main_div{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.checkout_subdiv1{
+    width: 45%;
+}
+.checkout_subdiv2{
+    width: 45%;
+}
+
+
+.orderSummary {
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    margin: 0 0 14px !important;
+    font-size: 18px;
+    font-family: 'Trade Gothic LT Pro', sans-serif !important;
+    letter-spacing: 0;
+    padding-top: 10px;
+
+}
+
+.TotalItemDiv p:nth-child(1) {
+    font-size: 16px;
+    color: #000;
+    font-family: Graphik Regular, sans-serif;
+    padding-top: 10px;
+
+
+}
+
+.TotalItemDiv p:nth-child(2) {
+    font-weight: bold;
+    padding-top: 10px;
+
+}
+
+.TotalDiscountDiv {
+    font-size: 16px;
+    color: #000;
+    font-family: Graphik Regular, sans-serif;
+    color: red;
+    font-weight: 500;
+    padding-top: 10px;
+
+}
+
+.shippingDiv p:nth-child(1) {
+    font-size: 16px;
+    color: #000;
+    font-family: Graphik Regular, sans-serif;
+    padding-top: 10px;
+
+}
+
+.shippingDiv p:nth-child(2) {
+    font-size: 16px;
+    font-family: Graphik Regular, sans-serif;
+    color: red;
+    font-weight: 500;
+    padding-top: 10px;
+
+}
+.grandTotal{
+    font-size: 16px;
+    color: #000;
+    font-family: Graphik Regular, sans-serif;
+    font-weight: 600;
+    padding-top: 10px;
+
+}
+.checkoutButtonDiv{
+    padding-top: 10px;
+
+}
+
+.TotalItemDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.TotalDiscountDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+
+}
+
+.shippingDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+
+}
+
+.grandTotal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+
+}
+
+.savedDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+
+}
+.gobackHeading{
+    margin-top:50px;
+    font-size: 20px;
+    color: green;
+    cursor: pointer;
+
+}
+
+
+@media screen and (max-width: 900px){
+.checkout_main_div{
+    width:90%;
+    flex-direction: column;
+}
+.checkout_subdiv1{
+    width: 90%;
+}
+.checkout_subdiv2{
+    width: 90%;
+}
+}
+@media screen and (max-width: 600px) and (min-width:100px){
+    .checkout_main_div{
+        width:90%;
+        flex-direction: column;
+    }
+    .checkout_subdiv1{
+        width: 90%;
+    }
+    .checkout_subdiv2{
+        width: 90%;
+    }
+}

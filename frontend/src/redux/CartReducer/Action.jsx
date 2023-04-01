@@ -28,7 +28,12 @@ export const DeleteCartSuccess = () => {
 export const getCartProducts = () => (dispatch) => {
     dispatch(getCartProductsRequestAction());
     return axios
-        .get("http://localhost:7000/cart/getitem")
+        .get("https://dark-erin-fox-cuff.cyclic.app/cart/getitem",{
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':localStorage.getItem("token")
+            }
+        })
         .then((res) => {
             dispatch(getCartProductsSuccessAction(res.data));
         })
@@ -42,7 +47,12 @@ export const getCartProducts = () => (dispatch) => {
 export const deleteCartdata = (id) => (dispatch) => {
     dispatch(getCartProductsRequestAction());
     return axios
-        .delete(`http://localhost:7000/cart/${id}`)
+        .delete(`https://dark-erin-fox-cuff.cyclic.app/cart/${id}`,{
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':localStorage.getItem("token")
+            }
+        })
         .then((res) => {
             dispatch(DeleteCartSuccess());
         })

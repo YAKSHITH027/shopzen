@@ -18,11 +18,17 @@ import BarChart from '../Adminside/components/BarChart'
 import PieChart from '../Adminside/components/PieChart'
 import Product from './Product/Product'
 import SingleProduct from './Product/SingleProduct'
+import Checkout from './Checkout/Checkout'
 import Signup from '../components/Auth/Signup'
+
 const Allrouter = () => {
   return (
     <div>
       <Routes>
+        <Route path='registration' element={<Registration />} />
+        <Route path='/Login' element={<Login />} />
+        <Route path='/myaccount' element={<MyAccount />} />
+        <Route path='/checkout' element={<Checkout />} /> 
         <Route path='/' element={<Home />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/signup' element={<Signup />} />
