@@ -12,7 +12,7 @@ const orderAdd = async (req, res) => {
   }
 }
 const getAllOrders = async (req, res) => {
-  const { page, limit } = req.query
+  let { page, limit } = req.query
   if (page < 1) {
     page = 1
   }

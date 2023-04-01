@@ -9,7 +9,7 @@ const StatCard = ({ title, percent, count, value }) => {
     <Flex
       gap='3rem'
       bg={'#19376D'}
-      px={'2rem'}
+      px={{ base: '0.83rem', xl: '2rem' }}
       py='1.3rem'
       borderRadius='md'
       align={'center'}

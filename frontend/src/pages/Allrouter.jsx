@@ -16,6 +16,8 @@ import Orders from '../Adminside/scene/orders/Orders'
 import Admins from '../Adminside/scene/Admins/Admins'
 import BarChart from '../Adminside/components/BarChart'
 import PieChart from '../Adminside/components/PieChart'
+import Product from './Product/Product'
+import SingleProduct from './Product/SingleProduct'
 const Allrouter = () => {
   return (
     <div>
@@ -31,6 +33,8 @@ const Allrouter = () => {
         <Route path='/registration' element={<Registration />} />
         <Route path='/login' element={<Login />} />
         <Route path='/myaccount' element={<MyAccount />} />
+        <Route path='/product' element={<Product/>}/>
+        <Route path='/product/:id' element={<SingleProduct/>}/>
         <Route
           path='/dashboard'
           element={

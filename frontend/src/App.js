@@ -6,6 +6,7 @@ import Profile from './pages/profile/Profile'
 import Cart from './pages/cart/Cart'
 import Checkout from './pages/Checkout/Checkout'
 import Allrouter from './pages/Allrouter'
+
 import Product from './pages/Product/Product'
 
 import Topbar from './Adminside/scene/global/Topbar'
@@ -18,11 +19,12 @@ function App() {
     <div className='App'>
       {/* <Home /> */}
       {/* <Profile /> */}
-      <Product />
-      {/* <Allrouter /> */}
+      {/* <Product /> */}
+      <Allrouter />
       {/*<Cart/>*/}
       {/*<Checkout/>*/}
       {/* <Allrouter /> */}
+
     </div>
   )
 }
