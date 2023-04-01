@@ -51,14 +51,37 @@ export const deleteCartdata = (id) => (dispatch) => {
         });
 }
 
-export const addCartData = (payload) => (dispatch) => {
+export const addCartData = (payload) => async(dispatch) => {
     dispatch(getCartProductsRequestAction());
     console.log(payload)
-    axios.post(`http://localhost:7000/cart/add`, payload)
-        .then((res) => {
-            dispatch(postCartProductsSuccessAction());
-        })
-        .catch((err) => {
-            dispatch(getCartProductsFailureAction());
-        })
+    // axios.post(`https://dark-erin-fox-cuff.cyclic.app/cart/add`, payload)
+    //     .then((res) => {
+    //         dispatch(postCartProductsSuccessAction());
+    //     })
+    //     .catch((err) => {
+    //         dispatch(getCartProductsFailureAction());
+    //     })
+
+    // axios({
+    //     method: 'POST', // Replace POST with the HTTP method you want to use
+    //     url: '`https://dark-erin-fox-cuff.cyclic.app/cart/add',
+    //     headers: {
+    //       'Authorization': localStorage.getItem("user_token"), // Replace <token> with your actual authorization token
+    //       'Content-Type': 'application/json' // Set the content type for the request body
+    //     },{payload}})
+    
+   let res=await fetch(`https://dark-erin-fox-cuff.cyclic.app/cart/add`,{
+        method:`POST`,
+        headers:{
+            'Authorization': JSON.parse(localStorage.getItem("user_token")),
+            'Content-Type': 'application/json'
+        },
+        body:JSON.stringify(payload)
+    })
+    let data=await res.json()
+
+    console.log(data)
 }
+// console.log(JSON.parse(localStorage.getItem("user_token")))
+
+
