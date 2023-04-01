@@ -24,10 +24,10 @@ app.get('/', (req, res) => {
 app.use('/user', user)
 app.use('/admin', admin)
 app.use('/order', orderRouter)
+app.use('/product', product)
 app.use(auth)
 app.use('/cart', cartRouter)
 app.use('/wishlist', wishListRouter)
-app.use('/product', product)
 
 // listening to port
 app.listen(process.env.port, async () => {
