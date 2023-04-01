@@ -12,8 +12,8 @@ const ProductGet = async (req, res) => {
     const products = await ProductModel.find()
       .skip((page - 1) * limit)
       .limit(limit)
-
-    res.status(200).send(products)
+    const totalProducts = await ProductModel.countDocuments()
+    res.status(200).send({ products, totalProducts })
   } catch (error) {
     res.status(400).send({ msg: error })
   }

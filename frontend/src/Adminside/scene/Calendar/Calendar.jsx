@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { formatDate } from '@fullcalendar/core'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
@@ -8,7 +8,9 @@ import interactionPlugin from '@fullcalendar/interaction'
 import { Box, Heading, Text } from '@chakra-ui/layout'
 import Header from '../../components/Header'
 const Calendar = () => {
-  const [currentEvents, setCurrentEvents] = useState([])
+  const [currentEvents, setCurrentEvents] = useState(
+    [] || JSON.parse(localStorage.getItem('events'))
+  )
 
   const handleDateClick = (selected) => {
     const title = prompt('Please enter a new title for your event')
@@ -34,7 +36,11 @@ const Calendar = () => {
     ) {
       selected.event.remove()
     }
+    localStorage.setItem('events', JSON.stringify(currentEvents))
   }
+  useEffect(() => {
+    localStorage.setItem('events', JSON.stringify(currentEvents))
+  }, [currentEvents])
 
   return (
     <Box>
@@ -94,14 +100,12 @@ const Calendar = () => {
             dayMaxEvents={true}
             select={handleDateClick}
             eventClick={handleEventClick}
-            eventsSet={(events) => setCurrentEvents(events)}
-            initialEvents={[
-              {
-                id: '12315',
-                title: 'All-day event',
-                date: '2023-04-14',
-              },
-            ]}
+            eventsSet={(events) => {
+              setCurrentEvents(events)
+
+              localStorage.setItem('events', JSON.stringify(events))
+            }}
+            initialEvents={JSON.parse(localStorage.getItem('events'))}
           />
         </Box>
       </Box>
