@@ -7,12 +7,12 @@ const {
   updateProduct,
   deleteProduct,
 } = require('../controller/product.controller')
+const { auth } = require('../middleware/auth.middleware')
 
 const product = express.Router()
-
 product.get('/', ProductGet)
 product.get('/:id', SingleProductGet)
-product.post('/add', ProductPost)
-product.patch('/update/:productId', updateProduct)
-product.delete('/delete/:productId', deleteProduct)
+product.post('/add', auth, ProductPost)
+product.patch('/update/:productId', auth, updateProduct)
+product.delete('/delete/:productId', auth, deleteProduct)
 module.exports = { product }
