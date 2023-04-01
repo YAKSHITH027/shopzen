@@ -22,34 +22,47 @@ const MyAccount = () => {
             <Box w="25%" h="30rem" p="20px" borderRight={"1px solid gray"}>
             <Text mt="3rem" fontWeight={"bold"}>GUEST</Text>
             
-<Box pl="1rem">
-<Box display={"flex"} justifyContent="space-between" alignItems={"center"}mt="2rem" mb="1rem" >
+<Box pl="1rem"  >
+
+<Box _hover={{backgroundColor:"gray.100"}} >
+<Box display={"flex"} justifyContent="space-between" alignItems={"center"}mt="2rem" mb="1rem"  >
             <Text >WishList</Text>
             <ArrowRightIcon/>
             </Box>
+            
             <hr/>
+            </Box>
+
+
+            <Box _hover={{backgroundColor:"gray.100"}} >
 
             <Box display={"flex"} justifyContent="space-between" alignItems={"center"}mt="2rem" mb="1rem" >
             <Text >Help Center</Text>
             <ArrowRightIcon/>
             </Box>
             <hr/>
+</Box>
 
+
+<Box _hover={{backgroundColor:"gray.100"}} >
             <Box display={"flex"} justifyContent="space-between" alignItems={"center"}mt="2rem" mb="1rem" >
             <Text >Rewards</Text>
             <ArrowRightIcon/>
             </Box>
             <hr/>
+</Box>
 
+
+<Box _hover={{backgroundColor:"gray.100"}} >
             <Box display={"flex"} justifyContent="space-between" alignItems={"center"}mt="2rem" mb="1rem" >
-            <Link to="/Login">
+            <Link to="Signup">
             <Text >Login</Text>
             
             </Link>
             <ArrowRightIcon/>
             </Box>
             <hr/>
-            
+            </Box>
             
             </Box> 
             
