@@ -7,13 +7,14 @@ const { wishListRouter } = require('./routes/wishlist.route')
 const { auth } = require('./middleware/auth.middleware')
 const { product } = require('./routes/product.route')
 const { orderRouter } = require('./routes/order.route')
-// secret code = 'shop6'
+const { admin } = require('./routes/admin.route')
+require('dotenv').config()
+
 const app = express()
 
 //middlewares
 app.use(express.json())
 app.use(cors())
-app.use(auth)
 
 //routes
 app.get('/', (req, res) => {
@@ -21,19 +22,20 @@ app.get('/', (req, res) => {
   res.send('home')
 })
 app.use('/user', user)
+app.use('/admin', admin)
 app.use('/order', orderRouter)
+app.use('/product', product)
 app.use(auth)
 app.use('/cart', cartRouter)
 app.use('/wishlist', wishListRouter)
-app.use('/product', product)
 
 // listening to port
-app.listen(7000, async () => {
+app.listen(process.env.port, async () => {
   try {
     await connection
     console.log('db is connected')
   } catch (error) {
     console.log('db connection failed')
   }
-  console.log(`port is running on port 7000`)
+  console.log(`port is running on port ${process.env.port}`)
 })
