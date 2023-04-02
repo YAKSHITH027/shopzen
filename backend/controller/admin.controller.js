@@ -48,7 +48,9 @@ const login = async (req, res) => {
             `${process.env.secret_key}`
           )
           console.log(token)
-          res.status(200).send({ msg: 'login successful', token: token })
+          res
+            .status(200)
+            .send({ msg: 'login successful', token: token, userInDb })
         } else {
           res.status(400).send({ msg: 'login failed' })
         }

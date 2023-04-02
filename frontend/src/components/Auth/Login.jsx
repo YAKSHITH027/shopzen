@@ -9,6 +9,7 @@ import {
   FormControl,
   FormLabel,
   Button,
+  useToast,
 } from '@chakra-ui/react'
 
 // const initd={
@@ -17,13 +18,54 @@ import {
 // }
 
 const Login = () => {
-  const [input, setInput] = useState('')
-  const [inputa, setInputa] = useState('')
-
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const navigate = useNavigate()
+  const toast = useToast()
   // const handleInputChange = (e) => setInput(e.target.value)
-  const handleClick = () => {}
+  const handleClick = async () => {
+    let payload = { email, password }
+    try {
+      let res = await fetch(
+        'https://dark-erin-fox-cuff.cyclic.app/user/login',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        }
+      )
+      let data = await res.json()
+      console.log(payload, res)
+      if (res.status == 200) {
+        toast({
+          title: 'login successfully',
+          description: 'good luck!',
+          status: 'success',
+          duration: 4000,
+          isClosable: true,
+          position: 'top',
+        })
+        localStorage.setItem('user_token', data.token)
+        navigate('/')
+        console.log(data)
+      } else {
+        toast({
+          title: 'login failed',
+          description: 'good luck!',
+          status: 'error',
+          duration: 4000,
+          isClosable: true,
+          position: 'top',
+        })
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-  const isError = input === ''
+  const isError = false
 
   return (
     <Box border='1px solid gray' height={'39rem'} backgroundColor='gray.200'>
@@ -54,8 +96,8 @@ const Login = () => {
           <FormLabel> Email</FormLabel>
           <Input
             type='email'
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           {!isError ? (
             <FormHelperText color='red'>
@@ -67,8 +109,8 @@ const Login = () => {
           <FormLabel> Password</FormLabel>
           <Input
             type='password'
-            value={inputa}
-            onChange={(e) => setInputa(e.target.value)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           {!isError ? (
             <FormHelperText color='red'>

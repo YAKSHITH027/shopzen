@@ -4,7 +4,13 @@ import { Box, Flex } from '@chakra-ui/layout'
 import { Image } from '@chakra-ui/react'
 import React from 'react'
 import shopzen from '../../../utils/Images/shopzen.jpeg'
+import { useNavigate } from 'react-router-dom'
 const Topbar = () => {
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    navigate('/adminlogin')
+    localStorage.setItem('admin_token', '')
+  }
   return (
     <Box display={'flex'} justifyContent='space-between' p='2'>
       {/* search bar */}
@@ -18,12 +24,14 @@ const Topbar = () => {
         <Image
           opacity={'0.7'}
           src={shopzen}
-          width='10rem'
+          width='11rem'
           borderRadius='11px'
         />
       </Box>
       <Flex gap='3' align={'center'} paddingRight={'1rem'}>
-        <Button colorScheme='blackAlpha'>Sign Out</Button>
+        <Button colorScheme='blackAlpha' onClick={handleLogout}>
+          Sign Out
+        </Button>
       </Flex>
     </Box>
   )

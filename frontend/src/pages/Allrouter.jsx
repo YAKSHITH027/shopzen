@@ -18,97 +18,118 @@ import BarChart from '../Adminside/components/BarChart'
 import PieChart from '../Adminside/components/PieChart'
 import Product from './Product/Product'
 import SingleProduct from './Product/SingleProduct'
+import Checkout from './Checkout/Checkout'
 import Signup from '../components/Auth/Signup'
+
+import AdminLoginU from '../components/Auth/AdminLoginU'
+import AdminProtectedRoute from '../Adminside/components/AdminProtectedRoute'
+
 const Allrouter = () => {
   return (
     <div>
       <Routes>
+        <Route path='registration' element={<Registration />} />
+        <Route path='/Login' element={<Login />} />
+        <Route path='/myaccount' element={<MyAccount />} />
+        <Route path='/checkout' element={<Checkout />} /> 
         <Route path='/' element={<Home />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/registration' element={<Registration />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/adminlogin' element={<AdminLoginU />} />
         <Route path='/myaccount' element={<MyAccount />} />
         <Route path='/product' element={<Product />} />
         <Route path='/product/:id' element={<SingleProduct />} />
         <Route
           path='/dashboard'
           element={
-            <Sidebar>
-              <Dashboard />
-            </Sidebar>
+            <AdminProtectedRoute>
+              <Sidebar>
+                <Dashboard />
+              </Sidebar>
+            </AdminProtectedRoute>
           }
         />
         <Route
           path='/adminusers'
           element={
-            <Sidebar>
-              <Users />
-            </Sidebar>
+            <AdminProtectedRoute>
+              <Sidebar>
+                <Users />
+              </Sidebar>
+            </AdminProtectedRoute>
           }
         />
         <Route
           path='/adminproducts'
           element={
-            <Sidebar>
-              <AdminProducts />
-            </Sidebar>
+            <AdminProtectedRoute>
+              <Sidebar>
+                <AdminProducts />
+              </Sidebar>
+            </AdminProtectedRoute>
           }
         />
         <Route
           path='/addproduct'
           element={
-            <Sidebar>
-              <AddProduct />
-            </Sidebar>
+            <AdminProtectedRoute>
+              <Sidebar>
+                <AddProduct />
+              </Sidebar>
+            </AdminProtectedRoute>
           }
         />
         <Route
           path='/admincalender'
           element={
-            <Sidebar>
-              <Calendar />
-            </Sidebar>
+            <AdminProtectedRoute>
+              <Sidebar>
+                <Calendar />
+              </Sidebar>
+            </AdminProtectedRoute>
           }
         />
-        <Route
-          path='/admincalender'
-          element={
-            <Sidebar>
-              <Calendar />
-            </Sidebar>
-          }
-        />
+
         <Route
           path='/adminorders'
           element={
-            <Sidebar>
-              <Orders />
-            </Sidebar>
+            <AdminProtectedRoute>
+              <Sidebar>
+                <Orders />
+              </Sidebar>
+            </AdminProtectedRoute>
           }
         />
         <Route
           path='/admins'
           element={
-            <Sidebar>
-              <Admins />
-            </Sidebar>
+            <AdminProtectedRoute>
+              <Sidebar>
+                <Admins />
+              </Sidebar>
+            </AdminProtectedRoute>
           }
         />
         <Route
           path='/barchart'
           element={
-            <Sidebar>
-              <BarChart />
-            </Sidebar>
+            <AdminProtectedRoute>
+              <Sidebar>
+                <BarChart />
+              </Sidebar>
+            </AdminProtectedRoute>
           }
         />
         <Route
           path='/piechart'
           element={
-            <Sidebar>
-              <PieChart />
-            </Sidebar>
+            <AdminProtectedRoute>
+              <Sidebar>
+                <PieChart />
+              </Sidebar>
+            </AdminProtectedRoute>
           }
         />
       </Routes>

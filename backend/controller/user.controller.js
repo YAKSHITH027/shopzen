@@ -69,9 +69,11 @@ const getUsers = async (req, res) => {
   }
   try {
     let users = await UserModel.find()
+      .sort({ createdAt: -1 })
       .skip((page - 1) * limit)
       .limit(limit)
-    res.status(200).send(users)
+    const totalProducts = await UserModel.countDocuments()
+    res.status(200).send({ users, totalProducts })
   } catch (error) {
     res.status(400).send({ msg: error.message })
   }

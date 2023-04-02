@@ -14,6 +14,7 @@ const cartAdd = async (req, res) => {
 
 const cartGet = async (req, res) => {
   //const query=req.query
+  // console.log('cartbody', req.body)
   try {
     const cartProducts = await CartModel.find({ userId: req.body.userId })
     res.status(200).send(cartProducts)
