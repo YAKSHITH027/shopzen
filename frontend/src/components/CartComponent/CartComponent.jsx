@@ -13,6 +13,8 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  FormControl
+
 } from '@chakra-ui/react'
 import { MdDiscount } from 'react-icons/md'
 import { AiFillGift } from 'react-icons/ai'
@@ -24,14 +26,7 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { getCartProducts, deleteCartdata } from '../../redux/CartReducer/Action'
-import { useForm } from 'react-hook-form'
-
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-} from '@chakra-ui/react'
+import { useToast } from '@chakra-ui/react'
 
 const addressInitislState = {
   name: '',
@@ -48,6 +43,7 @@ const addressInitislState = {
 }
 
 function CartComponent() {
+  const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [addressForm, setAddressForm] = useState(addressInitislState)
   const {
@@ -64,11 +60,10 @@ function CartComponent() {
     GSTIN,
   } = addressForm
   const navigate = useNavigate()
-  const isError1 = name === ''
+
 
   function HandleChange(e) {
     setAddressForm({ ...addressForm, [e.target.name]: e.target.value })
-    //console.log(addressForm)
   }
 
   function HandleSubmit() {
@@ -82,7 +77,12 @@ function CartComponent() {
       building === '' ||
       area === ''
     ) {
-      alert('all fields required')
+      toast({
+        title: "All Feilds Required",
+        position: "top",
+        isClosable: true,
+        
+      })
     } else {
       localStorage.setItem('address', JSON.stringify(addressForm))
       onClose()
@@ -112,13 +112,17 @@ function CartComponent() {
 
   const itemLength = products.length
 
-  let totalprice = products.reduce((acc, el) => {
+
+  let totalprice = 0
+  let discountedprice = 0
+
+  /*totalprice = products.reduce((acc, el) => {
     return acc + Number(el.price * el.quantity)
   }, 0)
 
-  let discountedprice = products.reduce((acc, el) => {
+  discountedprice = products.reduce((acc, el) => {
     return acc + Number(el.discountedPrice * el.quantity)
-  }, 0)
+  }, 0)*/
 
   function HandleQuantityIncreament(id, cartquantity) {
     fetch(`https://dark-erin-fox-cuff.cyclic.app/cart/increament/${id}`, {
@@ -132,9 +136,9 @@ function CartComponent() {
       },
     })
       .then((response) => response.json())
-      .then(() => {
-        dispatch(getCartProducts())
-      })
+    /* .then(() => {
+       dispatch(getCartProducts())
+     })*/
   }
 
   function HandleQuantityDecreament(id, cartquantity) {
@@ -149,24 +153,44 @@ function CartComponent() {
       },
     })
       .then((response) => response.json())
-      .then(() => {
-        dispatch(getCartProducts())
-      })
+    /* .then(() => {
+       dispatch(getCartProducts())
+     })*/
   }
+
+  discountedprice = products.reduce((acc, el) => {
+    return acc + Number(el.discountedPrice * el.quantity)
+  }, 0)
+
+
+ totalprice  = products.reduce((acc, el) => {
+    return acc + Number(el.price * el.quantity)
+  }, 0)
+
+
 
   return (
     <>
       <div className={styles.cartMainDiv}>
         <div className={styles.cartMainDiv_subdiv1}>
-          {products.map((el, i) => (
-            <CartMap
-              {...el}
-              HandleCartDelete={HandleCartDelete}
-              key={i}
-              HandleQuantityDecreament={HandleQuantityDecreament}
-              HandleQuantityIncreament={HandleQuantityIncreament}
-            />
-          ))}
+
+
+          {products.map((el, i) => {
+
+            console.log(el)
+
+            
+            return (
+              <CartMap
+                {...el}
+                HandleCartDelete={HandleCartDelete}
+                key={i}
+                HandleQuantityDecreament={HandleQuantityDecreament}
+                HandleQuantityIncreament={HandleQuantityIncreament}
+              />
+            )
+          })}
+
         </div>
 
         <div className={styles.cartMainDiv_subdiv2}>
@@ -252,7 +276,7 @@ function CartComponent() {
 
           <div className={styles.TotalDiscountDiv}>
             <p>Discount</p>
-            <p>Rs. {discountedprice}</p>
+            <p>Rs. {discountedprice-totalprice}</p>
           </div>
 
           <div className={styles.shippingDiv}>
@@ -412,13 +436,13 @@ function CartComponent() {
             </Modal>
           </div>
         </div>
-      </div>
+      </div >
       <div className={styles.recentlyViewedDiv}>
         <p className={styles.recentlyHeading}>RECENTLY VIEWED</p>
 
         <div className={styles.recentlyViewed_subdiv1}>
           <div>
-            <img
+            <img width="100%" height="100%"
               src='https://images.dailyobjects.com/marche/product-images/1201/all-red-pedal-daypack-images/All-Red-Pedal-Daypack-13t.jpg?tr=cm-pad_crop,v-2,w-202,h-249,dpr-1'
               alt=''
             />
@@ -430,7 +454,7 @@ function CartComponent() {
           </div>
 
           <div>
-            <img
+            <img width="100%" height="100%"
               src='https://images.dailyobjects.com/marche/product-images/1101/dailyobjects-stride-2-0-clear-case-cover-for-iphone-13-images/DailyObjects-Stride-2-0-Clear-Case-Cover-For-iPhone-13-2.png?tr=cm-pad_resize,v-2,w-202,h-249,dpr-1'
               alt=''
             />
@@ -442,6 +466,36 @@ function CartComponent() {
             </p>
             <p className={styles.FreeInfo}>*FREE DUFFLE BAG</p>
           </div>
+
+          <div>
+            <img width="100%" height="100%"
+              src='https://images.dailyobjects.com/marche/product-images/1202/all-navy-commute-messenger-large-images/All-Navy-Commute-Messenger-Large-2n.png?tr=cm-pad_resize,v-2,w-312,h-385,dpr-1'
+              alt=''
+            />
+            <p className={styles.productName}>
+            Space Blue SnapOn Envelope Sleeve For Macbook Pro 40.64cm (16 inch)
+            </p>
+            <p className={styles.productPrice}>
+              Rs.699 <span>1699</span>
+            </p>
+            <p className={styles.FreeInfo}>*FREE DUFFLE BAG</p>
+          </div>
+
+          <div>
+            <img width="100%" height="100%"
+              src='https://images.dailyobjects.com/marche/product-images/1201/all-blue-pedal-daypack-images/All-Blue-Pedal-Daypack-13t.jpg?tr=cm-pad_crop,v-2,w-312,h-385,dpr-1'
+              alt=''
+            />
+            <p className={styles.productName}>
+            All Blue Pedal Daypack
+            </p>
+            <p className={styles.productPrice}>
+              Rs.1699 <span>2499</span>
+            </p>
+            <p className={styles.FreeInfo}>*FREE DUFFLE BAG</p>
+          </div>
+           
+           
         </div>
       </div>
     </>

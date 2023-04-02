@@ -7,6 +7,7 @@ import Navbar from "../../components/home/Navbar";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { getCartProducts} from "../../redux/CartReducer/Action"
 import { useEffect } from "react";
+import SkeletonCart from "../../components/products/SkeletonCart"
 
 
 const Cart = () => {
@@ -40,7 +41,7 @@ useEffect(() => {
       </div>
 
       {
-      isLoading? <p style={{color:"white"}}>Loading</p>: products.length==0?<EmptyCart/>: <CartComponent/>
+      isLoading?<p style={{color:"white"}}> Loading</p>: products.length==0?<EmptyCart/>: <CartComponent/>
       }     
 
     </>
