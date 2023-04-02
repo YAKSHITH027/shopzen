@@ -85,6 +85,7 @@ function Checkout (){
   return(
     <>
     <Navbar />
+        <img src="https://images.dailyobjects.com/marche/assets/images/other/20-off-new-homepage-desktop.gif?tr=cm-pad_resize,v-2,dpr-1" alt="" />
         <div>
           <p className={styles.checkout_heading}>CHECKOUT</p>
         </div>
