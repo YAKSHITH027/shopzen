@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
+
+import axios from 'axios'
 import {
-  FormHelperText,
-  FormErrorMessage,
   Input,
   Box,
   Text,
@@ -12,22 +12,32 @@ import {
   useToast,
 } from '@chakra-ui/react'
 
-// const initd={
-//   email: "",
-//   password: ""
-// }
+const initd = {
+  username: '',
+  email: '',
+  password: '',
+}
 
-const Login = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+const Signup = () => {
+  const [user, setUser] = useState(initd)
+
+  const { username, email, password } = user
   const navigate = useNavigate()
   const toast = useToast()
-  // const handleInputChange = (e) => setInput(e.target.value)
+
+  const oninputchange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    })
+  }
+
   const handleClick = async () => {
-    let payload = { email, password }
+    let payload = { email, password, userName: username }
+
     try {
       let res = await fetch(
-        'https://dark-erin-fox-cuff.cyclic.app/user/login',
+        'https://dark-erin-fox-cuff.cyclic.app/user/register',
         {
           method: 'POST',
           headers: {
@@ -38,21 +48,21 @@ const Login = () => {
       )
       let data = await res.json()
       console.log(payload, res)
-      if (res.status == 200) {
+      if (res.status == 201) {
         toast({
-          title: 'login successfully',
+          title: 'register successfully',
           description: 'good luck!',
           status: 'success',
           duration: 4000,
           isClosable: true,
           position: 'top',
         })
-        localStorage.setItem('user_token', data.token)
-        navigate('/')
+
+        navigate('/login')
         console.log(data)
       } else {
         toast({
-          title: 'login failed',
+          title: 'register failed',
           description: 'good luck!',
           status: 'error',
           duration: 4000,
@@ -64,11 +74,8 @@ const Login = () => {
       console.log(error)
     }
   }
-
-  const isError = false
-
   return (
-    <Box border='1px solid gray' height={'39rem'} backgroundColor='gray.200'>
+    <Box border='1px solid gray' height={'50rem'} backgroundColor='gray.200'>
       <Box
         w='40%'
         m='auto'
@@ -78,47 +85,46 @@ const Login = () => {
         backgroundColor='white'
       >
         <Text
-          mt='30px'
+          mt='10px'
           fontWeight={'bold'}
           fontSize='30px'
           textAlign={'center'}
         >
-          LOGIN
+          SIGNUP
         </Text>
         <Text mt='20px'>
           Please enter your{' '}
-          <span style={{ color: 'green', fontWeight: '400' }}>email </span> and{' '}
-          <span style={{ color: 'green', fontWeight: '400' }}>password</span>{' '}
-          for login
+          <span style={{ color: 'green', fontWeight: '600' }}>detail </span>
+          here.
         </Text>
 
         <FormControl isRequired mt='20px'>
-          <FormLabel> Email</FormLabel>
-          <Input
-            type='email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          {!isError ? (
-            <FormHelperText color='red'>
-              Please Enter Your Email Address
-            </FormHelperText>
-          ) : (
-            <FormErrorMessage>Email is required.</FormErrorMessage>
-          )}
+          <Box mb='20px'>
+            <FormLabel>UserName</FormLabel>
+            <Input
+              placeholder=' Enter Your Name here'
+              name='username'
+              value={username}
+              onChange={oninputchange}
+            />
+          </Box>
+          <Box mb='20px'>
+            <FormLabel>Email</FormLabel>
+            <Input
+              placeholder=' Enter Your Email here'
+              name='email'
+              value={email}
+              onChange={oninputchange}
+            />
+          </Box>
           <FormLabel> Password</FormLabel>
           <Input
             type='password'
+            placeholder='Enter Your Password'
+            name='password'
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={oninputchange}
           />
-          {!isError ? (
-            <FormHelperText color='red'>
-              Please Enter Your Password
-            </FormHelperText>
-          ) : (
-            <FormErrorMessage>password is required.</FormErrorMessage>
-          )}
 
           <Button
             onClick={handleClick}
@@ -130,10 +136,17 @@ const Login = () => {
           >
             SUBMIT
           </Button>
+          <Text mt='20px'>
+            You have already an account
+            <span style={{ color: 'green', fontWeight: '600' }}>
+              <Link to='/Login'> Login </Link>
+            </span>{' '}
+            here
+          </Text>
         </FormControl>
       </Box>
     </Box>
   )
 }
 
-export default Login
+export default Signup

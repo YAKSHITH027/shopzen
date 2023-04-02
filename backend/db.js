@@ -1,7 +1,10 @@
 const mongoose = require('mongoose')
-
-const connection = mongoose.connect(
-  `mongodb+srv://nishasharma:nishasharma@cluster0.xemlmgg.mongodb.net/shopzen?retryWrites=true&w=majority`
-)
+require('dotenv').config()
+// const connection = mongoose.connect(`${process.env.mongoURL}`)
+const connection = mongoose.connect(`${process.env.mongoURL}`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  socketTimeoutMS: 30000, // Set the buffer time to 30 seconds
+})
 
 module.exports = { connection }

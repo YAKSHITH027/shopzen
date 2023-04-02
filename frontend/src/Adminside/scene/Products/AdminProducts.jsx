@@ -1,130 +1,166 @@
-import { Box, Button, Flex, Image, Text } from '@chakra-ui/react'
-import React from 'react'
+import {
+  Box,
+  Button,
+  Flex,
+  Image,
+  Skeleton,
+  Text,
+  useToast,
+} from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
 import EditModal from '../../components/EditModal'
+import axios from 'axios'
 
 const AdminProducts = () => {
-  const productsData = [
-    {
-      image:
-        'https://images.dailyobjects.com/marche/product-images/1809/surge-2-in-1-magnetic-charging-station-images/Surge-2-In-1-Magnetic-Charging-Station.png?tr=cm-pad_resize,v-2,w-312,h-385,dpr-1',
-      title:
-        'DailyObjects SURGE™ 2-In-1 Universal Magnetic Wireless Charging Station (18W)',
-      price: 3999,
-      ogprice: 7999,
-      is_new: '',
-    },
-    {
-      image:
-        'https://images.dailyobjects.com/marche/product-images/1809/conoid-universal-magnetic-charging-stand-images/Conoid-Universal-Magnetic-Charging-Stand-vw.png?tr=cm-pad_resize,v-2,w-312,h-385,dpr-1',
-      title: 'Conoid Universal Magnetic Wireless Charging Stand (15W)',
-      price: 2999,
-      ogprice: 5999,
-      is_new: '',
-    },
-    {
-      image:
-        'https://images.dailyobjects.com/marche/product-images/1201/all-red-pedal-daypack-images/All-Red-Pedal-Daypack-vw.png?tr=cm-pad_resize,v-2,w-312,h-385,dpr-1',
-      title: 'All Red Pedal Daypack',
-      price: 1699,
-      ogprice: 2499,
-      is_new: '',
-    },
-    {
-      image:
-        'https://images.dailyobjects.com/marche/product-images/1202/all-navy-commute-messenger-large-images/All-Navy-Commute-Messenger-Large-vw.png?tr=cm-pad_resize,v-2,w-312,h-385,dpr-1',
-      title: 'All Navy Commute Messenger Large',
-      price: 3499,
-      ogprice: 6499,
-      is_new: '',
-    },
-    {
-      image:
-        'https://images.dailyobjects.com/marche/product-images/1201/dailyobjects-khaki-beige-pilot-backpack-images/DailyObjects-Khaki-Beige-City-Compact-Backpack.png?tr=cm-pad_resize,v-2,w-312,h-385,dpr-1',
-      title: 'Khaki Beige Pilot Backpack',
-      price: 2199,
-      ogprice: 4999,
-      is_new: '',
-    },
-    {
-      image:
-        'https://images.dailyobjects.com/marche/product-images/1201/dailyobjects-mustard-yellow-pilot-backpack-images/DailyObjects-Mustard-Yellow-City-Compact-Backpack.png?tr=cm-pad_resize,v-2,w-312,h-385,dpr-1',
-      title: 'Mustard Yellow Pilot Backpack',
-      price: 2199,
-      ogprice: 4999,
-      is_new: '',
-    },
-    {
-      image:
-        'https://images.dailyobjects.com/marche/product-images/1201/all-olive-pedal-daypack-images/All-Olive-Pedal-Daypack-vw.png?tr=cm-pad_resize,v-2,w-312,h-385,dpr-1',
-      title: 'All Olive Pedal Daypack',
-      price: 1699,
-      ogprice: 2499,
-      is_new: '',
-    },
-    {
-      image:
-        'https://images.dailyobjects.com/marche/product-images/1201/all-clove-pedal-daypack-images/All-Clove-Pedal-Daypack-vw.png?tr=cm-pad_resize,v-2,w-312,h-385,dpr-1',
-      title: 'All Clove Pedal Daypack',
-      price: 1699,
-      ogprice: 2499,
-      is_new: '',
-    },
-    {
-      image:
-        'https://images.dailyobjects.com/marche/product-images/1103/dailyobjects-space-blue-snapon-envelope-sleeve-for-macbook-pro-40-64cm-16-inch-images/DailyObjects-Space-Blue-Slim-Envelope-Sleeve-For-Macbook-Pro-16-vw.png?tr=cm-pad_resize,v-2,w-312,h-385,dpr-1',
-      title:
-        'Space Blue SnapOn Envelope Sleeve For Macbook Pro 40.64cm (16 inch)',
-      price: 1699,
-      ogprice: 2499,
-      is_new: '',
-    },
-    {
-      image:
-        'https://images.dailyobjects.com/marche/product-images/1201/all-mustard-pedal-daypack-images/All-Mustard-Pedal-Daypack-vw.png?tr=cm-pad_resize,v-2,w-312,h-385,dpr-1',
-      title: 'All Mustard Pedal Daypack',
-      price: 1699,
-      ogprice: 2499,
-      is_new: '',
-    },
-    {
-      image:
-        'https://images.dailyobjects.com/marche/product-images/1103/dailyobjects-walnut-brown-snapon-envelope-sleeve-for-macbook-pro-35-56cm-14-inch-images/DailyObjects-Walnut-Brown-Slim-Envelope-Sleeve-For-Macbook-Pro-14-vw.png?tr=cm-pad_resize,v-2,w-312,h-385,dpr-1',
-      title:
-        'Walnut Brown SnapOn Envelope Sleeve For Macbook Pro 35.56cm (14 inch)',
-      price: 1499,
-      ogprice: 2199,
-      is_new: '',
-    },
-  ]
-  // maxH={'85vh'} overflow={'auto'}
+  const [products, setProducts] = useState([])
+  const [totalProducts, setTotalProducts] = useState(0)
+  const [page, setPage] = useState(1)
+  const [isLoading, setIsLoading] = useState(true)
+  const toast = useToast()
+
+  const fetchProduct = async () => {
+    try {
+      let res = await axios.get(
+        `https://dark-erin-fox-cuff.cyclic.app/product?limit=25&page=${page}`
+      )
+      setProducts(res.data.products)
+      setTotalProducts(res.data.totalProducts)
+      setIsLoading(false)
+      console.log('data', res.data)
+    } catch (error) {
+      console.log(error)
+      setIsLoading(false)
+    }
+  }
+  useEffect(() => {
+    fetchProduct()
+  }, [page])
+
+  const handleDelete = async (id) => {
+    try {
+      let res = await fetch(
+        `https://dark-erin-fox-cuff.cyclic.app/product/delete/${id}`,
+        {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem('admin_token'),
+          },
+        }
+      )
+      let data = await res.json()
+      console.log(data)
+      console.log(res.status)
+      if (res.status == 200) {
+        fetchProduct()
+        toast({
+          title: 'Product has been deleted successfully',
+          description: 'good luck!',
+          status: 'success',
+          duration: 4000,
+          isClosable: true,
+          position: 'top',
+        })
+      } else {
+        toast({
+          title: 'Permission denied',
+          description: 'Your are not a real administrator',
+          status: 'error',
+          duration: 4000,
+          isClosable: true,
+          position: 'top',
+        })
+      }
+    } catch (error) {
+      console.log('error')
+    }
+  }
+
   return (
-    <Box>
-      <Box display={'grid'} gridTemplateColumns={'repeat(5,1fr)'} gap={'4'}>
-        {productsData.map((item) => {
+    <Box
+      overflowY={'auto'}
+      maxH={'90vh'}
+      sx={{
+        '::-webkit-scrollbar': {
+          display: 'none',
+        },
+      }}
+    >
+      <Box
+        display={'grid'}
+        gridTemplateColumns={{ base: 'repeat(4,1fr)', xl: 'repeat(5,1fr)' }}
+        gap={'4'}
+      >
+        {isLoading
+          ? [...Array(25).keys()].map((item, i) => {
+              return (
+                <Skeleton
+                  key={i}
+                  width='225px'
+                  height='352px'
+                  borderRadius={'md'}
+                ></Skeleton>
+              )
+            })
+          : products.map((item) => {
+              return (
+                <Box
+                  bg={
+                    'linear-gradient(to bottom, #032239, #092940, #102f46, #17364d, #1d3d54)'
+                  }
+                  py='1rem'
+                  borderRadius={'md'}
+                  key={item.image}
+                >
+                  <Image src={item.image} width={'225px'} height={'275px'} />
+                  <Flex justifyContent={'space-around'} pt={'5px'}>
+                    <EditModal
+                      id={item._id}
+                      image={item.image}
+                      original={item.ogprice}
+                      offerPrice={item.price}
+                      title={item.title}
+                    />
+                    <Button
+                      colorScheme='blackAlpha'
+                      onClick={() => {
+                        handleDelete(item._id)
+                      }}
+                    >
+                      Delete
+                    </Button>
+                  </Flex>
+                  {/* <Text>{item.title.substring(0, 18)}</Text> */}
+                </Box>
+              )
+            })}
+      </Box>
+      <Flex gap='3' py='4rem' mx='auto' width={'max-content'}>
+        <Button
+          colorScheme='blackAlpha'
+          isDisabled={page <= 1 ? true : false}
+          onClick={() => setPage(page - 1)}
+        >
+          Prev
+        </Button>
+        {[...Array(Math.ceil(totalProducts / 25)).keys()].map((item) => {
           return (
-            <Box
-              bg={
-                'linear-gradient(to bottom, #032239, #092940, #102f46, #17364d, #1d3d54)'
-              }
-              py='1rem'
-              borderRadius={'md'}
-              key={item.image}
+            <Button
+              colorScheme={page == item + 1 ? 'purple' : 'blackAlpha'}
+              onClick={() => setPage(item + 1)}
             >
-              <Image src={item.image} />
-              <Flex justifyContent={'space-around'}>
-                <EditModal
-                  image={item.image}
-                  original={item.ogprice}
-                  offerPrice={item.price}
-                  title={item.title}
-                />
-                <Button colorScheme='blackAlpha'>Delete</Button>
-              </Flex>
-              {/* <Text>{item.title.substring(0, 18)}</Text> */}
-            </Box>
+              {item + 1}
+            </Button>
           )
         })}
-      </Box>
+        <Button
+          colorScheme='blackAlpha'
+          isDisabled={page >= Math.ceil(totalProducts / 25) ? true : false}
+          onClick={() => setPage(page + 1)}
+        >
+          Next
+        </Button>
+      </Flex>
     </Box>
   )
 }

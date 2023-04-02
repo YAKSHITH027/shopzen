@@ -19,6 +19,10 @@ const AddProduct = () => {
   const [url, setUrl] = useState('')
   const [file, setFile] = useState(null)
   const [loading, setLoading] = useState(false)
+
+  const [title, setTitle] = useState('')
+  const [orginalPrice, setOriginalPrice] = useState('')
+  const [offerPrice, setOfferPrice] = useState('')
   const handleChange = (e) => {
     console.log(e.target.files[0])
     if (e.target.files.length) {
@@ -27,10 +31,10 @@ const AddProduct = () => {
     }
   }
   const handleSubmit = async () => {
-    if (!file) {
+    if (!file || !title || !offerPrice || !orginalPrice) {
       toast({
-        title: 'No file selected',
-        description: 'Please select a file to upload',
+        title: 'Fill all fields',
+        description: 'Just fill the fields',
         status: 'error',
         duration: 5000,
         isClosable: true,
@@ -45,19 +49,55 @@ const AddProduct = () => {
     const metadata = {
       contentType: 'image/jpeg',
     }
-    await uploadBytes(fileRef, file, metadata)
+    try {
+      await uploadBytes(fileRef, file, metadata)
 
-    const avatarURL = await getDownloadURL(fileRef)
-    console.log(avatarURL)
-    toast({
-      title: 'Product uploaded',
-      status: 'success',
-      isClosable: true,
-      position: 'top',
-      duration: 5000,
-    })
-    setLoading(false)
+      const avatarURL = await getDownloadURL(fileRef)
+      let payload = {
+        title: title,
+        image: avatarURL,
+        price: +offerPrice,
+        ogprice: +orginalPrice,
+        is_new: '',
+      }
+      console.log(payload)
+      let res = await fetch(
+        'https://dark-erin-fox-cuff.cyclic.app/product/add',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem('admin_token'),
+          },
+          body: JSON.stringify(payload),
+        }
+      )
+      console.log(avatarURL)
+      if (res.status == 200) {
+        toast({
+          title: 'Product has been added successfully',
+          description: 'good luck!',
+          status: 'success',
+          duration: 4000,
+          isClosable: true,
+          position: 'top',
+        })
+      } else {
+        toast({
+          title: 'Permission denied',
+          description: 'Your are not a real administrator',
+          status: 'error',
+          duration: 4000,
+          isClosable: true,
+          position: 'top',
+        })
+      }
+      setLoading(false)
+    } catch (error) {
+      console.log(error)
+    }
   }
+
   return (
     <>
       <Header title='Add New Product' />
@@ -102,17 +142,32 @@ const AddProduct = () => {
               <Input />
             </FormControl>
             <FormControl>
-              <FormLabel>Brand</FormLabel>
-              <Input />
+              <FormLabel>Title</FormLabel>
+              <Input
+                isRequired
+                name='title'
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
             </FormControl>
             <Flex gap='1rem'>
               <FormControl>
-                <FormLabel>price</FormLabel>
-                <Input />
+                <FormLabel>Offer price</FormLabel>
+                <Input
+                  name='offerPrice'
+                  value={offerPrice}
+                  type='number'
+                  onChange={(e) => setOfferPrice(e.target.value)}
+                />
               </FormControl>
               <FormControl>
-                <FormLabel>original price</FormLabel>
-                <Input />
+                <FormLabel>Original price</FormLabel>
+                <Input
+                  name='originalPrice'
+                  value={orginalPrice}
+                  type='number'
+                  onChange={(e) => setOriginalPrice(e.target.value)}
+                />
               </FormControl>
             </Flex>
             <FormControl>
