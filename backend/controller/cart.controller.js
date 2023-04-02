@@ -67,12 +67,26 @@ const HandleQuantityDecrease = async (req, res) => {
   }
 }
 
+const deleteAllCart = async (req, res) => {
+  try {
+    console.log('req', req.body.userId)
+    if (!req.body.userId) {
+      return
+    }
+    await CartModel.deleteMany({ userId: req.body.userId })
+    res.status(200).send({ msg: 'Cart has been Deleted' })
+  } catch (error) {
+    res.status(400).send({ err: error.message })
+  }
+}
+
 module.exports = {
   cartAdd,
   cartGet,
   DeleteCartItem,
   HandleQuantityIncrease,
   HandleQuantityDecrease,
+  deleteAllCart,
 }
 
 /*
