@@ -19,6 +19,7 @@ const AdminProducts = () => {
   const toast = useToast()
 
   const fetchProduct = async () => {
+    setIsLoading(true)
     try {
       let res = await axios.get(
         `https://dark-erin-fox-cuff.cyclic.app/product?limit=25&page=${page}`
