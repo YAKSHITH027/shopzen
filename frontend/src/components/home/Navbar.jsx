@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import shopzen from '../../utils/Images/shopzen.jpeg'
 import Megamenu from './Megamenu'
 import PageLinkLogos from './PageLinkLogos'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Search from './Search'
 const Navbar = () => {
   const [show, setShow] = useState(false)
@@ -22,9 +22,11 @@ const Navbar = () => {
       boxShadow='rgba(0, 0, 0, 0.15) 0px 3px 3px 0px'
       height={'4.5rem'}
     >
-      <Box>
-        <Image src={shopzen} width='13rem' />
-      </Box>
+      <Link to='/'>
+        <Box>
+          <Image src={shopzen} width='13rem' />
+        </Box>
+      </Link>
 
       <Megamenu />
       <Button

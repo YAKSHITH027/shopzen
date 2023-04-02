@@ -1,8 +1,8 @@
 import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/react'
 import React from 'react'
 import AutoSlider from '../../components/home/AutoSlider'
-import Navbar from '../../components/home/Navbar';
-import {Navbar as Test} from "../../components/Navbar/Navbar"
+import Navbar from '../../components/home/Navbar'
+import { Navbar as Test } from '../../components/Navbar/Navbar'
 import ProductSlider from '../../components/home/ProductSlider'
 import { AutoImage } from '../../utils/HomeSliderData/AutoSliderImages'
 import { newArrivalData } from '../../utils/HomeSliderData/newArrival'
@@ -10,9 +10,11 @@ import { shopCategory } from '../../utils/HomeSliderData/shopCategory'
 import Footer from '../../components/footer/Footer'
 const Home = () => {
   return (
-    <div>
+    <Box>
       {/* <Navbar /> */}
-      <Test/>
+      <Box>
+        <Test />
+      </Box>
       <Box>
         <Image src='https://images.dailyobjects.com/marche/assets/images/other/homepage-offerbanner-by20-desktop.gif?tr=cm-pad_resize,v-2,dpr-1' />
       </Box>
@@ -101,7 +103,7 @@ const Home = () => {
         <AutoSlider data={AutoImage} />
       </Box>
       <Footer />
-    </div>
+    </Box>
   )
 }
 

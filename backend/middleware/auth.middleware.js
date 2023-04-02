@@ -6,6 +6,8 @@ const auth = (req, res, next) => {
     if (decoded) {
       console.log('decoded', decoded)
       req.body.userId = decoded.userId
+      console.log('body', req.body)
+      console.log('rountes', req.url, req.method)
       next()
     } else {
       res.status(400).send({ msg: 'please login first' })
