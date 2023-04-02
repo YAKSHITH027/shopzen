@@ -1,9 +1,11 @@
-import { Box, Flex, Image } from '@chakra-ui/react'
+import { Box, Button, Flex, Image } from '@chakra-ui/react'
 import React from 'react'
 import shopzen from '../../utils/Images/shopzen.jpeg'
 import Megamenu from './Megamenu'
 import PageLinkLogos from './PageLinkLogos'
+import { useNavigate } from 'react-router-dom'
 const Navbar = () => {
+  const navigate = useNavigate()
   return (
     <Flex
       justify={'space-between'}
@@ -22,6 +24,14 @@ const Navbar = () => {
         <Image src={shopzen} width='13rem' />
       </Box>
       <Megamenu />
+      <Button
+        onClick={() => {
+          localStorage.setItem('user_token', '')
+          navigate('/login')
+        }}
+      >
+        logout
+      </Button>
       <PageLinkLogos />
     </Flex>
   )
