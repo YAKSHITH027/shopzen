@@ -2,11 +2,12 @@ const { OrderModel } = require('../model/order.model')
 
 const orderAdd = async (req, res) => {
   const payload = req.body
+  payload.createdAt = Date.now()
   console.log(payload)
   try {
     const singleOrder = new OrderModel(payload)
     await singleOrder.save()
-    res.status(200).send('order has been added')
+    res.status(200).send({ msg: 'order has been added' })
   } catch (err) {
     res.status(400).send({ err: err.message })
   }

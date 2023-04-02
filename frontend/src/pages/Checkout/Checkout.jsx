@@ -85,7 +85,7 @@ function Checkout() {
           navigate("/")
         },
         prefill: {
-          name: 'Piyush Garg',
+          name: address.name,
           email: 'youremail@example.com',
           contact: '9999999999',
         },

@@ -5,14 +5,24 @@ import { useParams } from "react-router-dom"
 import {HiOutlineArrowNarrowRight} from "react-icons/hi"
 import { LoadingPosts } from "../../components/products/LoadingPost"
 import {AiOutlineTag} from "react-icons/ai"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { addCartData } from "../../redux/CartReducer/Action"
 import {BsCameraVideo} from "react-icons/bs"
 import {AiOutlineHeart} from "react-icons/ai"
 import {FiShare2} from "react-icons/fi"
+import { useToast } from '@chakra-ui/react'
+import LoadingSinglePage from "../../components/products/LoadingSinglePage"
+import Acco from "../../components/products/Accordion"
+import Navbar from "../../components/home/Navbar"
+import Footer from "../../components/footer/Footer"
 function SingleProduct() {
     const [product, setProduct] = useState({})
     const [Loader, setLoader] = useState(false)
+    const is_Auth = useSelector((store) => {
+        return store.CartReducer.isAuth;
+    });
+    const toast = useToast()
+    console.log(is_Auth)
     const dispatch=useDispatch()
     console.log(Loader)
     const { id } = useParams()
@@ -28,15 +38,37 @@ function SingleProduct() {
         fetchData()
     }, [])
 
-    localStorage.setItem("user_token",JSON.stringify("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDI4MTY3NzUwY2QzODIxMDRjYWExM2QiLCJpYXQiOjE2ODAzNDg4MDl9.1XVJxTXmKV50HGyXwqElTGX4uh4mvHy8xY7lu0gl-80"))
+    const successadd = () => {
+        toast({
+            title: `Successful.`,
+            description: `Product added to the cart`,
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+            position: "top"
+        })
+    }
+
+    const faildadd = () => {
+        toast({
+            title: `PleaseLogin First.`,
+            description: ``,
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+            position: "top"
+        })
+    }
 
     const postData=()=>{
 
         let CartProduct={product_name:product.title,quantity:1,discountedPrice:product.ogprice,price:product.price,image:product.image}
-        dispatch(addCartData(CartProduct))
+        dispatch(addCartData(CartProduct)).then(() => successadd()).catch(()=>faildadd())
     }
 
     return (
+        <Box>
+            <Navbar/>
         <Box m="auto" w="90%">
         {
             Loader?
@@ -79,25 +111,18 @@ function SingleProduct() {
                         </InputGroup>
                     </Box>
 
-                    <Box mt="20px" display="flex" justifyContent="space-between" w="100%" h="40px"  borderBottom="1px solid gray" alignItems="center" gap="4px" >  
-                        <Text>Product Details</Text>
-                        <HiOutlineArrowNarrowRight/>
-                    </Box >
-                    <Box display="flex" justifyContent="space-between" w="100%" h="40px" m="auto" borderBottom="1px solid gray" alignItems="center">
-                        <Text>Specifications</Text>
-                        <HiOutlineArrowNarrowRight/>
+                                    <Box mt="20px">
+                                        <Acco/>
+                                    </Box>
+
+                                </Box>
+                            </Box>
+                        </Box>
                     </Box>
-                    <Box display="flex" justifyContent="space-between" w="100%" h="40px" m="auto" borderBottom="1px solid gray" alignItems="center">
-                        <Text>Delivery Time & Returns</Text>
-                        <HiOutlineArrowNarrowRight/>
-                    </Box>
-                </Box>
-            </Box>
-            </Box>
+            }
         </Box>
-        }
+        <Footer/>
         </Box>
-        
     )
 }
 export default SingleProduct

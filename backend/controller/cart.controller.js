@@ -6,7 +6,7 @@ const cartAdd = async (req, res) => {
   try {
     const CartProduct = new CartModel(payload)
     await CartProduct.save()
-    res.status(200).send('Product has been added')
+    res.status(200).send({ msg: 'Product has been added' })
   } catch (err) {
     res.status(400).send({ err: err.message })
   }
@@ -14,11 +14,12 @@ const cartAdd = async (req, res) => {
 
 const cartGet = async (req, res) => {
   //const query=req.query
+  // console.log('cartbody', req.body)
   try {
     const cartProducts = await CartModel.find({ userId: req.body.userId })
     res.status(200).send(cartProducts)
   } catch (err) {
-    res.status(400).send({ err: err.message })
+    res.status(400).send({ msg: err.message })
   }
 }
 
@@ -29,7 +30,7 @@ const DeleteCartItem = async (req, res) => {
       _id: productID,
       userId: req.body.userId,
     })
-    res.status(200).send('Product has been Deleted')
+    res.status(200).send({ msg: 'Product has been Deleted' })
   } catch (err) {
     res.status(400).send({ err: err.message })
   }

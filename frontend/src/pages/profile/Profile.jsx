@@ -24,7 +24,7 @@ const Profile = () => {
             src='https://bit.ly/tioluwani-kolawole'
           />
           <Text>User Name: yakshith</Text>
-          <Text>Email: yakshith@gmail.com</Text>
+
           <Button>Change profile</Button>
         </Flex>
         <Box mt='3rem'>

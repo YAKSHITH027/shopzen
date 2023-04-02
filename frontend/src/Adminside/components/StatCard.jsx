@@ -7,7 +7,7 @@ import { AiOutlineUserAdd } from 'react-icons/ai'
 const StatCard = ({ title, percent, count, value }) => {
   return (
     <Flex
-      gap='3rem'
+      gap={{ base: '2rem', lg: '2.5rem', '2xl': '3rem' }}
       bg={'#19376D'}
       px={{ base: '0.83rem', xl: '2rem' }}
       py='1.3rem'
@@ -15,7 +15,12 @@ const StatCard = ({ title, percent, count, value }) => {
       align={'center'}
     >
       <Box>
-        <Flex fontSize={'1.4rem'} align='center' gap='2'>
+        <Flex
+          fontSize={'1.4rem'}
+          align='center'
+          gap='2'
+          textTransform={'capitalize'}
+        >
           <AiOutlineUserAdd fontSize={'1.5rem'} />
           <Text>{title}</Text>
         </Flex>
