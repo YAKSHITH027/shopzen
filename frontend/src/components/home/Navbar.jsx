@@ -1,10 +1,12 @@
 import { Box, Button, Flex, Image } from '@chakra-ui/react'
-import React from 'react'
+import React, { useState } from 'react'
 import shopzen from '../../utils/Images/shopzen.jpeg'
 import Megamenu from './Megamenu'
 import PageLinkLogos from './PageLinkLogos'
 import { useNavigate } from 'react-router-dom'
+import Search from './Search'
 const Navbar = () => {
+  const [show, setShow] = useState(false)
   const navigate = useNavigate()
   return (
     <Flex
@@ -33,7 +35,8 @@ const Navbar = () => {
       >
         logout
       </Button>
-      <PageLinkLogos />
+      <Search show={show} />
+      <PageLinkLogos setShow={setShow} />
     </Flex>
   )
 }
