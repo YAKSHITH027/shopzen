@@ -23,6 +23,7 @@ const Navbar = () => {
       <Box>
         <Image src={shopzen} width='13rem' />
       </Box>
+
       <Megamenu />
       <Button
         onClick={() => {

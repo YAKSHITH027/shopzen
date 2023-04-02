@@ -5,7 +5,7 @@ const wishListAdd = async (req, res) => {
   try {
     const wishlistProduct = new WishlistModel(payload)
     await wishlistProduct.save()
-    res.status(200).send('Product has been added in wishlist')
+    res.status(200).send({ msg: 'Product has been added in wishlist' })
   } catch (err) {
     res.status(400).send({ err: err.message })
   }
@@ -29,7 +29,7 @@ const deleteWishlistItem = async (req, res) => {
       _id: productID,
       userId: req.body.userId,
     })
-    res.status(200).send('Product has been Removed from Wishlist')
+    res.status(200).send({ msg: 'Product has been Removed from Wishlist' })
   } catch (err) {
     res.status(400).send({ err: err.message })
   }
