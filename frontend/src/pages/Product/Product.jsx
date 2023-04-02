@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import clsx from 'clsx'
 import useLazyLoad from '../../components/products/LazyLoading'
-import { Box, GridItem, Grid, Button, Select, Image, Text } from '@chakra-ui/react'
+import { Box, GridItem, Grid, Button, Select, Image, Text, useMediaQuery } from '@chakra-ui/react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import ProductCart from '../../components/products/ProductCart'
@@ -10,20 +10,30 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProduct } from '../../redux/ProductReducer/Action'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useSearchParams } from 'react-router-dom'
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+import Navbar from '../../components/home/Navbar'
+import Footer from '../../components/footer/Footer'
 
+let num = 0;
 function Product() {
     const [page, setPage] = useState(2)
     const [items, setItems] = useState([]);
     const [hasMore, sethasMore] = useState(true);
-    const [type,setType]=useState("")
+    const [type, setType] = useState("")
+    const [isnavlessthan500] = useMediaQuery('(max-width: 550px)')
+    const [isnavlessthan750] = useMediaQuery('(max-width: 850px)')
     const products = useSelector((store) => {
         return store.ProductReducer.product;
     });
-    const [SearchParams]=useSearchParams()
+    const [SearchParams] = useSearchParams()
     const dispatch = useDispatch()
-    let obj={
-        params:{
-            limit:20,
+    let obj = {
+        params: {
+            limit: 20,
         }
     }
 
@@ -38,21 +48,23 @@ function Product() {
         return data.products;
     };
 
-  const fetchData = async () => {
-    const commentsFormServer = await fetchComments()
+    const fetchData = async () => {
+        const commentsFormServer = await fetchComments()
 
-    setItems([...items, ...commentsFormServer])
-    if (commentsFormServer.length === 0 || commentsFormServer.length < 20) {
-      sethasMore(false)
+        setItems([...items, ...commentsFormServer])
+        if (commentsFormServer.length === 0 || commentsFormServer.length < 20) {
+            sethasMore(false)
+        }
+        setPage(page + 1)
     }
-    setPage(page + 1)
-  }
 
-    const handleType=(T)=>{
+    const handleType = (T) => {
         setType(T)
     }
     console.log(type)
     return (
+        <Box>
+            <Navbar/>
         <Box m="auto" w="95%">
             <Box display="flex">
                 {/* <Button onClick={handleBag}>Bags</Button> */}
@@ -60,60 +72,90 @@ function Product() {
                 <Button onClick={()=>handleType("Daypack")}>Daypack</Button>
                 <Button onClick={()=>handleType("Watch")}>Watch</Button>
                 <Button onClick={()=>handleType("All")}>Ivory</Button> */}
-                    {/* <Select onChange={(e)=>handleType(e.target.value)}>
+                {/* <Select onChange={(e)=>handleType(e.target.value)}>
                         <option value="Macbook">Desks</option>
                         <option value="Watch">Watch</option>
                         <option value="Stand">All</option>
                     </Select> */}
 
-                    <Box w="80%" m="auto"  display="flex" mt="20px" mb="20px" >
+                <Box w="85%" m="auto" display="flex" mt="20px" mb="20px">
+                    <Swiper
+
+                        {
+                        ...isnavlessthan500 ? num = 3 : isnavlessthan750 ? num = 5 : num = 8
+                        }
+
+
+                        slidesPerView={num}
+                        spaceBetween={20}
+                        freeMode={true}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        modules={[FreeMode, Pagination]}
+                        className="mySwiper"
+                        
+                    >
+
+<SwiperSlide>
                         <Box m="auto" w="100px" >
-                            <Image src="https://images.dailyobjects.com/marche/icons/new-arrival/all.png?tr=cm-pad_resize,v-2,w-70,h-70,dpr-1" borderRadius="50%" m="auto"/>
+                            <Image src="https://images.dailyobjects.com/marche/icons/new-arrival/all.png?tr=cm-pad_resize,v-2,w-70,h-70,dpr-1" borderRadius="50%" m="auto" />
                             <Text color="gray" fontSize="13px" textAlign="center">All</Text>
                         </Box>
+                    </SwiperSlide>
 
+                    <SwiperSlide>
                         <Box m="auto" w="100px" >
-                            <Image src="https://images.dailyobjects.com/marche/assets/images/other/filter-icon.jpg?tr=cm-pad_crop,v-2,w-70,h-70,dpr-1" borderRadius="50%" m="auto"/>
+                            <Image src="https://images.dailyobjects.com/marche/assets/images/other/filter-icon.jpg?tr=cm-pad_crop,v-2,w-70,h-70,dpr-1" borderRadius="50%" m="auto" />
                             <Text color="gray" fontSize="13px" textAlign="center">Pedal Backpack</Text>
                         </Box>
-
+                    </SwiperSlide>
+                    <SwiperSlide>
                         <Box m="auto" w="100px" >
-                            <Image src="https://images.dailyobjects.com/marche/icons/category/platrorm-desk-collection.png?tr=cm-pad_resize,v-2,w-72,h-71,dpr-1" borderRadius="50%" m="auto"/>
+                            <Image src="https://images.dailyobjects.com/marche/icons/category/platrorm-desk-collection.png?tr=cm-pad_resize,v-2,w-72,h-71,dpr-1" borderRadius="50%" m="auto" />
                             <Text color="gray" fontSize="13px" textAlign="center">Desks</Text>
                         </Box>
-
+                    </SwiperSlide>
+                    <SwiperSlide>
                         <Box m="auto" w="100px" >
-                            <Image src="https://images.dailyobjects.com/marche/assets/images/other/charging-solution-icon.jpg?tr=cm-pad_crop,v-2,w-70,h-70,dpr-1" borderRadius="50%" m="auto"/>
+                            <Image src="https://images.dailyobjects.com/marche/assets/images/other/charging-solution-icon.jpg?tr=cm-pad_crop,v-2,w-70,h-70,dpr-1" borderRadius="50%" m="auto" />
                             <Text color="gray" fontSize="13px" textAlign="center">Charging Solutions</Text>
                         </Box>
-
+                    </SwiperSlide>
+                    <SwiperSlide>
                         <Box m="auto" w="100px" >
-                            <Image src="https://images.dailyobjects.com/marche/icons/new-arrival/pu-snap-sleeves.jpg?tr=cm-pad_crop,v-2,w-70,h-70,dpr-1" borderRadius="50%" m="auto"/>
+                            <Image src="https://images.dailyobjects.com/marche/icons/new-arrival/pu-snap-sleeves.jpg?tr=cm-pad_crop,v-2,w-70,h-70,dpr-1" borderRadius="50%" m="auto" />
                             <Text color="gray" fontSize="13px" textAlign="center">Macbook Sleeves</Text>
                         </Box>
-
+                    </SwiperSlide>
+                    <SwiperSlide>
                         <Box m="auto" w="100px" >
-                            <Image src="https://images.dailyobjects.com/marche/icons/category/laptop-brifcae-new-arrival-icon.jpg?tr=cm-pad_crop,v-2,w-70,h-70,dpr-1" borderRadius="50%" m="auto"/>
+                            <Image src="https://images.dailyobjects.com/marche/icons/category/laptop-brifcae-new-arrival-icon.jpg?tr=cm-pad_crop,v-2,w-70,h-70,dpr-1" borderRadius="50%" m="auto" />
                             <Text color="gray" fontSize="13px" textAlign="center">Messanger Bags</Text>
                         </Box>
-
+                    </SwiperSlide>
+                    <SwiperSlide>
                         <Box m="auto" w="100px" >
-                            <Image src="https://images.dailyobjects.com/marche/icons/filter/eyewear-cases.png?tr=cm-pad_resize,v-2,w-70,h-70,dpr-1" borderRadius="50%" m="auto"/>
+                            <Image src="https://images.dailyobjects.com/marche/icons/filter/eyewear-cases.png?tr=cm-pad_resize,v-2,w-70,h-70,dpr-1" borderRadius="50%" m="auto" />
                             <Text color="gray" fontSize="13px" textAlign="center">Eyewear Cases</Text>
                         </Box>
-
+                    </SwiperSlide>
+                    <SwiperSlide>
                         <Box m="auto" w="100px" >
-                            <Image src="https://images.dailyobjects.com/marche/icons/category/watchbands-filter-icon-for-new-arrival.jpg?tr=cm-pad_crop,v-2,w-70,h-70,dpr-1" borderRadius="50%" m="auto"/>
+                            <Image src="https://images.dailyobjects.com/marche/icons/category/watchbands-filter-icon-for-new-arrival.jpg?tr=cm-pad_crop,v-2,w-70,h-70,dpr-1" borderRadius="50%" m="auto" />
                             <Text color="gray" fontSize="13px" textAlign="center">Watchbands</Text>
                         </Box>
-                    </Box>
+                    </SwiperSlide>
+                    </Swiper>
+                    
+                </Box>
             </Box>
             <InfiniteScroll
                 dataLength={items.length} //This is important field to render the next data
                 next={fetchData}
                 hasMore={hasMore}
-                loader={<LoadingPosts/>}
-                
+                loader={<LoadingPosts />}
+
             >
 
                 <Grid gridTemplateColumns={["repeat(2,1fr)", "repeat(2,1fr)", "repeat(3,1fr)", "repeat(4,1fr)", "repeat(4,1fr)", "repeat(4,1fr)"]} gap={["5px", "7px", "10px", "10px", "15px", "15px",]}>
@@ -126,6 +168,8 @@ function Product() {
                     }
                 </Grid>
             </InfiniteScroll>
+        </Box>
+        <Footer/>
         </Box>
     )
 }
