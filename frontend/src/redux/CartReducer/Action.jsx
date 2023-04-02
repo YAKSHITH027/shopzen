@@ -70,17 +70,19 @@ export const addCartData = (payload) => async(dispatch) => {
     //       'Content-Type': 'application/json' // Set the content type for the request body
     //     },{payload}})
     
-   let res=await fetch(`https://dark-erin-fox-cuff.cyclic.app/cart/add`,{
-        method:`POST`,
-        headers:{
-            'Authorization': JSON.parse(localStorage.getItem("user_token")),
-            'Content-Type': 'application/json'
-        },
-        body:JSON.stringify(payload)
+    console.log('here', localStorage.getItem('user_token'))
+    let res = await fetch(`https://dark-erin-fox-cuff.cyclic.app/cart/add`, {
+      method: `POST`,
+      headers: {
+        Authorization: localStorage.getItem('user_token'),
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
     })
-    let data=await res.json()
-
+    let data = await res.json()
+  
     console.log(data)
+    
 }
 // console.log(JSON.parse(localStorage.getItem("user_token")))
 
