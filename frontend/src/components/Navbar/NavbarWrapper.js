@@ -2,11 +2,16 @@ import styled from "styled-components";
 
 
 const NavbarWrapper = styled.div`
-padding : 0px 34px;
+
 
 .navbar-container{
     display : flex;
+    padding : 10px 34px;
     justify-content : space-between;
+    z-index : 1000;
+    position : fixed;
+    width:100%;
+    background-color: white;
 }
 .navbar-logo-container{
     display :flex;
