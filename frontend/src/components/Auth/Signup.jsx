@@ -9,6 +9,7 @@ import {
   FormControl,
   FormLabel,
   Button,
+  useToast,
 } from '@chakra-ui/react'
 
 const initd = {
@@ -21,8 +22,8 @@ const Signup = () => {
   const [user, setUser] = useState(initd)
 
   const { username, email, password } = user
-
-  const Navigate = useNavigate()
+  const navigate = useNavigate()
+  const toast = useToast()
 
   const oninputchange = (e) => {
     setUser({
@@ -31,19 +32,47 @@ const Signup = () => {
     })
   }
 
-  const handleClick = () => {
-    // const res = axios
-    //   .post("https://dark-erin-fox-cuff.cyclic.app/user/register", user)
-    //   .then((res) => {
-    //     console.log(res);
-    //   });
-    if (!username || !email || !password) {
-      alert('please fill all credentials')
-    } else {
-      Navigate('/Login')
-    }
+  const handleClick = async () => {
+    let payload = { email, password, userName: username }
 
-    // localStorage.setItem("user", JSON.stringify(user))
+    try {
+      let res = await fetch(
+        'https://dark-erin-fox-cuff.cyclic.app/user/register',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        }
+      )
+      let data = await res.json()
+      console.log(payload, res)
+      if (res.status == 201) {
+        toast({
+          title: 'register successfully',
+          description: 'good luck!',
+          status: 'success',
+          duration: 4000,
+          isClosable: true,
+          position: 'top',
+        })
+
+        navigate('/login')
+        console.log(data)
+      } else {
+        toast({
+          title: 'register failed',
+          description: 'good luck!',
+          status: 'error',
+          duration: 4000,
+          isClosable: true,
+          position: 'top',
+        })
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <Box border='1px solid gray' height={'50rem'} backgroundColor='gray.200'>

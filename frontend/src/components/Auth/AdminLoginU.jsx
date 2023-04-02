@@ -1,10 +1,11 @@
-import { Box, Button, Input } from '@chakra-ui/react'
+import { Box, Button, Input, useToast } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const AdminLoginU = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const toast = useToast()
   let navigate = useNavigate()
   const handlSubmit = async () => {
     let payload = { email, password }
@@ -20,9 +21,28 @@ const AdminLoginU = () => {
         }
       )
       let data = await res.json()
-      localStorage.setItem('admin_token', data.token)
-      navigate('/dashboard')
-      console.log(data)
+      if (res.status == 200) {
+        toast({
+          title: 'login successfully',
+          description: 'good luck!',
+          status: 'success',
+          duration: 4000,
+          isClosable: true,
+          position: 'top',
+        })
+        localStorage.setItem('admin_token', data.token)
+        navigate('/dashboard')
+        console.log(data)
+      } else {
+        toast({
+          title: 'login failed',
+          description: 'good luck!',
+          status: 'error',
+          duration: 4000,
+          isClosable: true,
+          position: 'top',
+        })
+      }
     } catch (error) {
       console.log(error)
     }
