@@ -11,6 +11,7 @@ import {
   Text,
   Image,
   Skeleton,
+  Button,
 } from '@chakra-ui/react'
 const Orders = () => {
   const [order, setOrders] = useState([])
@@ -82,6 +83,9 @@ const Orders = () => {
       ) : (
         <Accordion allowMultiple>
           {order.map((item) => {
+            var date = Number(item.createdAt)
+            var d = new Date(date)
+            var ds = d.toLocaleString()
             return (
               <AccordionItem
                 border={'none'}
@@ -98,10 +102,12 @@ const Orders = () => {
                       textTransform={'capitalize'}
                     >
                       <Text width='24%'>Name: {item.address.fullname}</Text>
-                      <Text width='24%'>City:{item.address.city}</Text>
-                      <Text width='24%'>Amount:{item.totalAmount}</Text>
-                      <Text width='24%'>ordredAT{item.createdAt}</Text>
-                      <Text width='24%'>orderStatus:{item.orderStatus}</Text>
+                      <Text width='20%'>City:{item.address.city}</Text>
+                      <Text width='20%'>Amount:{item.totalAmount}</Text>
+                      <Text width='32%'>ordredAT: {ds}</Text>
+                      <Button width='24%' colorScheme='yellow'>
+                        orderStatus:{item.orderStatus || 'pending'}
+                      </Button>
                     </Flex>
                     <AccordionIcon />
                   </AccordionButton>
@@ -125,6 +131,10 @@ const Orders = () => {
                           minW={'1000px'}
                         >
                           <Box width='50px'> item: {i + 1}</Box>
+                          <Box>
+                            Title
+                            <Text width='200px'>{item22.product_name}</Text>
+                          </Box>
                           <Box>
                             <Image
                               src={item22.image}

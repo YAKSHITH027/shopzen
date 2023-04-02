@@ -3,6 +3,7 @@ const { OrderModel } = require('../model/order.model')
 const orderAdd = async (req, res) => {
   const payload = req.body
   payload.createdAt = Date.now()
+  payload.orderStatus = 'pending'
   console.log(payload)
   try {
     const singleOrder = new OrderModel(payload)
