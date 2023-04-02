@@ -68,6 +68,7 @@ function SingleProduct() {
 
     return (
         <Box>
+            <Navbar/>
         <Box m="auto" w="90%">
         {
             Loader?
