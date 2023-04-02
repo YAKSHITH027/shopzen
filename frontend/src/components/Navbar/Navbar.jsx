@@ -5,6 +5,7 @@ import { NavbarWrapper } from './NavbarWrapper'
 import PageLinkLogos from '../home/PageLinkLogos'
 import NewArrivalPopover from './NewArrivalPopover'
 import CaseWrapper from './CaseWrapper'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
@@ -20,8 +21,10 @@ const Navbar = () => {
         <Box>BAGS & WALLETS</Box>
         <Box>HOME OFFICE</Box>
         <Box>COLLECTIONS</Box>
-        <Box>GIFTING</Box>
-        <Box></Box>
+        {/* <Box>GIFTING</Box> */}
+        <Box>
+            <Link to='/login'>LOGIN</Link>
+        </Box>
         </Box>
         <Box className='navbar-searching'>
         <PageLinkLogos />

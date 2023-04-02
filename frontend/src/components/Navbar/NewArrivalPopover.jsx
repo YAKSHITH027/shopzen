@@ -1,11 +1,12 @@
 import { Box, Button, Divider, Image, List, ListItem, Popover, PopoverBody, PopoverContent, PopoverTrigger } from '@chakra-ui/react'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const NewArrivalPopover = () => {
   return (
     <Box><Popover trigger='hover' isLazy placement='bottom' size="full">
     <PopoverTrigger>
-      <Box>NEW ARRIVALS</Box>
+      <Box><Link to='/product'>NEW ARRIVALS</Link></Box>
     </PopoverTrigger>
     <PopoverContent mt={"16px"} borderRadius="none" width={"99vw"}>
       <PopoverBody>

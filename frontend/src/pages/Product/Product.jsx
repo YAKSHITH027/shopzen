@@ -12,6 +12,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { useSearchParams } from 'react-router-dom'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper";
+import { Navbar as Test } from '../../components/Navbar/Navbar'
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
@@ -64,7 +65,8 @@ function Product() {
     console.log(type)
     return (
         <Box>
-            <Navbar/>
+            {/* <Navbar/> */}
+            <Test/>
         <Box m="auto" w="95%">
             <Box display="flex">
                 {/* <Button onClick={handleBag}>Bags</Button> */}
@@ -94,7 +96,7 @@ function Product() {
                         }}
                         modules={[FreeMode, Pagination]}
                         className="mySwiper"
-                        
+
                     >
 
 <SwiperSlide>
@@ -147,7 +149,7 @@ function Product() {
                         </Box>
                     </SwiperSlide>
                     </Swiper>
-                    
+
                 </Box>
             </Box>
             <InfiniteScroll
@@ -169,7 +171,7 @@ function Product() {
                 </Grid>
             </InfiniteScroll>
         </Box>
-        <Footer/>
+        {/* <Footer/> */}
         </Box>
     )
 }
