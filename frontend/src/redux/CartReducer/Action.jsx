@@ -28,7 +28,7 @@ export const getCartProducts = () => (dispatch) => {
         .get("https://dark-erin-fox-cuff.cyclic.app/cart/getitem",{
             headers:{
                 'Content-Type':'application/json',
-                'Authorization':localStorage.getItem("token")
+                'Authorization':localStorage.getItem("user_token")
             }
         })
         .then((res) => {
@@ -47,7 +47,7 @@ export const deleteCartdata = (id) => (dispatch) => {
         .delete(`https://dark-erin-fox-cuff.cyclic.app/cart/${id}`,{
             headers:{
                 'Content-Type':'application/json',
-                'Authorization':localStorage.getItem("token")
+                'Authorization':localStorage.getItem("user_token")
             }
         })
         .then((res) => {
