@@ -255,6 +255,10 @@
 .modelDiv{
     height: 200px;
 }
+.error{
+    color:red;
+    font-size: small;
+}
 
 
 @media screen and (max-width: 900px){

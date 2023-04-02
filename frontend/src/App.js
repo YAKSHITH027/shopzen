@@ -23,7 +23,7 @@ function App() {
       <Allrouter />
       {/*<Cart/>*/}
       {/*<Checkout/>*/}
-      {/* <Allrouter /> */}
+      {/*<Allrouter />*/}
 
     </div>
   )
