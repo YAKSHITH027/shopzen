@@ -10,6 +10,7 @@ const Topbar = () => {
   const handleLogout = () => {
     navigate('/adminlogin')
     localStorage.setItem('admin_token', '')
+    localStorage.setItem('admin_info', '')
   }
   return (
     <Box display={'flex'} justifyContent='space-between' p='2'>

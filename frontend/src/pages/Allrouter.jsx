@@ -23,6 +23,7 @@ import Signup from '../components/Auth/Signup'
 
 import AdminLoginU from '../components/Auth/AdminLoginU'
 import AdminProtectedRoute from '../Adminside/components/AdminProtectedRoute'
+import Profile from './profile/Profile'
 
 const Allrouter = () => {
   return (
@@ -31,12 +32,14 @@ const Allrouter = () => {
         <Route path='registration' element={<Registration />} />
         <Route path='/Login' element={<Login />} />
         <Route path='/myaccount' element={<MyAccount />} />
-        <Route path='/checkout' element={<Checkout />} /> 
+        <Route path='/checkout' element={<Checkout />} />
         <Route path='/' element={<Home />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/registration' element={<Registration />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/profile' element={<Profile />} />
+
         <Route path='/adminlogin' element={<AdminLoginU />} />
         <Route path='/myaccount' element={<MyAccount />} />
         <Route path='/product' element={<Product />} />
