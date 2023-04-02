@@ -209,4 +209,12 @@ const downloadApp =[
         url:"https://images.dailyobjects.com/marche/icons/IOS.png?tr=cm-pad_resize,v-2,w-118,h-38,dpr-1"
     }
 ]
-export { downloadApp,socialMediaLogo,knowus , helpdesk, network, paymentlogo, cases, bags, homeoffice, straps, others,blogs, giftByPersona,giftByRelationship, giftsByOccasion, wallets}
+const giftByBudget = [
+    "Gifts under 500",
+"Gifts under 1000",
+"Gifts under 2000",
+"Gifts under 3000",
+"Gifts under 4000",
+"Gifts under 5000"
+]
+export { giftByBudget,downloadApp,socialMediaLogo,knowus , helpdesk, network, paymentlogo, cases, bags, homeoffice, straps, others,blogs, giftByPersona,giftByRelationship, giftsByOccasion, wallets}
