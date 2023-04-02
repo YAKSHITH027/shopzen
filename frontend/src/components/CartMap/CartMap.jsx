@@ -3,7 +3,7 @@ import { Button } from '@chakra-ui/react'
 import { RiDeleteBin6Line } from "react-icons/ri"
 import { HiPlusSm } from "react-icons/hi";
 import { GrFormSubtract } from "react-icons/gr"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 const CartMap = ({ image, price, product_name, quantity, discountedPrice, _id,HandleCartDelete, HandleQuantityDecreament,HandleQuantityIncreament }) => {
@@ -31,6 +31,9 @@ const CartMap = ({ image, price, product_name, quantity, discountedPrice, _id,Ha
         }
       }
 
+      useEffect(() => {
+        console.log("totalprice")
+      }, [cartquantity])
 
     return (
         <>
@@ -43,7 +46,7 @@ const CartMap = ({ image, price, product_name, quantity, discountedPrice, _id,Ha
 
                 <div className={styles.cartProduct_subdiv1}>
                     <p className={styles.cartProduct_Name}>{product_name}</p>
-                    <p className={styles.cartProduct_Price}>Rs. {price*cartquantity} <span>{discountedPrice*cartquantity}</span> </p>
+                    <p className={styles.cartProduct_Price}>Rs. {price*cartquantity} <span> <del>{discountedPrice*cartquantity}</del></span> </p>
                     <div className={styles.cartProduct_subdiv2}>
                         <div className={styles.quantity_div}>
                             <GrFormSubtract size={20} onClick={() => HandleDecreament(_id)} />
