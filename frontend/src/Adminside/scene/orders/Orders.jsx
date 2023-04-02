@@ -22,7 +22,7 @@ const Orders = () => {
     try {
       let res = await fetch('https://dark-erin-fox-cuff.cyclic.app/order')
       let data = await res.json()
-      setOrders(data.orders)
+      setOrders(data.allOrders)
       setLoading(false)
       console.log(data)
     } catch (error) {
@@ -81,7 +81,7 @@ const Orders = () => {
         })
       ) : (
         <Accordion allowMultiple>
-          {orders.map((item) => {
+          {order.map((item) => {
             return (
               <AccordionItem
                 border={'none'}
@@ -127,16 +127,16 @@ const Orders = () => {
                           <Box width='50px'> item: {i + 1}</Box>
                           <Box>
                             <Image
-                              src={
-                                'https://images.pexels.com/photos/5029301/pexels-photo-5029301.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'
-                              }
+                              src={item22.image}
                               width='100px'
                               borderRadius={'md'}
                             />
                           </Box>
 
-                          <Text width='100px'>Price: {item22.amount} </Text>
-                          <Text width='100px'>Quantity: {item22.qty} </Text>
+                          <Text width='100px'>Price: {item22.price} </Text>
+                          <Text width='100px'>
+                            Quantity: {item22.quantity}{' '}
+                          </Text>
                         </Flex>
                       )
                     })}

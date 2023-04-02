@@ -13,6 +13,7 @@ import { MdAddShoppingCart, MdOutlineSecurity } from 'react-icons/md'
 const Sidebar = ({ children }) => {
   const { pathname } = useLocation()
   console.log(pathname)
+  let adminInfo = JSON.parse(localStorage.getItem('admin_info'))
   const pageLinks = [
     {
       id: 1,
@@ -80,9 +81,11 @@ const Sidebar = ({ children }) => {
           ADMIN
         </Heading>
         <Flex flexDir={'column'} align='center'>
-          <Avatar size={'xl'} name='yakshith' />
+          <Avatar size={'xl'} src={adminInfo.image} name={adminInfo.userName} />
           <Box my='1rem'>
-            <Text textAlign={'center'}>Yakshith</Text>
+            <Text textAlign={'center'} fontSize={'1.3rem'}>
+              {adminInfo.userName}
+            </Text>
           </Box>
         </Flex>
         {pageLinks.map((item) => {
