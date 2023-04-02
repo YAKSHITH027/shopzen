@@ -17,6 +17,6 @@ export const productFailure=()=>{
 
 export const getProduct=(params)=>(dispatch)=>{
     dispatch(productRequest());
-    console.log(params)
+    
     return axios.get("https://dark-erin-fox-cuff.cyclic.app/product",params)
 }
