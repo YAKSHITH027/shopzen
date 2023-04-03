@@ -74,7 +74,10 @@ function SingleProduct() {
 
     return (
         <Box>
-            <Navbar />
+            {/* <Navbar /> */}
+            <Box mb="120px">
+      <Test/>
+      </Box>
 
             <Box m="auto" w="90%" mt="20px" mb="40px">
                 {
