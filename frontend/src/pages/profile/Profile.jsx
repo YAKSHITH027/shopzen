@@ -15,7 +15,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import Navbar from '../../components/home/Navbar'
+import { Navbar } from '../../components/Navbar/Navbar'
 
 const Profile = () => {
   const [orders, setOrders] = useState([])
@@ -58,7 +58,9 @@ const Profile = () => {
   console.log('orders', orders)
   return (
     <>
-      <Navbar />
+      <Box mb='70px'>
+        <Navbar />
+      </Box>
       <Box bg={'gray.100'} minH={'90vh'} py='2rem'>
         <Flex
           justify={'space-around'}
