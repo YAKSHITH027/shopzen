@@ -1,15 +1,19 @@
 const { ProductModel } = require('../model/product.model')
 
 const ProductGet = async (req, res) => {
-  let { page, limit } = req.query
+  let { page, limit, sort } = req.query
   if (page < 1) {
     page = 1
   }
   if (!limit) {
     limit = 10
   }
+  let obj = {}
+  if (sort) {
+    obj.category = sort
+  }
   try {
-    const products = await ProductModel.find()
+    const products = await ProductModel.find(obj)
       .skip((page - 1) * limit)
       .limit(limit)
     const totalProducts = await ProductModel.countDocuments()

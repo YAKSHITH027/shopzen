@@ -107,7 +107,15 @@ export default class ProductSlider extends Component {
                     maxH={{ base: '225px', lg: '290px' }}
                   />
                 </Flex>
-                <Text textAlign={'center'}>{item.color}</Text>
+                <Text
+                  textAlign={'center'}
+                  overflow={'hidden'}
+                  whiteSpace='nowrap'
+                  textOverflow={'ellipsis'}
+                  maxW={'full'}
+                >
+                  {item.color}
+                </Text>
                 <Text textAlign={'center'} my='5px'>
                   {' '}
                   {item.title}{' '}

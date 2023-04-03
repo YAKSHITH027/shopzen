@@ -13,6 +13,7 @@ import Topbar from './Adminside/scene/global/Topbar'
 import { Box, Flex } from '@chakra-ui/layout'
 import Sidebar from './Adminside/scene/global/Sidebar'
 import Dashboard from './Adminside/scene/Dashboard'
+import Search from './components/home/Search'
 
 function App() {
   return (
@@ -21,10 +22,10 @@ function App() {
       {/* <Profile /> */}
       {/* <Product /> */}
       <Allrouter />
+      {/* <Search /> */}
       {/*<Cart/>*/}
       {/*<Checkout/>*/}
       {/*<Allrouter />*/}
-
     </div>
   )
 }

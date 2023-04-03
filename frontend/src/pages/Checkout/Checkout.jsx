@@ -22,12 +22,26 @@ function Checkout() {
   let dispatch = useDispatch()
   const Razorpay = useRazorpay()
   const navigate = useNavigate()
+  const itemLength = products.length
+
+  let totalprice = products.reduce((acc, el) => {
+    return acc + Number(el.price * el.quantity)
+  }, 0)
+
+  let discountedprice = products.reduce((acc, el) => {
+    return acc + Number(el.discountedPrice * el.quantity)
+  }, 0)
+
+  const address = JSON.parse(localStorage.getItem('address'))
+  console.log(address)
+
+
 
   const handlePayment = useCallback(
     async (prod) => {
       const options = {
         key: 'rzp_test_Q6qLBPFz8pzc23',
-        amount: 1000 * 100,
+        amount: totalprice * 100,
         currency: 'INR',
         name: 'Shopzen Corp',
         description: 'Test Transaction',
@@ -47,17 +61,17 @@ function Checkout() {
                   body: JSON.stringify({
                     products: prod,
                     userId: '123456',
-                    createdAt: '2023-04-02T09:00:00.000Z',
-                    totalAmount: 43434,
+                    createdAt: Date.now(),
+                    totalAmount:totalprice ,
                     address: {
-                      fullname: 'check now',
-                      mobile: '32323232',
-                      email: 'something',
-                      address: '123 Main St',
-                      pincode: 12345,
-                      city: 'dfd',
-                      state: 'CAdf',
-                      country: 'USA',
+                      fullname: address.name,
+                      mobile: address.phone,
+                      email: address.email,
+                      address: address.area,
+                      pincode: address.pincode,
+                      city: address.city,
+                      state: address.state,
+                      country:address.country,
                     },
                   }),
                 }
@@ -68,9 +82,10 @@ function Checkout() {
             }
           }
           postOrder()
+          navigate("/")
         },
         prefill: {
-          name: 'Piyush Garg',
+          name: address.name,
           email: 'youremail@example.com',
           contact: '9999999999',
         },
@@ -93,18 +108,7 @@ function Checkout() {
     dispatch(getCartProducts())
   }, [])
 
-  const itemLength = products.length
-
-  let totalprice = products.reduce((acc, el) => {
-    return acc + Number(el.price * el.quantity)
-  }, 0)
-
-  let discountedprice = products.reduce((acc, el) => {
-    return acc + Number(el.discountedPrice * el.quantity)
-  }, 0)
-
-  const address = JSON.parse(localStorage.getItem('address'))
-  console.log(address)
+  
 
   return (
     <>
@@ -129,10 +133,9 @@ function Checkout() {
             <p>
               {address.city} {address.counter}
             </p>
-            <p>
-              {address.city} {address.building}
-            </p>
+           
             <p>{address.pincode} </p>
+            <p>{address.state}</p>
           </div>
 
           <Link to='/cart'>
