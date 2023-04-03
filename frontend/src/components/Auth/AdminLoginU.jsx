@@ -84,7 +84,7 @@ const AdminLoginU = () => {
   }
   return (
     <>
-      <Box mb='70px'>
+      <Box mb='70px' boxShadow={''}>
         <Navbar />
       </Box>
       <Flex
@@ -116,6 +116,7 @@ const AdminLoginU = () => {
             <FormLabel>Email</FormLabel>
             <Input
               placeholder='email'
+              type='email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -125,6 +126,7 @@ const AdminLoginU = () => {
 
             <Input
               placeholder='password'
+              type='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
