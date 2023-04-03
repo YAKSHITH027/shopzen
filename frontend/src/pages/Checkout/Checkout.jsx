@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 
 function Checkout() {
-  const [prod, setProd] = useState([])
   const { products, isLoading, isError } = useSelector((store) => {
     return {
       products: store.CartReducer.products,
@@ -34,7 +33,6 @@ function Checkout() {
   }, 0)
 
   const address = JSON.parse(localStorage.getItem('address'))
-  console.log(address)
 
 
 
@@ -48,7 +46,7 @@ function Checkout() {
         description: 'Test Transaction',
         image: 'https://example.com/your_logo',
         handler: async (response) => {
-          
+
           let postOrder = async () => {
             try {
               console.log('inside post', prod)
@@ -64,7 +62,7 @@ function Checkout() {
                     products: prod,
                     userId: '123456',
                     createdAt: Date.now(),
-                    totalAmount:totalprice ,
+                    totalAmount: totalprice,
                     address: {
                       fullname: address.name,
                       mobile: address.phone,
@@ -73,7 +71,7 @@ function Checkout() {
                       pincode: address.pincode,
                       city: address.city,
                       state: address.state,
-                      country:address.country,
+                      country: address.country,
                     },
                   }),
                 }
@@ -84,36 +82,31 @@ function Checkout() {
             }
           }
 
-          const deleteAllCart=()=>{
-            try{
-              axios.delete(`https://dark-erin-fox-cuff.cyclic.app/cart/deleteallcart`,{
-            headers:{
-                'Content-Type':'application/json',
-                'Authorization':localStorage.getItem("user_token")
-            }
-        })
+          const deleteAllCart = () => {
+            try {
+              axios.delete(`https://dark-erin-fox-cuff.cyclic.app/cart/delete`, {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': localStorage.getItem("user_token")
+                }
+              })
 
-            }catch(err){
+            } catch (err) {
               console.log(err)
             }
           }
 
-
-
-
-
-
-
           postOrder()
+          deleteAllCart()
           navigate("/")
         },
         prefill: {
           name: address.name,
-          email: 'youremail@example.com',
-          contact: '9999999999',
+          email: address.email,
+          contact: address.phone,
         },
         notes: {
-          address: 'Razorpay Corporate Office',
+          address: "ShopZen Corporation",
         },
         theme: {
           color: '#3399cc',
@@ -127,11 +120,10 @@ function Checkout() {
   )
 
   useEffect(() => {
-    setProd(products)
     dispatch(getCartProducts())
   }, [])
 
-  
+
 
   return (
     <>
@@ -156,7 +148,7 @@ function Checkout() {
             <p>
               {address.city} {address.counter}
             </p>
-           
+
             <p>{address.pincode} </p>
             <p>{address.state}</p>
           </div>
@@ -199,7 +191,6 @@ function Checkout() {
               borderRadius={0}
               width='100%'
               onClick={() => {
-                
                 handlePayment(products)
               }}
             >
