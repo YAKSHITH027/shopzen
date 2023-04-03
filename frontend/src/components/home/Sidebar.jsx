@@ -75,33 +75,16 @@ function Sidebar({ id, handleLogout }) {
                 Cart
               </Text>
             </Link>
-            <Link to='/product/MensData'>
+            <Link to='/product'>
               <Text
                 textAlign={'center'}
                 fontSize={'1.5rem'}
                 borderBottomWidth='2px'
               >
-                Mens
+                Products
               </Text>
             </Link>
-            <Link to='/product/WomensData'>
-              <Text
-                textAlign={'center'}
-                fontSize={'1.5rem'}
-                borderBottomWidth='2px'
-              >
-                Womens
-              </Text>
-            </Link>
-            <Link to='/product/ChildrensData'>
-              <Text
-                textAlign={'center'}
-                fontSize={'1.5rem'}
-                borderBottomWidth='2px'
-              >
-                Kids
-              </Text>
-            </Link>
+
             {/* <Flex justify={'center'}>
               {id ? (
                 <Button onClick={handleLogout} px='2rem'>
