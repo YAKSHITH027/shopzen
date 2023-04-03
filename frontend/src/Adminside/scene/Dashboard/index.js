@@ -194,14 +194,14 @@ const Dashboard = () => {
         />
       </Flex>
       <Flex gap='2' mt='1rem'>
-        <Box width='70%' minH={'25vh'}>
+        <Box width='67%' minH={'25vh'}>
           <LineChart />
           <Flex>
             <BarChart width='47%' height='18rem' />
             <PieChart width='47%' height='18rem' />
           </Flex>
         </Box>
-        <Box minH={'30vh'} width='30%'>
+        <Box minH={'30vh'} width={{ base: '35%', lg: '33%' }}>
           <Text textAlign={'center'} fontSize='1.3rem'>
             Recent Orders
           </Text>
