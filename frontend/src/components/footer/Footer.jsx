@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Heading, Image, Input, InputGroup, InputRightElement, List, ListItem} from '@chakra-ui/react'
+import { Box,Divider, Heading, Image, List, ListItem} from '@chakra-ui/react'
 import React from 'react'
 import { FooterWrapper } from '../../css/footer'
 import {giftByBudget,giftByPersona, bags, cases, downloadApp, helpdesk, homeoffice, knowus, network, others, paymentlogo, socialMediaLogo, straps, wallets,giftsByOccasion,giftByRelationship } from './footerData'
