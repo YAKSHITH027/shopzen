@@ -2,15 +2,17 @@ import styled from "styled-components";
 
 
 const NavbarWrapper = styled.div`
-
+    position : fixed;
+    width : 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index : 1000;
 
 .navbar-container{
     display : flex;
     padding : 10px 34px;
     justify-content : space-between;
-    z-index : 1000;
-    position : fixed;
-    width:100%;
     background-color: white;
 }
 .navbar-logo-container{

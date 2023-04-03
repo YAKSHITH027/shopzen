@@ -15,7 +15,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-import Navbar from '../../components/home/Navbar'
+import Navbar from '../../components/home/Navbar';
+import { Navbar as Test } from '../../components/Navbar/Navbar'
 import Footer from '../../components/footer/Footer'
 import ProductCategory from '../../components/products/ProductCategory'
 // import { useLocation } from 'react-router-dom';
@@ -32,19 +33,17 @@ function Product() {
     const [SearchParams] = useSearchParams()
     const dispatch = useDispatch()
     const location = useLocation()
-    
+
         let obj={
-           
             params:{
                 sort:SearchParams.get("sort")
             }
             }
             console.log(obj.params.sort)
-  
-    
+
+
     useEffect(() => {
-        
-        dispatch(getProduct(obj)).then((res) => setItems(res.data.products)).catch((err) => console.log(err))
+    dispatch(getProduct(obj)).then((res) => setItems(res.data.products)).catch((err) => console.log(err))
     }, [location.search])
 
     const fetchComments = async () => {
@@ -75,10 +74,12 @@ function Product() {
     const handleType = (T) => {
         setType(T)
     }
-    
     return (
         <Box>
-            <Navbar />
+            {/* <Navbar /> */}
+            <Box mb="90px">
+      <Test/>
+      </Box>
             <Box mt="20px" mb="20px">
                 <Image src="https://images.dailyobjects.com/marche/assets/images/other/20-off-new-homepage-desktop.gif?tr=cm-pad_resize,v-2,dpr-1" />
             </Box>
