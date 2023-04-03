@@ -90,6 +90,11 @@ const NavbarWrapper = styled.div`
         text-decoration: underline;
     }
 }
+@media only screen and (min-width: 320px) and (max-width: 1000px){
+.middle-navlist{
+    display: none;
+}
+}
 `
 
 export {NavbarWrapper}

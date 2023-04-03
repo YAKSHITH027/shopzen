@@ -11,7 +11,8 @@ import {
   Button,
   useToast,
 } from '@chakra-ui/react'
-import Navbar from '../home/Navbar'
+import Navbar from '../home/Navbar';
+import { Navbar as Test } from '../Navbar/Navbar';
 
 const initd = {
   username: '',
@@ -91,7 +92,10 @@ const Signup = () => {
   }
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
+      <Box mb="90px">
+      <Test/>
+      </Box>
       <Box border='1px solid gray' height={'50rem'} backgroundColor='gray.200'>
         <Box
           w='40%'

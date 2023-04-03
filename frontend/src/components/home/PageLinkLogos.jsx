@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 const PageLinkLogos = ({ setShow }) => {
   return (
     <Flex gap='6' align={'center'} paddingRight='1rem'>
-      <BsBag fontSize={'1.3rem'} />
+      <Link to="/cart"><BsBag fontSize={'1.3rem'} /></Link>
       <Link to='/profile'>
         <MdOutlinePerson2 fontSize={'1.5rem'} />
       </Link>
