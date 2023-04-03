@@ -106,9 +106,7 @@ function CartComponent() {
     })
   }
 
-  /* useEffect(() => {
-         dispatch(getCartProducts());
-     }, [])*/
+  
 
   const itemLength = products.length
 
@@ -116,13 +114,7 @@ function CartComponent() {
   let totalprice = 0
   let discountedprice = 0
 
-  /*totalprice = products.reduce((acc, el) => {
-    return acc + Number(el.price * el.quantity)
-  }, 0)
-
-  discountedprice = products.reduce((acc, el) => {
-    return acc + Number(el.discountedPrice * el.quantity)
-  }, 0)*/
+ 
 
   function HandleQuantityIncreament(id, cartquantity) {
     fetch(`https://dark-erin-fox-cuff.cyclic.app/cart/increament/${id}`, {
