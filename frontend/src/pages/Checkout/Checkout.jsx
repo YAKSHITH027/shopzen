@@ -8,7 +8,7 @@ import useRazorpay from 'react-razorpay'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import axios from "axios"
+import axios from 'axios'
 
 function Checkout() {
   const { products, isLoading, isError } = useSelector((store) => {
@@ -34,8 +34,6 @@ function Checkout() {
 
   const address = JSON.parse(localStorage.getItem('address'))
 
-
-
   const handlePayment = useCallback(
     async (prod) => {
       const options = {
@@ -46,7 +44,6 @@ function Checkout() {
         description: 'Test Transaction',
         image: 'https://example.com/your_logo',
         handler: async (response) => {
-
           let postOrder = async () => {
             try {
               console.log('inside post', prod)
@@ -82,15 +79,17 @@ function Checkout() {
             }
           }
 
-          const deleteAllCart = () => {
+          const deleteAllCart = async () => {
             try {
-              axios.delete(`https://dark-erin-fox-cuff.cyclic.app/cart/delete`, {
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': localStorage.getItem("user_token")
+              await axios.delete(
+                `https://dark-erin-fox-cuff.cyclic.app/cart/delete`,
+                {
+                  headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: localStorage.getItem('user_token'),
+                  },
                 }
-              })
-
+              )
             } catch (err) {
               console.log(err)
             }
@@ -98,7 +97,7 @@ function Checkout() {
 
           postOrder()
           deleteAllCart()
-          navigate("/")
+          navigate('/')
         },
         prefill: {
           name: address.name,
@@ -106,7 +105,7 @@ function Checkout() {
           contact: address.phone,
         },
         notes: {
-          address: "ShopZen Corporation",
+          address: 'ShopZen Corporation',
         },
         theme: {
           color: '#3399cc',
@@ -122,8 +121,6 @@ function Checkout() {
   useEffect(() => {
     dispatch(getCartProducts())
   }, [])
-
-
 
   return (
     <>

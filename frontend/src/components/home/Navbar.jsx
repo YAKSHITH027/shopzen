@@ -5,6 +5,7 @@ import Megamenu from './Megamenu'
 import PageLinkLogos from './PageLinkLogos'
 import { Link, useNavigate } from 'react-router-dom'
 import Search from './Search'
+import Sidebar from './Sidebar'
 const Navbar = () => {
   const [show, setShow] = useState(false)
   const navigate = useNavigate()
@@ -38,6 +39,7 @@ const Navbar = () => {
         logout
       </Button>
       <Search show={show} />
+
       <PageLinkLogos setShow={setShow} />
     </Flex>
   )
