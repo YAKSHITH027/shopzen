@@ -8,6 +8,7 @@ import useRazorpay from 'react-razorpay'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import axios from "axios"
 
 function Checkout() {
   const [prod, setProd] = useState([])
@@ -47,6 +48,7 @@ function Checkout() {
         description: 'Test Transaction',
         image: 'https://example.com/your_logo',
         handler: async (response) => {
+          
           let postOrder = async () => {
             try {
               console.log('inside post', prod)
@@ -81,11 +83,32 @@ function Checkout() {
               console.log('error', error)
             }
           }
+
+          const deleteAllCart=()=>{
+            try{
+              axios.delete(`https://dark-erin-fox-cuff.cyclic.app/cart/deleteallcart`,{
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':localStorage.getItem("user_token")
+            }
+        })
+
+            }catch(err){
+              console.log(err)
+            }
+          }
+
+
+
+
+
+
+
           postOrder()
           navigate("/")
         },
         prefill: {
-          name: 'Piyush Garg',
+          name: address.name,
           email: 'youremail@example.com',
           contact: '9999999999',
         },
@@ -176,7 +199,7 @@ function Checkout() {
               borderRadius={0}
               width='100%'
               onClick={() => {
-                console.log('before', products)
+                
                 handlePayment(products)
               }}
             >
