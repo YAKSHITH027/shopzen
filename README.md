@@ -15,11 +15,11 @@ Shopzen is a e-commerce clothing and accessories site.Here you will get wide ver
  
  ## contributors
  
- **P Yakshith- Landing page, Admin side
- **Swapnil Parchake- Navbar & Footer 
- **Ruchi Priya Kumari - Login & Signup page
- **Devang Bramhakshatriya - Products Page, Single Products Page
- ** Nisha Sharma - Cart page, Checkout payment page
+ **P Yakshith- Landing page, Admin side <br>
+ **Swapnil Parchake- Navbar & Footer  <br>
+ **Ruchi Priya Kumari - Login & Signup page <br>
+ **Devang Bramhakshatriya - Products Page, Single Products Page <br>
+ ** Nisha Sharma - Cart page, Checkout payment page <br>
  
  
  ## Pages
