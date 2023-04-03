@@ -104,10 +104,12 @@ const Sidebar = ({ children }) => {
           )
         })}
       </Flex>
-      <Box width={'100%'} minW='1000px'>
-        <Topbar />
-        <Box px={'3rem'} pt='2rem' minH={'30vh'}>
-          {children}
+      <Box overflow={'auto'}>
+        <Box width={'100%'} minW='1000px'>
+          <Topbar />
+          <Box px={'3rem'} pt='2rem' minH={'30vh'}>
+            {children}
+          </Box>
         </Box>
       </Box>
     </Flex>

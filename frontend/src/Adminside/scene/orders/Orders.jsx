@@ -204,7 +204,7 @@ const Orders = () => {
                   </AccordionPanel>
                 </AccordionItem>
                 <Button
-                  width='15rem'
+                  minW='15rem'
                   isDisabled={item.orderStatus == 'pending' ? false : true}
                   colorScheme={
                     item.orderStatus == 'pending' ? 'yellow' : 'green'
