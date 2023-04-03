@@ -2,6 +2,7 @@ import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/react'
 import React from 'react'
 import AutoSlider from '../../components/home/AutoSlider'
 import Navbar from '../../components/home/Navbar'
+import { Navbar as Test } from '../../components/Navbar/Navbar'
 import ProductSlider from '../../components/home/ProductSlider'
 import { AutoImage } from '../../utils/HomeSliderData/AutoSliderImages'
 import { newArrivalData } from '../../utils/HomeSliderData/newArrival'
@@ -9,12 +10,15 @@ import { shopCategory } from '../../utils/HomeSliderData/shopCategory'
 import Footer from '../../components/footer/Footer'
 const Home = () => {
   return (
-    <div>
-      <Navbar />
+    <Box>
+      {/* <Navbar /> */}
+      <Box>
+        <Test />
+      </Box>
       <Box>
         <Image src='https://images.dailyobjects.com/marche/assets/images/other/homepage-offerbanner-by20-desktop.gif?tr=cm-pad_resize,v-2,dpr-1' />
       </Box>
-      <Box mb={'3.5rem'}>
+      <Box mb={{ base: '1rem', lg: '3.5rem' }}>
         <Image src='https://images.dailyobjects.com/marche/assets/images/homepage/desktop/pangea_collection_homepage_desktop.jpg?tr=cm-pad_crop,v-2,dpr-1' />
       </Box>
       <Box>
@@ -22,14 +26,14 @@ const Home = () => {
       </Box>
       <Flex
         minH={'20vh'}
-        py='3.5rem'
+        py={{ base: '1.5rem', lg: '3.5rem' }}
         justify={'space-around'}
         flexDir={{ base: 'column', lg: 'row' }}
       >
         <Flex
-          flexDir={{ base: 'row', lg: 'column' }}
+          flexDir={{ base: 'column', lg: 'column' }}
           gap='3'
-          p='2rem'
+          p={{ base: '0.7rem', lg: '2rem' }}
           width={{ base: '100%', lg: '25%' }}
           justify='center'
         >
@@ -53,7 +57,7 @@ const Home = () => {
           <ProductSlider newArrival={newArrivalData} />
         </Box>
       </Flex>
-      <Box mb='2rem'>
+      <Box mb={{ base: '1rem', lg: '2rem' }}>
         <Image src='https://images.dailyobjects.com/marche/assets/images/homepage/desktop/Desktop-banner_backpacks-updated.jpg?tr=cm-pad_crop,v-2,dpr-1' />
       </Box>
       <Box>
@@ -65,14 +69,14 @@ const Home = () => {
       </Box>
       <Flex
         minH={'20vh'}
-        py='3.5rem'
+        py={{ base: '1.5rem', lg: '3.5rem' }}
         justify={'space-around'}
         flexDir={{ base: 'column', lg: 'row' }}
       >
         <Flex
-          flexDir={{ base: 'row', lg: 'column' }}
+          flexDir={{ base: 'column', lg: 'column' }}
           gap='3'
-          p='2rem'
+          p={{ base: '1rem', lg: '2rem' }}
           width={{ base: '100%', lg: '25%' }}
           justify='center'
         >
@@ -95,11 +99,11 @@ const Home = () => {
       <Box>
         <Image src='https://images.dailyobjects.com/marche/assets/images/other/phone-cases-desktop-up.jpg?tr=cm-pad_crop,v-2,dpr-1' />
       </Box>
-      <Box p='3rem' margin={'auto'}>
+      <Box p={{ base: '1.5rem', lg: '3rem' }} margin={'auto'}>
         <AutoSlider data={AutoImage} />
       </Box>
       <Footer />
-    </div>
+    </Box>
   )
 }
 

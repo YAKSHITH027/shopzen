@@ -6,6 +6,8 @@ const orderSchema = mongoose.Schema({
   userId: String,
   createdAt: String,
   totalAmount: Number,
+  createdAt: String,
+  orderStatus: String,
   address: {
     fullname: String,
     mobile: String,

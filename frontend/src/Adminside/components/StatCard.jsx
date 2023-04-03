@@ -4,10 +4,10 @@ import { Stat, StatArrow, StatHelpText } from '@chakra-ui/stat'
 import React from 'react'
 import { AiOutlineUserAdd } from 'react-icons/ai'
 
-const StatCard = ({ title, percent, count, value }) => {
+const StatCard = ({ title, percent, count, value, icon }) => {
   return (
     <Flex
-      gap='3rem'
+      gap={{ base: '2rem', lg: '2.5rem', '2xl': '3rem' }}
       bg={'#19376D'}
       px={{ base: '0.83rem', xl: '2rem' }}
       py='1.3rem'
@@ -15,8 +15,13 @@ const StatCard = ({ title, percent, count, value }) => {
       align={'center'}
     >
       <Box>
-        <Flex fontSize={'1.4rem'} align='center' gap='2'>
-          <AiOutlineUserAdd fontSize={'1.5rem'} />
+        <Flex
+          fontSize={'1.4rem'}
+          align='center'
+          gap='2'
+          textTransform={'capitalize'}
+        >
+          {icon}
           <Text>{title}</Text>
         </Flex>
         <Text textAlign='center' mt='6px'>

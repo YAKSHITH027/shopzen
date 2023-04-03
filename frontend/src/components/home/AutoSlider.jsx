@@ -35,8 +35,8 @@ export default class AutoSlider extends Component {
         {
           breakpoint: 480,
           settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
+            slidesToShow: 2,
+            slidesToScroll: 2,
           },
         },
       ],
@@ -47,8 +47,8 @@ export default class AutoSlider extends Component {
           {this.props.data.map((item) => {
             return (
               <Image
-                width='150px'
-                height={'353px'}
+                width={{ base: '80px', lg: '150px' }}
+                height={{ base: '200px', lg: '353px' }}
                 src={item.image}
                 key={item.id}
               />

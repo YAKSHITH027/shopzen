@@ -78,5 +78,24 @@ const getUsers = async (req, res) => {
     res.status(400).send({ msg: error.message })
   }
 }
+const getOneUser = async (req, res) => {
+  const userID = req.body.userId
+  try {
+    const user = await UserModel.findOne({ _id: userID })
+    res.status(200).send(user)
+  } catch (err) {
+    res.status(400).send({ msg: err })
+  }
+}
+const updateUser = async (req, res) => {
+  let productId = req.body.userId
+  let payload = req.body
+  try {
+    await UserModel.findByIdAndUpdate({ _id: productId }, payload)
+    res.status(200).send({ msg: 'data updated' })
+  } catch (error) {
+    res.status(400).send({ msg: err.message })
+  }
+}
 
-module.exports = { register, login, getUsers }
+module.exports = { register, login, getUsers, getOneUser, updateUser }

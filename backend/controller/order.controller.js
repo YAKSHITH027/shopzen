@@ -2,11 +2,13 @@ const { OrderModel } = require('../model/order.model')
 
 const orderAdd = async (req, res) => {
   const payload = req.body
+  payload.createdAt = Date.now()
+  payload.orderStatus = 'pending'
   console.log(payload)
   try {
     const singleOrder = new OrderModel(payload)
     await singleOrder.save()
-    res.status(200).send('order has been added')
+    res.status(200).send({ msg: 'order has been added' })
   } catch (err) {
     res.status(400).send({ err: err.message })
   }
@@ -39,5 +41,15 @@ const getUserOrder = async (req, res) => {
     res.status(400).send({ msg: err.message })
   }
 }
+const updateUserOrder = async (req, res) => {
+  let productId = req.params.productId
+  let payload = { orderStatus: 'delivered' }
+  try {
+    await OrderModel.findByIdAndUpdate({ _id: productId }, payload)
+    res.status(200).send({ msg: 'data updated' })
+  } catch (error) {
+    res.status(400).send({ msg: err.message })
+  }
+}
 
-module.exports = { orderAdd, getAllOrders, getUserOrder }
+module.exports = { orderAdd, getAllOrders, getUserOrder, updateUserOrder }
