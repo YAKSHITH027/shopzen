@@ -11,29 +11,35 @@ const Navbar = () => {
   return (
     <Box>
     <NavbarWrapper>
-    <Box className='navbar-container'>
-        <Box className='navbar-logo-container'>
-        <Image src={shopzen} width='13rem' />
-        </Box>
+      <Box className='navbar-container'>
+        <Link to='/'>
+          <Box className='navbar-logo-container'>
+            <Image src={shopzen} width='13rem' />
+          </Box>
+        </Link>
         <Box className='middle-navlist'>
-        <Box><NewArrivalPopover/></Box>
-        <Box><CaseWrapper/></Box>
-        <Box>ACCESSORIES</Box>
-        <Box>BAGS & WALLETS</Box>
-        <Box>HOME OFFICE</Box>
-        <Box>COLLECTIONS</Box>
-        {/* <Box>GIFTING</Box> */}
-        <Box>
+          <Box>
+            <NewArrivalPopover />
+          </Box>
+          <Box>
+            <CaseWrapper />
+          </Box>
+          <Box>ACCESSORIES</Box>
+          <Box>BAGS & WALLETS</Box>
+          <Box>HOME OFFICE</Box>
+          <Box>COLLECTIONS</Box>
+          {/* <Box>GIFTING</Box> */}
+          <Box>
             <Link to='/login'>LOGIN</Link>
-        </Box>
+          </Box>
         </Box>
         <Box className='navbar-searching'>
-        <PageLinkLogos />
+          <PageLinkLogos />
         </Box>
-    </Box>
+      </Box>
     </NavbarWrapper>
     </Box>
   )
 }
 
-export  {Navbar}
+export { Navbar }

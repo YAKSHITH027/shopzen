@@ -86,7 +86,7 @@ const AdminLoginU = () => {
       <Navbar />
       <Flex
         minH={'90vh'}
-        width='20rem'
+        width='25rem'
         margin={'auto'}
         flexDir={'column'}
         align='center'
@@ -129,9 +129,9 @@ const AdminLoginU = () => {
           <Button
             onClick={handlSubmit}
             width={'full'}
-            colorScheme='teal'
+            colorScheme='green'
             isLoading={isLoading}
-            loadingText='logging in '
+            loadingText='Logging in '
           >
             submit
           </Button>
@@ -143,7 +143,7 @@ const AdminLoginU = () => {
           width={'full'}
           mt='1rem'
           onClick={handleGuest}
-          colorScheme='teal'
+          colorScheme='green'
         >
           Guest mode
         </Button>

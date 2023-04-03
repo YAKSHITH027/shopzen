@@ -5,6 +5,10 @@ import LineChart from '../../components/LineChart'
 import PieChart from '../../components/PieChart'
 import StatCard from '../../components/StatCard'
 import axios from 'axios'
+import { AiOutlineUserAdd } from 'react-icons/ai'
+import { CiDeliveryTruck } from 'react-icons/ci'
+import { MdProductionQuantityLimits } from 'react-icons/md'
+import { RiMoneyPoundCircleLine } from 'react-icons/ri'
 
 const Dashboard = () => {
   const [users, setUsers] = useState(0)
@@ -160,10 +164,34 @@ const Dashboard = () => {
   return (
     <Box>
       <Flex gap='3' justify={'space-around'}>
-        <StatCard title='users' percent='12' value='23' count={users} />
-        <StatCard title='orders' percent='24' value='57' count={orders} />
-        <StatCard title='products' percent='34' value='34' count={products} />
-        <StatCard title='sales' percent='28' value='15' count='53' />
+        <StatCard
+          title='users'
+          percent='12'
+          value='23'
+          count={users}
+          icon={<AiOutlineUserAdd fontSize={'1.5rem'} />}
+        />
+        <StatCard
+          title='orders'
+          percent='24'
+          value='57'
+          count={orders}
+          icon={<CiDeliveryTruck fontSize={'1.5rem'} />}
+        />
+        <StatCard
+          title='products'
+          percent='34'
+          value='34'
+          count={products}
+          icon={<MdProductionQuantityLimits fontSize={'1.5rem'} />}
+        />
+        <StatCard
+          title='sales'
+          percent='28'
+          value='15'
+          count='53'
+          icon={<RiMoneyPoundCircleLine fontSize={'1.5rem'} />}
+        />
       </Flex>
       <Flex gap='2' mt='1rem'>
         <Box width='70%' minH={'25vh'}>
@@ -187,10 +215,14 @@ const Dashboard = () => {
             overflowY={'auto'}
           >
             {recentOrders.map((item, id) => {
+              var date = +item.createdAt
+              var d = new Date(date)
+              var ds = d.toLocaleString()
+              let split = ds.split(',')
               return (
                 <Flex
                   key={id}
-                  px='0.3rem'
+                  px='0.2rem'
                   justifyContent={'space-around'}
                   py='9px'
                   borderRadius={'md'}
@@ -212,14 +244,14 @@ const Dashboard = () => {
                     px='3px'
                     colorScheme='orange'
                     borderRadius={'md'}
-                    width='5rem'
+                    width='4rem'
                     overflow={'hidden'}
                     whiteSpace='nowrap'
                     textOverflow={'ellipsis'}
                   >
                     ₹ {item.totalAmount}
                   </Badge>
-                  <Text>Date: 19/ 4:59 PM </Text>
+                  <Text width='6rem'> {split[1]}</Text>
                 </Flex>
               )
             })}
