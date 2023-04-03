@@ -13,7 +13,8 @@ import {FiShare2} from "react-icons/fi"
 import { useToast } from '@chakra-ui/react'
 import LoadingSinglePage from "../../components/products/LoadingSinglePage"
 import Acco from "../../components/products/Accordion"
-import Navbar from "../../components/home/Navbar"
+import Navbar from "../../components/home/Navbar";
+import { Navbar as Test } from "../../components/Navbar/Navbar"
 import Footer from "../../components/footer/Footer"
 function SingleProduct() {
     const [product, setProduct] = useState({})
@@ -68,7 +69,10 @@ function SingleProduct() {
 
     return (
         <Box>
-            <Navbar/>
+            {/* <Navbar/> */}
+            <Box mb="90px">
+      <Test/>
+      </Box>
         <Box m="auto" w="90%">
         {
             Loader?

@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
+    <Box>
     <NavbarWrapper>
     <Box className='navbar-container'>
         <Box className='navbar-logo-container'>
@@ -31,6 +32,7 @@ const Navbar = () => {
         </Box>
     </Box>
     </NavbarWrapper>
+    </Box>
   )
 }
 

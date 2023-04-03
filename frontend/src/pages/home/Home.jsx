@@ -12,7 +12,10 @@ const Home = () => {
   return (
     <div>
       {/* <Navbar /> */}
+      <Box mb="90px">
       <Test/>
+      </Box>
+
       <Box>
         <Image src='https://images.dailyobjects.com/marche/assets/images/other/homepage-offerbanner-by20-desktop.gif?tr=cm-pad_resize,v-2,dpr-1' />
       </Box>

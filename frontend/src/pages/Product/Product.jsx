@@ -66,7 +66,9 @@ function Product() {
     return (
         <Box>
             {/* <Navbar/> */}
-            <Test/>
+            <Box mb="90px">
+      <Test/>
+      </Box>
         <Box m="auto" w="95%">
             <Box display="flex">
                 {/* <Button onClick={handleBag}>Bags</Button> */}
