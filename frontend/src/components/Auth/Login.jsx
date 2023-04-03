@@ -152,7 +152,8 @@ import {
   Flex,
   useToast,
 } from '@chakra-ui/react'
-import Navbar from '../home/Navbar'
+import Navbar from '../home/Navbar';
+import { Navbar as Test } from '../Navbar/Navbar';
 
 const Login = () => {
   const navigate = useNavigate()
@@ -222,7 +223,10 @@ const Login = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
+      <Box mb="90px">
+      <Test/>
+      </Box>
       <Box
         border='1px solid gray'
         minHeight='100vh'
