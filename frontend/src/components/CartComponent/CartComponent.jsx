@@ -463,6 +463,7 @@ function CartComponent() {
             <p className={styles.FreeInfo}>*FREE DUFFLE BAG</p>
           </div>
 
+
           <div>
             <img
               width='100%'
@@ -493,6 +494,7 @@ function CartComponent() {
             </p>
             <p className={styles.FreeInfo}>*FREE DUFFLE BAG</p>
           </div>
+
         </div>
       </div>
     </>
