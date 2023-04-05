@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom'
 import logo from '../../utils/Images/shopzen.jpeg'
 function Sidebar({ id, handleLogout }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  let token = localStorage.getItem('user_token')
   const btnRef = React.useRef()
 
   return (
@@ -84,6 +85,27 @@ function Sidebar({ id, handleLogout }) {
                 Products
               </Text>
             </Link>
+            <Flex
+              align={'center'}
+              justify={'center'}
+              width='10rem'
+              margin={'auto'}
+            >
+              {token ? (
+                <Button
+                  width={'full'}
+                  onClick={() => {
+                    localStorage.setItem('user_token', '')
+                  }}
+                >
+                  <Link to='/login'>LOGOUT</Link>
+                </Button>
+              ) : (
+                <Button width={'full'}>
+                  <Link to='/login'>LOGIN</Link>
+                </Button>
+              )}
+            </Flex>
 
             {/* <Flex justify={'center'}>
               {id ? (
