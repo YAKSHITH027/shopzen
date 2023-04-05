@@ -4,10 +4,12 @@ import styles from "./Cart.module.css"
 import CartComponent from "../../components/CartComponent/CartComponent";
 import EmptyCart from "../../components/EmptyCart/EmptyCart";
 import Navbar from "../../components/home/Navbar";
+import { Navbar as Test } from "../../components/Navbar/Navbar";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { getCartProducts} from "../../redux/CartReducer/Action"
 import { useEffect } from "react";
 import SkeletonCart from "../../components/products/SkeletonCart"
+import { Box } from "@chakra-ui/react";
 
 
 const Cart = () => {
@@ -34,7 +36,10 @@ useEffect(() => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
+      <Box mb="90px">
+      <Test/>
+      </Box>
       <img src="https://images.dailyobjects.com/marche/assets/images/other/homepage-offerbanner-by20-desktop.gif?tr=cm-pad_resize,v-2,dpr-1" alt="" />
       <div>
         <p className={styles.shoppingbag_heading}> SHOPPING BAG</p>
@@ -42,7 +47,7 @@ useEffect(() => {
 
       {
       isLoading?<p style={{color:"white"}}> Loading</p>: products.length==0?<EmptyCart/>: <CartComponent/>
-      }     
+      }
 
     </>
   )

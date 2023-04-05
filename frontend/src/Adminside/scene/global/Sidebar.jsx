@@ -4,7 +4,7 @@ import React from 'react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import Topbar from './Topbar'
 import { RxDashboard } from 'react-icons/rx'
-import { BsCartCheck } from 'react-icons/bs'
+import { BsBarChartLineFill, BsCartCheck, BsPieChart } from 'react-icons/bs'
 import { HiOutlineUserCircle } from 'react-icons/hi'
 import { SlCalender, SlHandbag } from 'react-icons/sl'
 import { MdAddShoppingCart, MdOutlineSecurity } from 'react-icons/md'
@@ -61,53 +61,85 @@ const Sidebar = ({ children }) => {
       id: 7,
       link: '/barchart',
       title: 'bar chart',
-      icon: <MdOutlineSecurity />,
+      icon: <BsBarChartLineFill />,
     },
     {
       id: 8,
       link: '/piechart',
       title: 'pie chart',
-      icon: <MdOutlineSecurity />,
+      icon: <BsPieChart />,
     },
   ]
   return (
-    <Flex bg='#032239' minH={'100vh'} color='white' overflow={'auto'}>
-      <Flex flexDir={'column'} minW='15rem' gap='3' bg='#042b47' p='1rem'>
+    <Flex
+      bg='#032239'
+      minH={'100vh'}
+      color='white'
+      overflow={'auto'}
+      width='full'
+    >
+      <Flex
+        flexDir={'column'}
+        minW={{ base: '4rem', lg: '15rem' }}
+        gap='3'
+        overflow={'hidden'}
+        whiteSpace='nowrap'
+        textOverflow={'ellipsis'}
+        bg='#042b47'
+        p='1rem'
+      >
         <Heading
           textAlign={'center'}
           fontFamily='monospace'
           letterSpacing={'1px'}
+          display={{ base: 'none', lg: 'block' }}
         >
           ADMIN
         </Heading>
         <Flex flexDir={'column'} align='center'>
-          <Avatar size={'xl'} src={adminInfo.image} name={adminInfo.userName} />
+          <Avatar
+            size={{ base: 'md', lg: 'xl' }}
+            src={adminInfo.image}
+            name={adminInfo.userName}
+          />
           <Box my='1rem'>
-            <Text textAlign={'center'} fontSize={'1.3rem'}>
+            <Text
+              textAlign={'center'}
+              fontSize={'1.3rem'}
+              display={{ base: 'none', lg: 'block' }}
+            >
               {adminInfo.userName}
             </Text>
           </Box>
         </Flex>
         {pageLinks.map((item) => {
           return (
-            <Flex gap='3' align={'center'} pl='2rem' key={item.id}>
-              <Text>{item.icon}</Text>
-              <Link to={item.link}>
+            <Link to={item.link}>
+              <Flex
+                gap='3'
+                align={'center'}
+                pl={{ base: '0.3rem', lg: '2rem' }}
+                key={item.id}
+              >
+                <Text fontSize={'1.5rem'}>{item.icon}</Text>
                 <Text
                   textTransform={'capitalize'}
                   color={pathname == item.link ? '#5c60bd' : 'white'}
+                  display={{ base: 'none', lg: 'block' }}
                 >
                   {item.title}
                 </Text>
-              </Link>
-            </Flex>
+              </Flex>
+            </Link>
           )
         })}
       </Flex>
-      <Box width={'100%'} minW='1000px'>
-        <Topbar />
-        <Box px={'3rem'} pt='2rem' minH={'30vh'}>
-          {children}
+      <Box overflow={'auto'} width='full'>
+        <Box width={'full'} minW='1000px'>
+          <Topbar />
+          <Box px={'3rem'} pt='2rem' minH={'30vh'} width={'full'}>
+            {children}
+          </Box>
         </Box>
       </Box>
     </Flex>

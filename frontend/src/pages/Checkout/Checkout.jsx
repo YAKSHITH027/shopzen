@@ -1,14 +1,15 @@
-import Navbar from '../../components/home/Navbar'
+// import Navbar from '../../components/home/Navbar'
 import styles from './Checkout.module.css'
 import { getCartProducts } from '../../redux/CartReducer/Action'
 import { useEffect, useState } from 'react'
-import { Button } from '@chakra-ui/react'
+import { Box, Button } from '@chakra-ui/react'
 import { useCallback } from 'react'
 import useRazorpay from 'react-razorpay'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import axios from "axios"
+import axios from 'axios'
+import { Navbar } from '../../components/Navbar/Navbar'
 
 function Checkout() {
   const { products, isLoading, isError } = useSelector((store) => {
@@ -34,12 +35,14 @@ function Checkout() {
 
   const address = JSON.parse(localStorage.getItem('address'))
 
+
   useEffect(() => {
     dispatch(getCartProducts())
   }, [])
 
 
   
+
   const handlePayment = useCallback(
     async (prod) => {
       const options = {
@@ -125,9 +128,12 @@ function Checkout() {
   )
 
 
+
   return (
     <>
-      <Navbar />
+      <Box mb='90px'>
+        <Navbar />
+      </Box>
       <img
         src='https://images.dailyobjects.com/marche/assets/images/other/20-off-new-homepage-desktop.gif?tr=cm-pad_resize,v-2,dpr-1'
         alt=''

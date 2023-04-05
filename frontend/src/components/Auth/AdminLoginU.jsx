@@ -10,8 +10,9 @@ import {
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Navbar from '../home/Navbar'
+
 import { stubTrue } from 'lodash'
+import { Navbar } from '../Navbar/Navbar'
 
 const AdminLoginU = () => {
   const [email, setEmail] = useState('')
@@ -83,7 +84,9 @@ const AdminLoginU = () => {
   }
   return (
     <>
-      <Navbar />
+      <Box mb='70px' boxShadow={''}>
+        <Navbar />
+      </Box>
       <Flex
         minH={'90vh'}
         width='25rem'
@@ -113,6 +116,7 @@ const AdminLoginU = () => {
             <FormLabel>Email</FormLabel>
             <Input
               placeholder='email'
+              type='email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -122,6 +126,7 @@ const AdminLoginU = () => {
 
             <Input
               placeholder='password'
+              type='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

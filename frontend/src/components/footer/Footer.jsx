@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Heading, Image, Input, InputGroup, InputRightElement, List, ListItem} from '@chakra-ui/react'
+import { Box,Divider, Heading, Image, List, ListItem} from '@chakra-ui/react'
 import React from 'react'
 import { FooterWrapper } from '../../css/footer'
 import {giftByBudget,giftByPersona, bags, cases, downloadApp, helpdesk, homeoffice, knowus, network, others, paymentlogo, socialMediaLogo, straps, wallets,giftsByOccasion,giftByRelationship } from './footerData'
@@ -21,7 +21,7 @@ const Footer = () => {
       </InputRightElement>
     </InputGroup>
         </Box> */}
-        <Box>
+        {/* <Box>
             <Heading fontWeight={"500"} textAlign={"center"} fontSize={"24px"}>FEATURED IN</Heading>
             <Image className='footer-img1-handler' src='https://images.dailyobjects.com/marche/icons/press-desktop.png?tr=cm-pad_resize,v-2,w-1519,h-200,dpr-1' alt='partner'/>
             <Image className='footer-img2-handler' src='https://images.dailyobjects.com/marche/icons/press-desktop.png?tr=cm-pad_resize,v-2,w-1519,h-200,dpr-1' alt='partner'/>
@@ -31,7 +31,7 @@ const Footer = () => {
             <Heading fontWeight={"500"} textAlign={"center"} fontSize={"24px"}>HONEST REVIEWS. NOTHING ELSE.</Heading>
             <Image className='footer-img1-handler' src = "https://images.dailyobjects.com/marche/assets/images/other/reviews-desktop-updated-23.png?tr=cm-pad_resize,v-2,w-1519,h-200,dpr-1" alt = "ratings"/>
             <Image className='footer-img2-handler' src = "https://images.dailyobjects.com/marche/assets/images/other/reviews-mobile-updateds-15.png?tr=cm-pad_resize,v-2,w-359,h-200,dpr-2,q-60 " alt = "ratings"/>
-        </Box>
+        </Box> */}
         <Divider/>
         <Box className='delivery-wrapper'>
             <Box className='delivery-flex-box'>
