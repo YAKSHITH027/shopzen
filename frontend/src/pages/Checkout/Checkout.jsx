@@ -35,10 +35,18 @@ function Checkout() {
 
   const address = JSON.parse(localStorage.getItem('address'))
 
+
+  useEffect(() => {
+    dispatch(getCartProducts())
+  }, [])
+
+
+  
+
   const handlePayment = useCallback(
     async (prod) => {
       const options = {
-        key: 'rzp_test_C5ZSCFnANduzvO',
+        key: 'rzp_test_Q6qLBPFz8pzc23',
         amount: totalprice * 100,
         currency: 'INR',
         name: 'Shopzen Corp',
@@ -119,9 +127,7 @@ function Checkout() {
     [Razorpay]
   )
 
-  useEffect(() => {
-    dispatch(getCartProducts())
-  }, [])
+
 
   return (
     <>
