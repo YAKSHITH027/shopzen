@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <Box>
       {/* <Navbar /> */}
-      <Box mb='80px'>
+      <Box mb={{ base: '80px', lg: '90px' }}>
         <Test />
       </Box>
 
