@@ -4,7 +4,8 @@ import {
   GET_CART_SUCCESS,
   DELETE_CART_SUCCESS,
   POST_CART_SUCCESS,
-  INCREASE_CART_QUANTITY
+  INCREASE_CART_QUANTITY,
+  CART_UPDATE_QTY,
 } from './ActionType'
 import axios from 'axios'
 
@@ -28,16 +29,9 @@ export const DeleteCartSuccess = () => {
   return { type: DELETE_CART_SUCCESS }
 }
 
-
-
-
-
-
-
-
-
-
-
+export const cartUpdateQty = (payload) => {
+  return { type: CART_UPDATE_QTY, payload }
+}
 
 export const getCartProducts = () => async (dispatch) => {
   console.log('token', localStorage.getItem('user_token'))
@@ -79,7 +73,7 @@ export const deleteCartdata = (id) => async (dispatch) => {
 export const addCartData = (payload) => async (dispatch) => {
   dispatch(getCartProductsRequestAction())
   console.log(payload)
-  
+
   console.log('here', localStorage.getItem('user_token'))
   let res = await fetch(`https://dark-erin-fox-cuff.cyclic.app/cart/add`, {
     method: `POST`,
