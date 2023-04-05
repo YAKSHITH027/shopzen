@@ -4,6 +4,7 @@ import {
   GET_CART_SUCCESS,
   DELETE_CART_SUCCESS,
   POST_CART_SUCCESS,
+  INCREASE_CART_QUANTITY
 } from './ActionType'
 import axios from 'axios'
 
@@ -26,6 +27,17 @@ export const postCartProductsSuccessAction = (payload) => {
 export const DeleteCartSuccess = () => {
   return { type: DELETE_CART_SUCCESS }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 export const getCartProducts = () => async (dispatch) => {
   console.log('token', localStorage.getItem('user_token'))
@@ -67,21 +79,7 @@ export const deleteCartdata = (id) => async (dispatch) => {
 export const addCartData = (payload) => async (dispatch) => {
   dispatch(getCartProductsRequestAction())
   console.log(payload)
-  // axios.post(`https://dark-erin-fox-cuff.cyclic.app/cart/add`, payload)
-  //     .then((res) => {
-  //         dispatch(postCartProductsSuccessAction());
-  //     })
-  //     .catch((err) => {
-  //         dispatch(getCartProductsFailureAction());
-  //     })
-
-  // axios({
-  //     method: 'POST', // Replace POST with the HTTP method you want to use
-  //     url: '`https://dark-erin-fox-cuff.cyclic.app/cart/add',
-  //     headers: {
-  //       'Authorization': localStorage.getItem("user_token"), // Replace <token> with your actual authorization token
-  //       'Content-Type': 'application/json' // Set the content type for the request body
-  //     },{payload}})
+  
   console.log('here', localStorage.getItem('user_token'))
   let res = await fetch(`https://dark-erin-fox-cuff.cyclic.app/cart/add`, {
     method: `POST`,
@@ -95,4 +93,3 @@ export const addCartData = (payload) => async (dispatch) => {
 
   console.log(data)
 }
-// console.log(JSON.parse(localStorage.getItem("user_token")))

@@ -28,6 +28,9 @@ export const reducer = (state = initialState, { type, payload }) => {
             return {...state, isLoading:false}
         }
 
+        
+
+
         default:
             return state;
     }

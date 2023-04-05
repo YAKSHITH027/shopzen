@@ -128,9 +128,9 @@ function CartComponent() {
       },
     })
       .then((response) => response.json())
-    /* .then(() => {
+     .then(() => {
        dispatch(getCartProducts())
-     })*/
+     })
   }
 
   function HandleQuantityDecreament(id, cartquantity) {
@@ -145,9 +145,9 @@ function CartComponent() {
       },
     })
       .then((response) => response.json())
-    /* .then(() => {
+     .then(() => {
        dispatch(getCartProducts())
-     })*/
+     })
   }
 
   discountedprice = products.reduce((acc, el) => {

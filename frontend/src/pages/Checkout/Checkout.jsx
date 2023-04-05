@@ -39,7 +39,7 @@ function Checkout() {
   const handlePayment = useCallback(
     async (prod) => {
       const options = {
-        key: 'rzp_test_Q6qLBPFz8pzc23',
+        key: 'rzp_test_C5ZSCFnANduzvO',
         amount: totalprice * 100,
         currency: 'INR',
         name: 'Shopzen Corp',
