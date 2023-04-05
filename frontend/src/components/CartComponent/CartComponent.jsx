@@ -13,8 +13,7 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  FormControl
-
+  FormControl,
 } from '@chakra-ui/react'
 import { MdDiscount } from 'react-icons/md'
 import { AiFillGift } from 'react-icons/ai'
@@ -25,7 +24,11 @@ import { useDisclosure } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { getCartProducts, deleteCartdata } from '../../redux/CartReducer/Action'
+import {
+  getCartProducts,
+  deleteCartdata,
+  cartUpdateQty,
+} from '../../redux/CartReducer/Action'
 import { useToast } from '@chakra-ui/react'
 
 const addressInitislState = {
@@ -60,8 +63,10 @@ function CartComponent() {
     GSTIN,
   } = addressForm
   const navigate = useNavigate()
+  //total price state
+  let [totalprice, setTotalPrice] = useState(0)
 
-
+  let discountedprice = 0
   function HandleChange(e) {
     setAddressForm({ ...addressForm, [e.target.name]: e.target.value })
   }
@@ -78,10 +83,9 @@ function CartComponent() {
       area === ''
     ) {
       toast({
-        title: "All Feilds Required",
-        position: "top",
+        title: 'All Feilds Required',
+        position: 'top',
         isClosable: true,
-        
       })
     } else {
       localStorage.setItem('address', JSON.stringify(addressForm))
@@ -106,17 +110,10 @@ function CartComponent() {
     })
   }
 
-  
-
   const itemLength = products.length
 
-
-  let totalprice = 0
-  let discountedprice = 0
-
- 
-
   function HandleQuantityIncreament(id, cartquantity) {
+    console.log(id, cartquantity)
     fetch(`https://dark-erin-fox-cuff.cyclic.app/cart/increament/${id}`, {
       method: 'PATCH',
       body: JSON.stringify({
@@ -128,9 +125,10 @@ function CartComponent() {
       },
     })
       .then((response) => response.json())
-     .then(() => {
-       dispatch(getCartProducts())
-     })
+      .then(() => {
+        dispatch(cartUpdateQty({ id, qty: cartquantity }))
+        // dispatch(getCartProducts())
+      })
   }
 
   function HandleQuantityDecreament(id, cartquantity) {
@@ -145,33 +143,36 @@ function CartComponent() {
       },
     })
       .then((response) => response.json())
-     .then(() => {
-       dispatch(getCartProducts())
-     })
+      .then(() => {
+        dispatch(cartUpdateQty({ id, qty: cartquantity }))
+        //this is what i was saying just updating the quantity in the redux rather making the api call
+        // dispatch(getCartProducts())
+      })
   }
+  //kept the total price and discount price at the top level
+  useEffect(() => {
+    //this is for initialily getting the products also if user refreshes the page
+    dispatch(getCartProducts())
+  }, [])
 
-  discountedprice = products.reduce((acc, el) => {
-    return acc + Number(el.discountedPrice * el.quantity)
-  }, 0)
+  useEffect(() => {
+    console.log('hello running')
+    discountedprice = products.reduce((acc, el) => {
+      return acc + Number(el.discountedPrice * el.quantity)
+    }, 0)
 
-
- totalprice  = products.reduce((acc, el) => {
-    return acc + Number(el.price * el.quantity)
-  }, 0)
-
-
+    totalprice = products.reduce((acc, el) => {
+      return acc + Number(el.price * el.quantity)
+    }, 0)
+    console.log(totalprice)
+    setTotalPrice(totalprice)
+  }, [products])
 
   return (
     <>
       <div className={styles.cartMainDiv}>
         <div className={styles.cartMainDiv_subdiv1}>
-
-
           {products.map((el, i) => {
-
-            console.log(el)
-
-            
             return (
               <CartMap
                 {...el}
@@ -182,7 +183,6 @@ function CartComponent() {
               />
             )
           })}
-
         </div>
 
         <div className={styles.cartMainDiv_subdiv2}>
@@ -268,7 +268,7 @@ function CartComponent() {
 
           <div className={styles.TotalDiscountDiv}>
             <p>Discount</p>
-            <p>Rs. {discountedprice-totalprice}</p>
+            <p>Rs. {discountedprice - totalprice}</p>
           </div>
 
           <div className={styles.shippingDiv}>
@@ -428,13 +428,15 @@ function CartComponent() {
             </Modal>
           </div>
         </div>
-      </div >
+      </div>
       <div className={styles.recentlyViewedDiv}>
         <p className={styles.recentlyHeading}>RECENTLY VIEWED</p>
 
         <div className={styles.recentlyViewed_subdiv1}>
           <div>
-            <img width="100%" height="100%"
+            <img
+              width='100%'
+              height='100%'
               src='https://images.dailyobjects.com/marche/product-images/1201/all-red-pedal-daypack-images/All-Red-Pedal-Daypack-13t.jpg?tr=cm-pad_crop,v-2,w-202,h-249,dpr-1'
               alt=''
             />
@@ -446,7 +448,9 @@ function CartComponent() {
           </div>
 
           <div>
-            <img width="100%" height="100%"
+            <img
+              width='100%'
+              height='100%'
               src='https://images.dailyobjects.com/marche/product-images/1101/dailyobjects-stride-2-0-clear-case-cover-for-iphone-13-images/DailyObjects-Stride-2-0-Clear-Case-Cover-For-iPhone-13-2.png?tr=cm-pad_resize,v-2,w-202,h-249,dpr-1'
               alt=''
             />
@@ -459,9 +463,38 @@ function CartComponent() {
             <p className={styles.FreeInfo}>*FREE DUFFLE BAG</p>
           </div>
 
-        
-           
-           
+
+          <div>
+            <img
+              width='100%'
+              height='100%'
+              src='https://images.dailyobjects.com/marche/product-images/1202/all-navy-commute-messenger-large-images/All-Navy-Commute-Messenger-Large-2n.png?tr=cm-pad_resize,v-2,w-312,h-385,dpr-1'
+              alt=''
+            />
+            <p className={styles.productName}>
+              Space Blue SnapOn Envelope Sleeve For Macbook Pro 40.64cm (16
+              inch)
+            </p>
+            <p className={styles.productPrice}>
+              Rs.699 <span>1699</span>
+            </p>
+            <p className={styles.FreeInfo}>*FREE DUFFLE BAG</p>
+          </div>
+
+          <div>
+            <img
+              width='100%'
+              height='100%'
+              src='https://images.dailyobjects.com/marche/product-images/1201/all-blue-pedal-daypack-images/All-Blue-Pedal-Daypack-13t.jpg?tr=cm-pad_crop,v-2,w-312,h-385,dpr-1'
+              alt=''
+            />
+            <p className={styles.productName}>All Blue Pedal Daypack</p>
+            <p className={styles.productPrice}>
+              Rs.1699 <span>2499</span>
+            </p>
+            <p className={styles.FreeInfo}>*FREE DUFFLE BAG</p>
+          </div>
+
         </div>
       </div>
     </>
