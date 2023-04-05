@@ -34,19 +34,22 @@ function Checkout() {
 
   const address = JSON.parse(localStorage.getItem('address'))
 
+  useEffect(() => {
+    dispatch(getCartProducts())
+  }, [])
 
 
+  
   const handlePayment = useCallback(
     async (prod) => {
       const options = {
-        key: 'rzp_test_C5ZSCFnANduzvO',
+        key: 'rzp_test_Q6qLBPFz8pzc23',
         amount: totalprice * 100,
         currency: 'INR',
         name: 'Shopzen Corp',
         description: 'Test Transaction',
         image: 'https://example.com/your_logo',
         handler: async (response) => {
-
           let postOrder = async () => {
             try {
               console.log('inside post', prod)
@@ -82,15 +85,17 @@ function Checkout() {
             }
           }
 
-          const deleteAllCart = () => {
+          const deleteAllCart = async () => {
             try {
-              axios.delete(`https://dark-erin-fox-cuff.cyclic.app/cart/delete`, {
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': localStorage.getItem("user_token")
+              await axios.delete(
+                `https://dark-erin-fox-cuff.cyclic.app/cart/delete`,
+                {
+                  headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: localStorage.getItem('user_token'),
+                  },
                 }
-              })
-
+              )
             } catch (err) {
               console.log(err)
             }
@@ -98,7 +103,7 @@ function Checkout() {
 
           postOrder()
           deleteAllCart()
-          navigate("/")
+          navigate('/')
         },
         prefill: {
           name: address.name,
@@ -106,7 +111,7 @@ function Checkout() {
           contact: address.phone,
         },
         notes: {
-          address: "ShopZen Corporation",
+          address: 'ShopZen Corporation',
         },
         theme: {
           color: '#3399cc',
@@ -118,11 +123,6 @@ function Checkout() {
     },
     [Razorpay]
   )
-
-  useEffect(() => {
-    dispatch(getCartProducts())
-  }, [])
-
 
 
   return (
