@@ -12,18 +12,45 @@ const Home = () => {
   return (
     <Box>
       {/* <Navbar /> */}
-      <Box mb="90px">
-      <Test/>
+      <Box mb='80px'>
+        <Test />
       </Box>
 
       <Box>
-        <Image src='https://images.dailyobjects.com/marche/assets/images/other/homepage-offerbanner-by20-desktop.gif?tr=cm-pad_resize,v-2,dpr-1' />
+        <Image
+          src='https://images.dailyobjects.com/marche/assets/images/other/homepage-offerbanner-by20-desktop.gif?tr=cm-pad_resize,v-2,dpr-1'
+          minH={{
+            base: '45px',
+            sm: '60px',
+            md: '95px',
+            lg: '130px',
+            xl: '170px',
+          }}
+        />
       </Box>
       <Box mb={{ base: '1rem', lg: '3.5rem' }}>
-        <Image src='https://images.dailyobjects.com/marche/assets/images/homepage/desktop/pangea_collection_homepage_desktop.jpg?tr=cm-pad_crop,v-2,dpr-1' />
+        <Image
+          src='https://images.dailyobjects.com/marche/assets/images/homepage/desktop/pangea_collection_homepage_desktop.jpg?tr=cm-pad_crop,v-2,dpr-1'
+          minH={{
+            base: '120px',
+            sm: '155px',
+            md: '290px',
+            lg: '375px',
+            xl: '456px',
+          }}
+        />
       </Box>
       <Box>
-        <Image src='https://images.dailyobjects.com/marche/assets/images/other/watchband-homepage-sdesktop.jpg?tr=cm-pad_crop,v-2,dpr-1' />
+        <Image
+          src='https://images.dailyobjects.com/marche/assets/images/other/watchband-homepage-sdesktop.jpg?tr=cm-pad_crop,v-2,dpr-1'
+          minH={{
+            base: '120px',
+            sm: '155px',
+            md: '290px',
+            lg: '375px',
+            xl: '456px',
+          }}
+        />
       </Box>
       <Flex
         minH={'20vh'}
@@ -59,14 +86,41 @@ const Home = () => {
         </Box>
       </Flex>
       <Box mb={{ base: '1rem', lg: '2rem' }}>
-        <Image src='https://images.dailyobjects.com/marche/assets/images/homepage/desktop/Desktop-banner_backpacks-updated.jpg?tr=cm-pad_crop,v-2,dpr-1' />
+        <Image
+          src='https://images.dailyobjects.com/marche/assets/images/homepage/desktop/Desktop-banner_backpacks-updated.jpg?tr=cm-pad_crop,v-2,dpr-1'
+          minH={{
+            base: '120px',
+            sm: '155px',
+            md: '290px',
+            lg: '375px',
+            xl: '456px',
+          }}
+        />
       </Box>
-      <Box>
-        <Image src='https://images.dailyobjects.com/marche/assets/images/other/deals-of-the-day-desktop.jpg?tr=cm-pad_crop,v-2,dpr-1' />
+      <Box mb={{ base: '1rem', lg: '2rem' }}>
+        <Image
+          src='https://images.dailyobjects.com/marche/assets/images/other/deals-of-the-day-desktop.jpg?tr=cm-pad_crop,v-2,dpr-1'
+          minH={{
+            base: '120px',
+            sm: '155px',
+            md: '290px',
+            lg: '375px',
+            xl: '456px',
+          }}
+        />
       </Box>
 
       <Box>
-        <Image src='https://images.dailyobjects.com/marche/assets/images/other/messenger-bags-desktops.jpg?tr=cm-pad_crop,v-2,dpr-1' />
+        <Image
+          src='https://images.dailyobjects.com/marche/assets/images/other/messenger-bags-desktops.jpg?tr=cm-pad_crop,v-2,dpr-1'
+          minH={{
+            base: '120px',
+            sm: '155px',
+            md: '290px',
+            lg: '375px',
+            xl: '456px',
+          }}
+        />
       </Box>
       <Flex
         minH={'20vh'}

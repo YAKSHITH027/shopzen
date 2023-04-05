@@ -105,6 +105,13 @@ export default class ProductSlider extends Component {
                     src={item.image}
                     maxW={{ base: '154px', lg: '235px' }}
                     maxH={{ base: '225px', lg: '290px' }}
+                    minH={{
+                      base: '180px',
+                      sm: '185px',
+                      md: '185px',
+                      lg: '185px',
+                      xl: '285px',
+                    }}
                   />
                 </Flex>
                 <Text

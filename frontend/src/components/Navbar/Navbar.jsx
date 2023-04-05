@@ -1,4 +1,4 @@
-import { Box, Button, Image } from '@chakra-ui/react'
+import { Box, Button, Flex, Image } from '@chakra-ui/react'
 import React from 'react'
 import shopzen from '../../utils/Images/shopzen.jpeg'
 import { NavbarWrapper } from './NavbarWrapper'
@@ -17,9 +17,12 @@ const Navbar = () => {
         boxShadow='rgba(0, 0, 0, 0.15) 0px 3px 3px 0px'
       >
         <Link to='/'>
-          <Box className='navbar-logo-container'>
-            <Image src={shopzen} width='13rem' />
-          </Box>
+          <Flex align={'center'} ml='-1rem' className='navbar-logo-container'>
+            <Image
+              src={shopzen}
+              width={{ base: '10rem', md: '11rem', lg: '13rem' }}
+            />
+          </Flex>
         </Link>
         <Box className='middle-navlist'>
           <Box>
@@ -31,8 +34,13 @@ const Navbar = () => {
           <Box>ACCESSORIES</Box>
           <Box>BAGS & WALLETS</Box>
           <Box>HOME OFFICE</Box>
-          <Box>COLLECTIONS</Box>
+
           {/* <Box>GIFTING</Box> */}
+        </Box>
+        <Box className='navbar-searching' mr={'-6rem'}>
+          <PageLinkLogos />
+        </Box>
+        <Flex align={'center'} display={{ base: 'none', lg: 'flex' }}>
           {token ? (
             <Button
               onClick={() => {
@@ -46,10 +54,7 @@ const Navbar = () => {
               <Link to='/login'>LOGIN</Link>
             </Button>
           )}
-        </Box>
-        <Box className='navbar-searching'>
-          <PageLinkLogos />
-        </Box>
+        </Flex>
         <Sidebar />
       </Box>
     </NavbarWrapper>
