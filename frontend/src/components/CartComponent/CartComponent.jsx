@@ -64,7 +64,7 @@ function CartComponent() {
   } = addressForm
   const navigate = useNavigate()
   //total price state
-  let [totalprice, setTotalPrice] = useState(0)
+  let totalprice = 0
 
   let discountedprice = 0
   function HandleChange(e) {
@@ -149,23 +149,22 @@ function CartComponent() {
         // dispatch(getCartProducts())
       })
   }
-  //kept the total price and discount price at the top level
-  useEffect(() => {
-    //this is for initialily getting the products also if user refreshes the page
-    dispatch(getCartProducts())
-  }, [])
+  //kept the total price and discrount price at t
+  // useEffect(() => {
+  //   //this is for initialily getting the products also if user refreshes the page
+  //   dispatch(getCartProducts())
+  // }, [])
+
+  discountedprice = products.reduce((acc, el) => {
+    return acc + Number(el.discountedPrice * el.quantity)
+  }, 0)
+
+  totalprice = products.reduce((acc, el) => {
+    return acc + Number(el.price * el.quantity)
+  }, 0)
 
   useEffect(() => {
     console.log('hello running')
-    discountedprice = products.reduce((acc, el) => {
-      return acc + Number(el.discountedPrice * el.quantity)
-    }, 0)
-
-    totalprice = products.reduce((acc, el) => {
-      return acc + Number(el.price * el.quantity)
-    }, 0)
-    console.log(totalprice)
-    setTotalPrice(totalprice)
   }, [products])
 
   return (

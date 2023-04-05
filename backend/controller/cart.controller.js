@@ -39,7 +39,7 @@ const DeleteCartItem = async (req, res) => {
 const HandleQuantityIncrease = async (req, res) => {
   const { productID } = req.params
   const payload = req.body
-  payload.quantity = payload.quantity + 1
+  payload.quantity = payload.quantity
   try {
     await CartModel.findByIdAndUpdate(
       { _id: productID, userId: req.body.userId },
@@ -54,7 +54,7 @@ const HandleQuantityIncrease = async (req, res) => {
 const HandleQuantityDecrease = async (req, res) => {
   const { productID } = req.params
   const payload = req.body
-  payload.quantity = payload.quantity - 1
+  payload.quantity = payload.quantity
   console.log(payload)
   try {
     await CartModel.findByIdAndUpdate(

@@ -39,8 +39,9 @@ export const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         products: state.products.map((item) => {
-          if (item.id === payload.id) {
-            item.quantity = payload.qty
+          console.log(item, payload)
+          if (item._id == payload.id) {
+            return { ...item, quantity: payload.qty }
           } else {
             return item
           }

@@ -23,7 +23,7 @@ const CartMap = ({
       setCartquantity(cartquantity)
     } else {
       setCartquantity(cartquantity + 1)
-      HandleQuantityIncreament(id, cartquantity)
+      HandleQuantityIncreament(id, cartquantity + 1)
     }
   }
 
@@ -32,7 +32,7 @@ const CartMap = ({
       setCartquantity(cartquantity)
     } else {
       setCartquantity(cartquantity - 1)
-      HandleQuantityDecreament(id, cartquantity)
+      HandleQuantityDecreament(id, cartquantity - 1)
     }
   }
 
@@ -50,10 +50,10 @@ const CartMap = ({
         <div className={styles.cartProduct_subdiv1}>
           <p className={styles.cartProduct_Name}>{product_name}</p>
           <p className={styles.cartProduct_Price}>
-            Rs. {price * cartquantity}{' '}
+            Rs. {price}{' '}
             <span>
               {' '}
-              <del>{discountedPrice * cartquantity}</del>
+              <del>{discountedPrice}</del>
             </span>{' '}
           </p>
           <div className={styles.cartProduct_subdiv2}>
