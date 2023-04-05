@@ -5,6 +5,7 @@ const { AdminModel } = require('../model/admin.model')
 
 const register = async (req, res) => {
   try {
+    return res.status(400).send({ msg: 'get lost' })
     let user = req.body
 
     //checking whether user already exists or not
