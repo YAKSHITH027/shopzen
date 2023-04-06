@@ -28,6 +28,7 @@ import {
   getCartProducts,
   deleteCartdata,
   cartUpdateQty,
+  cartdeleteitem,
 } from '../../redux/CartReducer/Action'
 import { useToast } from '@chakra-ui/react'
 
@@ -106,7 +107,7 @@ function CartComponent() {
 
   function HandleCartDelete(id) {
     dispatch(deleteCartdata(id)).then(() => {
-      dispatch(getCartProducts())
+      dispatch(cartdeleteitem(id))
     })
   }
 
@@ -127,7 +128,7 @@ function CartComponent() {
       .then((response) => response.json())
       .then(() => {
         dispatch(cartUpdateQty({ id, qty: cartquantity }))
-        // dispatch(getCartProducts())
+        
       })
   }
 
@@ -145,8 +146,7 @@ function CartComponent() {
       .then((response) => response.json())
       .then(() => {
         dispatch(cartUpdateQty({ id, qty: cartquantity }))
-        //this is what i was saying just updating the quantity in the redux rather making the api call
-        // dispatch(getCartProducts())
+        
       })
   }
   //kept the total price and discrount price at t
@@ -463,37 +463,9 @@ function CartComponent() {
           </div>
 
 
-          <div>
-            <img
-              width='100%'
-              height='100%'
-              src='https://images.dailyobjects.com/marche/product-images/1202/all-navy-commute-messenger-large-images/All-Navy-Commute-Messenger-Large-2n.png?tr=cm-pad_resize,v-2,w-312,h-385,dpr-1'
-              alt=''
-            />
-            <p className={styles.productName}>
-              Space Blue SnapOn Envelope Sleeve For Macbook Pro 40.64cm (16
-              inch)
-            </p>
-            <p className={styles.productPrice}>
-              Rs.699 <span>1699</span>
-            </p>
-            <p className={styles.FreeInfo}>*FREE DUFFLE BAG</p>
-          </div>
+          
 
-          <div>
-            <img
-              width='100%'
-              height='100%'
-              src='https://images.dailyobjects.com/marche/product-images/1201/all-blue-pedal-daypack-images/All-Blue-Pedal-Daypack-13t.jpg?tr=cm-pad_crop,v-2,w-312,h-385,dpr-1'
-              alt=''
-            />
-            <p className={styles.productName}>All Blue Pedal Daypack</p>
-            <p className={styles.productPrice}>
-              Rs.1699 <span>2499</span>
-            </p>
-            <p className={styles.FreeInfo}>*FREE DUFFLE BAG</p>
-          </div>
-
+         
         </div>
       </div>
     </>

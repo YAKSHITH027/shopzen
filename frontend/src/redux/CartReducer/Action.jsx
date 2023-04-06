@@ -4,8 +4,8 @@ import {
   GET_CART_SUCCESS,
   DELETE_CART_SUCCESS,
   POST_CART_SUCCESS,
-  INCREASE_CART_QUANTITY,
   CART_UPDATE_QTY,
+  CART_DELETE_ITEM
 } from './ActionType'
 import axios from 'axios'
 
@@ -31,6 +31,11 @@ export const DeleteCartSuccess = () => {
 
 export const cartUpdateQty = (payload) => {
   return { type: CART_UPDATE_QTY, payload }
+}
+
+
+export const cartdeleteitem = (payload) => {
+  return { type: CART_DELETE_ITEM, payload }
 }
 
 export const getCartProducts = () => async (dispatch) => {

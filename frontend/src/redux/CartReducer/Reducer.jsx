@@ -5,6 +5,7 @@ import {
   DELETE_CART_SUCCESS,
   POST_CART_SUCCESS,
   CART_UPDATE_QTY,
+  CART_DELETE_ITEM
 } from './ActionType'
 
 const initialState = {
@@ -35,7 +36,7 @@ export const reducer = (state = initialState, { type, payload }) => {
       return { ...state, isLoading: false }
     }
     case CART_UPDATE_QTY: {
-      console.log('insidereducers', payload)
+     
       return {
         ...state,
         products: state.products.map((item) => {
@@ -47,6 +48,14 @@ export const reducer = (state = initialState, { type, payload }) => {
           }
         }),
       }
+    }
+
+    case CART_DELETE_ITEM:{
+      console.log('insidereducers', payload)
+        return {
+          ...state,
+          products:state.products.filter(el=>el.id!==payload)
+        }
     }
 
     default:

@@ -1,8 +1,10 @@
 .cartmaindiv {
-    width: 80%;
-    height: 200px;
-    margin: auto;
-    border: 1px solid red;
+    width: 90%;
+    height: 400px;;
+    margin: auto;    
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .shoppingbag_heading {
@@ -21,18 +23,11 @@
     font-weight: 700;
 }
 
-.cartMainDiv {
-    width: 90%;
-    margin: auto;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
+
 
 .cartMainDiv_subdiv1 {
     width: 45%;
-    height: 300px;
+    height: 400px;
     overflow-y: scroll;
 
 
@@ -40,7 +35,7 @@
 
 .cartMainDiv_subdiv2 {
     width: 40%;
-    height: 300px;
+    height: 400px;
 
 }
 
@@ -264,9 +259,11 @@
 @media screen and (max-width: 900px){
     .cartMainDiv{
         flex-direction: column;
+        height: auto;
     }
     .cartMainDiv_subdiv1{
         width: 80%;
+        height: 200px;
     }
     .cartMainDiv_subdiv2{
         width: 80%;
@@ -276,11 +273,14 @@
 @media screen and (max-width: 600px) and (min-width:100px){
     .cartMainDiv{
         flex-direction: column;
+        height: auto;
     }
     .cartMainDiv_subdiv1{
         width: 90%;
+        height: 200px;
     }
     .cartMainDiv_subdiv2{
         width: 90%;
+        height: auto;
     }
 }
