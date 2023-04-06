@@ -104,7 +104,7 @@ function Product() {
             next={fetchData}
             hasMore={hasMore}
             loader={<LoadingPosts />}
-            scrollThreshold='60%'
+            scrollThreshold='80%'
           >
             <Grid
               gridTemplateColumns={[
@@ -134,7 +134,7 @@ function Product() {
           </InfiniteScroll>
         </Box>
       </Box>
-      <Footer />
+      {/* <Footer /> */}
     </Box>
   )
 }
