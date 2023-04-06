@@ -13,7 +13,7 @@ function ProductCart({ image, title, price, ogprice, is_new, id }) {
             overflow={'hidden'}
             whiteSpace='nowrap'
             textOverflow={'ellipsis'}
-            maxW={'17rem'}
+            maxW={['7rem','12rem','15rem','15rem','17rem','17rem']}
           >
             {title}
           </Text>
