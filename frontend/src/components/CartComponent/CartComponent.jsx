@@ -106,9 +106,8 @@ function CartComponent() {
   let dispatch = useDispatch()
 
   function HandleCartDelete(id) {
-    dispatch(deleteCartdata(id)).then(() => {
-      dispatch(cartdeleteitem(id))
-    })
+   
+    dispatch(deleteCartdata(id)).then(dispatch(cartdeleteitem))
   }
 
   const itemLength = products.length
@@ -169,7 +168,7 @@ function CartComponent() {
 
   return (
     <>
-      <div className={styles.cartMainDiv}>
+      <div className={styles.cartMainRenderDiv}>
         <div className={styles.cartMainDiv_subdiv1}>
           {products.map((el, i) => {
             return (

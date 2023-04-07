@@ -46,7 +46,7 @@ useEffect(() => {
       </div>
 
       {
-      isLoading?<p style={{color:"white"}}> Loading</p>: products.length==0?<EmptyCart/>: <CartComponent/>
+      isLoading?<p style={{color:white}}>Loading</p>: products.length==0?<EmptyCart/>: <CartComponent/>
       }
 
     </>

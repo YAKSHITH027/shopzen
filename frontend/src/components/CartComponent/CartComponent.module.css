@@ -1,10 +1,10 @@
-.cartmaindiv {
-    width: 90%;
-    height: 400px;;
-    margin: auto;    
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+.cartMainRenderDiv {
+   width: 90%;
+   height: 400px;
+   margin: auto;
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
 }
 
 .shoppingbag_heading {
@@ -257,10 +257,10 @@
 
 
 @media screen and (max-width: 900px){
-    .cartMainDiv{
+   /* .cartMainDiv{
         flex-direction: column;
         height: auto;
-    }
+    }*/
     .cartMainDiv_subdiv1{
         width: 80%;
         height: 200px;
@@ -271,10 +271,10 @@
 }
 
 @media screen and (max-width: 600px) and (min-width:100px){
-    .cartMainDiv{
+   /* .cartMainDiv{
         flex-direction: column;
         height: auto;
-    }
+    }*/
     .cartMainDiv_subdiv1{
         width: 90%;
         height: 200px;

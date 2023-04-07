@@ -52,13 +52,17 @@ export const reducer = (state = initialState, { type, payload }) => {
 
     case CART_DELETE_ITEM:{
       console.log('insidereducers', payload)
+
         return {
           ...state,
           products:state.products.filter(el=>el.id!==payload)
+          
         }
+        
     }
 
     default:
       return state
   }
 }
+
