@@ -20,6 +20,7 @@ import { Navbar } from '../../components/Navbar/Navbar'
 const Profile = () => {
   const [orders, setOrders] = useState([])
   const [user, setUser] = useState({})
+  const [loading, setLoading] = useState(true)
   const fetchOrders = async () => {
     try {
       let res = await fetch(
@@ -48,8 +49,10 @@ const Profile = () => {
       )
       let userData = await response.json()
       setUser(userData)
+      setLoading(false)
     } catch (error) {
       console.log(error)
+      setLoading(false)
     }
   }
   useEffect(() => {
@@ -101,7 +104,7 @@ const Profile = () => {
             <FormControl>
               <Flex gap='5'>
                 <Box>
-                  <FormLabel>Mobile Number</FormLabel>
+                  <FormLabel>Mobile </FormLabel>
                   <Input placeholder='number' bg={'gray.300'} />
                 </Box>
                 <Box>
@@ -126,103 +129,109 @@ const Profile = () => {
           py='2rem'
           px='1rem'
         >
-          {orders?.length == 0 ? (
+          {orders?.length == 0 && !loading ? (
             <Text textAlign={'center'} mt='3rem' fontSize={'2rem'}>
-              You haven't purchased at
+              You haven't purchased anthing at
             </Text>
           ) : (
             <Accordion allowMultiple>
-              {orders.map((item) => {
-                var date = Number(item.createdAt)
-                var d = new Date(date)
-                var ds = d.toLocaleString()
-                return (
-                  <Flex
-                    align={'center'}
-                    key={item.createdAt}
-                    justify={'center'}
-                    overflowX={'auto'}
-                  >
-                    <AccordionItem
-                      border={'none'}
-                      bg={'gray.300'}
-                      mb='7px'
-                      p='10px'
-                      borderRadius={'0.4rem'}
-                      width='1200px'
-                      mr={'2rem'}
+              {loading ? (
+                <Text fontSize={'1.5rem'} textAlign={'center'} width='1200px'>
+                  Loading....
+                </Text>
+              ) : (
+                orders.map((item) => {
+                  var date = Number(item.createdAt)
+                  var d = new Date(date)
+                  var ds = d.toLocaleString()
+                  return (
+                    <Flex
+                      align={'center'}
+                      key={item.createdAt}
+                      justify={'center'}
+                      overflowX={'auto'}
                     >
-                      <h2>
-                        <Flex>
-                          <AccordionButton>
-                            <Flex
-                              width='1200px'
-                              fontSize={'1.1rem'}
-                              textTransform={'capitalize'}
-                            >
-                              <Text width='24%' textAlign={'start'}>
-                                Name: {item.address.fullname}
-                              </Text>
-                              <Text width='20%' textAlign={'start'}>
-                                City:{item.address.city}
-                              </Text>
-                              <Text width='20%' textAlign={'start'}>
-                                Amount:{item.totalAmount}
-                              </Text>
-                              <Text width='32%' textAlign={'start'}>
-                                ordredAT: {ds}
-                              </Text>
-                              <Text width='32%' textAlign={'start'}>
-                                OrderStatus : {item.orderStatus}
-                              </Text>
-                            </Flex>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </Flex>
-                      </h2>
-
-                      <AccordionPanel pb={4} border={'none'} outline={'none'}>
-                        <Flex flexDir={'column'} gap='5'>
-                          {item.products.map((item22, i) => {
-                            var date = 232334343343
-                            var d = new Date(date)
-                            var ds = d.toLocaleString()
-                            return (
+                      <AccordionItem
+                        border={'none'}
+                        bg={'gray.300'}
+                        mb='7px'
+                        p='10px'
+                        borderRadius={'0.4rem'}
+                        width='1200px'
+                        mr={'2rem'}
+                      >
+                        <h2>
+                          <Flex justify={'center'} width='full'>
+                            <AccordionButton>
                               <Flex
-                                key={i}
-                                gap='9'
-                                align={'center'}
-                                // borderWidth='1px'
-                                px='1rem'
-                                justify={'space-around'}
-                                py='0.2rem'
-                                minW={'1200px'}
+                                width='1200px'
+                                fontSize={'1.1rem'}
+                                textTransform={'capitalize'}
                               >
-                                <Box width='50px'> item: {i + 1}</Box>
-
-                                <Box>
-                                  <Image
-                                    src={item22.image}
-                                    width='80px'
-                                    borderRadius={'md'}
-                                  />
-                                </Box>
-
-                                <Text width='100px'>
-                                  Price: {item22.price}{' '}
+                                <Text width='24%' textAlign={'start'}>
+                                  Name: {item.address.fullname}
                                 </Text>
-                                <Text width='100px'>
-                                  Quantity: {item22.quantity}{' '}
+                                <Text width='20%' textAlign={'start'}>
+                                  City:{item.address.city}
+                                </Text>
+                                <Text width='20%' textAlign={'start'}>
+                                  Amount:{item.totalAmount}
+                                </Text>
+                                <Text width='32%' textAlign={'start'}>
+                                  ordredAT: {ds}
+                                </Text>
+                                <Text width='32%' textAlign={'start'}>
+                                  OrderStatus : {item.orderStatus}
                                 </Text>
                               </Flex>
-                            )
-                          })}
-                        </Flex>
-                      </AccordionPanel>
-                    </AccordionItem>
-                  </Flex>
-                )
-              })}
+                              <AccordionIcon />
+                            </AccordionButton>
+                          </Flex>
+                        </h2>
+
+                        <AccordionPanel pb={4} border={'none'} outline={'none'}>
+                          <Flex flexDir={'column'} gap='5'>
+                            {item.products.map((item22, i) => {
+                              var date = 232334343343
+                              var d = new Date(date)
+                              var ds = d.toLocaleString()
+                              return (
+                                <Flex
+                                  key={i}
+                                  gap='9'
+                                  align={'center'}
+                                  // borderWidth='1px'
+                                  px='1rem'
+                                  justify={'space-around'}
+                                  py='0.2rem'
+                                  minW={'1200px'}
+                                >
+                                  <Box width='50px'> item: {i + 1}</Box>
+
+                                  <Box>
+                                    <Image
+                                      src={item22.image}
+                                      width='80px'
+                                      borderRadius={'md'}
+                                    />
+                                  </Box>
+
+                                  <Text width='100px'>
+                                    Price: {item22.price}{' '}
+                                  </Text>
+                                  <Text width='100px'>
+                                    Quantity: {item22.quantity}{' '}
+                                  </Text>
+                                </Flex>
+                              )
+                            })}
+                          </Flex>
+                        </AccordionPanel>
+                      </AccordionItem>
+                    </Flex>
+                  )
+                })
+              )}
             </Accordion>
           )}
         </Flex>

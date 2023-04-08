@@ -1,40 +1,47 @@
-.cartMap_Maindiv{
-    display: flex;
-    align-items: center;
-    width: 80%;
-    margin: auto;
+.cartMap_Maindiv {
+  display: flex;
+  align-items: center;
+  width: 80%;
+
+  border-bottom: 3px solid rgba(137, 128, 128, 0.701);
+  margin: auto;
 }
-.cartProduct_Name{
-    font-size: 20px;
-    padding-top: 10px;
+.cartProduct_Name {
+  font-size: 20px;
+  padding-top: 10px;
 }
-.cartProduct_subdiv1{
-    width: 60%;
-    font-weight: 500;
+.cartProduct_subdiv1 {
+  width: 60%;
+  font-weight: 500;
 }
-.cartProduct_subdiv2{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 20px;
+.cartProduct_subdiv2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
 }
 
-.cartProduct_Price{
-    margin-top: 10px;
+.cartProduct_Price {
+  margin-top: 10px;
 }
-.quantity_div{
-
-    display: flex;
-    height: 20px;
-    width: 30%;
-    align-items: center;
-    justify-content: space-around;
-    cursor: pointer;
+.quantity_div {
+  display: flex;
+  height: 20px;
+  width: 30%;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
 }
-.cartProduct_Price span{
-    color: gray;
-    padding-left: 20px;
+.cartProduct_Price span {
+  color: gray;
+  padding-left: 20px;
 }
-.DeleteIcon{
-    cursor: pointer;
+.DeleteIcon {
+  cursor: pointer;
+}
+@media screen and (max-width: 900px) {
+  .cartMap_Maindiv {
+    flex-direction: column;
+    border-bottom: none;
+  }
 }

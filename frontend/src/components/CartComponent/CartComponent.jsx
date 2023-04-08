@@ -106,8 +106,7 @@ function CartComponent() {
   let dispatch = useDispatch()
 
   function HandleCartDelete(id) {
-   
-    dispatch(deleteCartdata(id)).then(dispatch(cartdeleteitem))
+    dispatch(deleteCartdata(id)).then(dispatch(cartdeleteitem(id)))
   }
 
   const itemLength = products.length
@@ -127,7 +126,6 @@ function CartComponent() {
       .then((response) => response.json())
       .then(() => {
         dispatch(cartUpdateQty({ id, qty: cartquantity }))
-        
       })
   }
 
@@ -145,7 +143,6 @@ function CartComponent() {
       .then((response) => response.json())
       .then(() => {
         dispatch(cartUpdateQty({ id, qty: cartquantity }))
-        
       })
   }
   //kept the total price and discrount price at t
@@ -460,11 +457,6 @@ function CartComponent() {
             </p>
             <p className={styles.FreeInfo}>*FREE DUFFLE BAG</p>
           </div>
-
-
-          
-
-         
         </div>
       </div>
     </>
